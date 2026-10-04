@@ -1,0 +1,25 @@
+{
+  "id":"meridian","name":"The Meridian reserve","description":"Blackwater's largest private vault is the target of your most ambitious heist. Assemble three trusted crew members, secure your equipment and choose an escape strategy before the city closes in.","image":"/assets/heist.webp","requiredRep":550,"requiredCrew":3,"requiredItems":["encrypted-radio","executive-pass"],"cost":15000,"reward":[95000,160000],
+  "stages":[
+    {"id":"terms","name":"Reconnaissance","description":"Your crew weighs Selene's briefing against its own judgment. Choose how much preparation to fund before the night begins.","skill":"streetSmarts","choices":[
+      {"id":"patient-terms","label":"Fund thorough preparation","description":"Buy greater confidence with a larger planning budget.","cost":2400,"chanceBonus":12,"heat":2},
+      {"id":"trusted-terms","label":"Trust the crew's instincts","description":"Rely on experience and accept a less certain opening.","cost":0,"chanceBonus":3,"heat":7},
+      {"id":"bold-terms","label":"Take the fleeting opportunity","description":"Commit while the opening exists, drawing more attention.","cost":900,"chanceBonus":7,"heat":12}
+    ]},
+    {"id":"circle","name":"The approach","description":"The crew reaches the reserve's inner world. The city's pressure rises as you choose between patience, confidence and a costly contingency.","skill":"stealth","choices":[
+      {"id":"circle-concession","label":"Choose the patient approach","description":"Spend for a quiet approach with less pressure.","cost":3200,"chanceBonus":14,"heat":3},
+      {"id":"circle-promise","label":"Rely on the specialist","description":"Let your crew's skill carry this uncertain stage.","cost":0,"chanceBonus":4,"heat":8},
+      {"id":"circle-share","label":"Use the reserved contingency","description":"Fund extra support for a steadier approach.","cost":1400,"chanceBonus":9,"heat":5}
+    ]},
+    {"id":"pressure","name":"The vault","description":"The reserve is within reach when a rival crew intervenes. Keep your people together while the vault challenge decides the haul.","skill":"combat","choices":[
+      {"id":"pressure-settle","label":"Deploy the protected reserve","description":"Commit your larger support budget to reduce the confrontation's strain.","cost":3500,"chanceBonus":13,"heat":4},
+      {"id":"pressure-hold","label":"Hold the crew together","description":"Rely on discipline under the greatest pressure of the job.","cost":0,"chanceBonus":3,"heat":14},
+      {"id":"pressure-support","label":"Back the specialist's play","description":"Spend a measured reserve on your crew's vault challenge.","cost":1700,"chanceBonus":9,"heat":8}
+    ]},
+    {"id":"closing","name":"The getaway","description":"The haul is in your crew's hands and Blackwater is waking up. Choose the escape strategy that will bring your people home.","skill":"driving","choices":[
+      {"id":"closing-patient","label":"Ghost route","description":"Fund a patient, quiet getaway with less attention.","cost":2800,"chanceBonus":12,"heat":3},
+      {"id":"closing-trust","label":"Fast exit under pressure","description":"Trust your driver to carry the crew through an intense escape.","cost":0,"chanceBonus":4,"heat":10},
+      {"id":"closing-reserve","label":"Decoy convoy contingency","description":"Spend your reserve on a prepared escape contingency.","cost":1200,"chanceBonus":8,"heat":6}
+    ]}
+  ]
+}

@@ -1,0 +1,6 @@
+[
+  {"id":"bedroom","name":"Private quarters","description":"A proper room to recover between difficult decisions.","cost":1200,"maxLevel":4,"bonus":"−4 lay-low energy cost per level","icon":"bed"},
+  {"id":"infirmary","name":"Recovery room","description":"Professional care keeps the crew on its feet.","cost":1800,"maxLevel":4,"bonus":"+5 daily health per level","icon":"first-aid"},
+  {"id":"workshop","name":"Planning room","description":"A quiet place to review decisions with your crew.","cost":2400,"maxLevel":4,"bonus":"+2% job chance per level","icon":"blueprint"},
+  {"id":"security","name":"Private security","description":"A calm, protected home lets attention fade.","cost":3200,"maxLevel":4,"bonus":"−2 daily heat per level","icon":"shield"}
+]

@@ -1,0 +1,4001 @@
+[
+  {
+    "id": "investigation-letter",
+    "title": "An official letter",
+    "category": "Investigation",
+    "text": "A formal notice arrives at your safehouse. Someone has connected your name to a recent dispute, and Vale wants an explanation.",
+    "image": "/assets/city.webp",
+    "weight": 8,
+    "minHeat": 25,
+    "choices": [
+      {
+        "id": "counsel",
+        "label": "Retain an adviser",
+        "description": "Spend $900 to prepare a careful response.",
+        "effects": {
+          "cash": -900,
+          "heat": -6,
+          "flags": [
+            "legal-file"
+          ]
+        },
+        "result": "An adviser takes the file. You now have a chance to settle the questions properly.",
+        "followUp": "investigation-hearing"
+      },
+      {
+        "id": "cooperate",
+        "label": "Cooperate openly",
+        "description": "Give Vale your account; the room may accept it.",
+        "chance": 67,
+        "skill": "charisma",
+        "effects": {
+          "heat": -12,
+          "relationships": {
+            "vale": 4
+          }
+        },
+        "failure": {
+          "heat": 9,
+          "reputation": -6
+        },
+        "result": "Your account answers the immediate questions. Vale closes the meeting calmly.",
+        "failureResult": "Your account raises more questions than it answers. The inquiry widens."
+      },
+      {
+        "id": "wait",
+        "label": "Let the notice sit",
+        "description": "Preserve cash and accept more attention.",
+        "effects": {
+          "heat": 5,
+          "energy": -3
+        },
+        "result": "The unanswered letter remains on the table. So does the city's interest."
+      }
+    ]
+  },
+  {
+    "id": "investigation-hearing",
+    "title": "A room of questions",
+    "category": "Investigation",
+    "text": "Your adviser has arranged a review of the file. A measured answer could bring this uncomfortable chapter to a close.",
+    "image": "/assets/business-4.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "choices": [
+      {
+        "id": "settlement",
+        "label": "Fund the settlement",
+        "description": "Pay $1,400 for a predictable conclusion.",
+        "effects": {
+          "cash": -1400,
+          "heat": -18,
+          "removeFlags": [
+            "legal-file"
+          ],
+          "relationships": {
+            "vale": 3
+          }
+        },
+        "result": "The settlement is recorded. The review ends with no further questions."
+      },
+      {
+        "id": "case",
+        "label": "Stand behind your account",
+        "description": "Trust your judgment in a difficult review.",
+        "chance": 72,
+        "skill": "streetSmarts",
+        "effects": {
+          "heat": -20,
+          "reputation": 5,
+          "removeFlags": [
+            "legal-file"
+          ]
+        },
+        "failure": {
+          "heat": 12,
+          "cash": -600,
+          "jailDays": 2
+        },
+        "result": "Your account survives scrutiny. The file is closed.",
+        "failureResult": "The review turns against you. A short detention follows the failed hearing."
+      },
+      {
+        "id": "adjourn",
+        "label": "Request more time",
+        "description": "Keep the file open and recover your composure.",
+        "effects": {
+          "energy": 8,
+          "heat": 3
+        },
+        "result": "The hearing is postponed. The uncertainty follows you home."
+      }
+    ]
+  },
+  {
+    "id": "witness-memory",
+    "title": "A witness remembers",
+    "category": "Investigation",
+    "text": "A shopkeeper has repeated a story about your last job. The details are muddled, but the rumor is gathering weight.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 7,
+    "minHeat": 18,
+    "choices": [
+      {
+        "id": "clarify",
+        "label": "Clarify the story",
+        "description": "A respectful conversation may correct the rumor.",
+        "chance": 70,
+        "skill": "charisma",
+        "effects": {
+          "heat": -8,
+          "reputation": 4
+        },
+        "failure": {
+          "heat": 7
+        },
+        "result": "The shopkeeper corrects the account. The rumor loses its sharpest edge.",
+        "failureResult": "The conversation gives the shopkeeper another detail to repeat."
+      },
+      {
+        "id": "leave",
+        "label": "Give it time",
+        "description": "Spend energy staying out of the conversation.",
+        "effects": {
+          "energy": -8,
+          "heat": -3
+        },
+        "result": "You keep a quiet day. The rumor begins to fade without another scene."
+      }
+    ]
+  },
+  {
+    "id": "street-cameras",
+    "title": "A busier street",
+    "category": "Investigation",
+    "text": "New civic monitoring has made your usual neighborhood feel less anonymous. The city is watching the whole block more closely.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 6,
+    "minHeat": 20,
+    "choices": [
+      {
+        "id": "pause",
+        "label": "Pause your public work",
+        "description": "Lose a little income to cool the neighborhood.",
+        "effects": {
+          "cash": -350,
+          "heat": -8,
+          "energy": 5
+        },
+        "result": "An uneventful day gives the city less reason to remember you."
+      },
+      {
+        "id": "donate",
+        "label": "Support the local council",
+        "description": "A $600 civic contribution builds goodwill.",
+        "effects": {
+          "cash": -600,
+          "reputation": 8,
+          "relationships": {
+            "vale": 3
+          },
+          "heat": -4
+        },
+        "result": "The council welcomes your support. Your name enters a different kind of conversation."
+      },
+      {
+        "id": "continue",
+        "label": "Carry on publicly",
+        "description": "Keep your momentum while accepting attention.",
+        "effects": {
+          "cash": 400,
+          "reputation": 3,
+          "heat": 6
+        },
+        "result": "The day pays. Your public profile rises with it."
+      }
+    ]
+  },
+  {
+    "id": "rumor-column",
+    "title": "Your name in print",
+    "category": "Investigation",
+    "text": "A local columnist links your growing success to the city's private disputes. People are deciding what to believe.",
+    "image": "/assets/city.webp",
+    "weight": 6,
+    "minRep": 120,
+    "minHeat": 15,
+    "choices": [
+      {
+        "id": "reply",
+        "label": "Give a calm reply",
+        "description": "Use your credibility to shape the account.",
+        "chance": 66,
+        "skill": "charisma",
+        "effects": {
+          "heat": -7,
+          "reputation": 10
+        },
+        "failure": {
+          "heat": 8,
+          "reputation": -4
+        },
+        "result": "Your restrained reply earns unexpected respect. The column softens.",
+        "failureResult": "The reply becomes tomorrow's headline. The attention intensifies."
+      },
+      {
+        "id": "silence",
+        "label": "Keep your privacy",
+        "description": "Let the story run without your contribution.",
+        "effects": {
+          "heat": 3,
+          "energy": 4
+        },
+        "result": "You refuse the interview. The story runs, but it gains no new material from you."
+      }
+    ]
+  },
+  {
+    "id": "neighbor-question",
+    "title": "The neighbor's concern",
+    "category": "Investigation",
+    "text": "A longtime neighbor asks whether your new life will bring trouble to the building. It is a personal question, not an official one.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 8,
+    "maxHeat": 60,
+    "choices": [
+      {
+        "id": "assure",
+        "label": "Make time to listen",
+        "description": "Spend 8 energy on a promise you can stand behind.",
+        "effects": {
+          "energy": -8,
+          "heat": -4,
+          "reputation": 6
+        },
+        "result": "You listen without dismissing the concern. The building becomes a little less suspicious."
+      },
+      {
+        "id": "help",
+        "label": "Cover a building repair",
+        "description": "Spend $450 on something everyone needs.",
+        "effects": {
+          "cash": -450,
+          "heat": -6,
+          "influence": 2
+        },
+        "result": "The repair is real and visible. Your neighbor accepts the gesture."
+      },
+      {
+        "id": "dismiss",
+        "label": "Keep the conversation short",
+        "description": "Save your time at the cost of goodwill.",
+        "effects": {
+          "energy": 4,
+          "heat": 4,
+          "reputation": -3
+        },
+        "result": "The unanswered concern passes from one apartment to another."
+      }
+    ]
+  },
+  {
+    "id": "civic-meeting",
+    "title": "An empty seat at city hall",
+    "category": "Investigation",
+    "text": "Vale invites you to a neighborhood meeting. Attendance could show that you care about the streets beyond their profit.",
+    "image": "/assets/business-4.webp",
+    "weight": 5,
+    "minRep": 75,
+    "choices": [
+      {
+        "id": "attend",
+        "label": "Attend the meeting",
+        "description": "Give 12 energy and hear the district's concerns.",
+        "effects": {
+          "energy": -12,
+          "heat": -7,
+          "relationships": {
+            "vale": 6
+          },
+          "influence": 3
+        },
+        "result": "You take the empty seat and listen. Vale sees a useful change in your priorities."
+      },
+      {
+        "id": "support",
+        "label": "Sponsor the community fund",
+        "description": "Contribute $800 without making a speech.",
+        "effects": {
+          "cash": -800,
+          "heat": -9,
+          "reputation": 8
+        },
+        "result": "The fund receives your contribution. The neighborhood notices the practical help."
+      },
+      {
+        "id": "decline",
+        "label": "Decline politely",
+        "description": "Protect your schedule and offer a later meeting.",
+        "effects": {
+          "energy": 5,
+          "relationships": {
+            "vale": -2
+          }
+        },
+        "result": "Vale accepts the answer, though the invitation was an opportunity."
+      }
+    ]
+  },
+  {
+    "id": "clean-contract",
+    "title": "A straightforward contract",
+    "category": "Investigation",
+    "text": "A public-facing client offers a small, ordinary contract. Clean work would give your name a quieter association.",
+    "image": "/assets/business-1.webp",
+    "weight": 7,
+    "minHeat": 15,
+    "choices": [
+      {
+        "id": "accept",
+        "label": "Take the ordinary work",
+        "description": "Spend 14 energy on modest income and lower heat.",
+        "effects": {
+          "energy": -14,
+          "cash": 650,
+          "heat": -6,
+          "skillXp": {
+            "business": 10
+          }
+        },
+        "result": "The ordinary work is completed without incident. The payment feels pleasantly simple."
+      },
+      {
+        "id": "refer",
+        "label": "Refer the client to Mara",
+        "description": "Trade a small opportunity for a better relationship.",
+        "effects": {
+          "relationships": {
+            "mara": 5
+          },
+          "reputation": 3,
+          "heat": -2
+        },
+        "result": "Mara appreciates the introduction. The client receives help and remembers your courtesy."
+      }
+    ]
+  },
+  {
+    "id": "attention-spike",
+    "title": "Too many familiar names",
+    "category": "Investigation",
+    "text": "Several people from your recent deals appear in the same investigation. Your involvement may be small, but the pattern is visible.",
+    "image": "/assets/city.webp",
+    "weight": 9,
+    "minHeat": 55,
+    "choices": [
+      {
+        "id": "review",
+        "label": "Pay for a professional review",
+        "description": "Spend $1,800 to address the open questions.",
+        "effects": {
+          "cash": -1800,
+          "heat": -15,
+          "relationships": {
+            "vale": 3
+          }
+        },
+        "result": "A professional review separates your affairs from the wider inquiry."
+      },
+      {
+        "id": "explain",
+        "label": "Explain your position",
+        "description": "A convincing account may avoid detention.",
+        "chance": 55,
+        "skill": "charisma",
+        "effects": {
+          "heat": -12,
+          "reputation": 5
+        },
+        "failure": {
+          "heat": -20,
+          "cash": -1200,
+          "jailDays": 3
+        },
+        "result": "Your explanation holds. You leave with your name still under review.",
+        "failureResult": "The investigators are unconvinced. You spend three days in custody."
+      },
+      {
+        "id": "pause",
+        "label": "Step back for a day",
+        "description": "Surrender time and momentum to lower the strain.",
+        "effects": {
+          "energy": -20,
+          "reputation": -6,
+          "heat": -8
+        },
+        "result": "You cancel your meetings. The immediate pressure eases, though rivals notice the pause."
+      },
+      {
+        "id": "wait-out-inquiry",
+        "label": "Accept an unsettled day",
+        "description": "Recover your composure while the inquiry and rumors continue.",
+        "effects": {
+          "energy": 5,
+          "heat": 3,
+          "reputation": -3
+        },
+        "result": "You make no new promises while the inquiry continues. Rest helps, but rivals notice your uncertain position."
+      }
+    ]
+  },
+  {
+    "id": "quiet-week",
+    "title": "The district exhales",
+    "category": "Investigation",
+    "text": "For once, the neighborhood has no fresh incident to discuss. Vale credits several people, including you, for the calmer mood.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 5,
+    "maxHeat": 20,
+    "choices": [
+      {
+        "id": "protect",
+        "label": "Protect the calm",
+        "description": "Give a little energy to keeping promises small.",
+        "effects": {
+          "energy": -6,
+          "heat": -4,
+          "relationships": {
+            "vale": 4
+          }
+        },
+        "result": "You keep the day uneventful. The neighborhood's quiet confidence continues."
+      },
+      {
+        "id": "claim",
+        "label": "Accept the public credit",
+        "description": "Earn standing, along with a little attention.",
+        "effects": {
+          "reputation": 12,
+          "influence": 2,
+          "heat": 3
+        },
+        "result": "You accept the recognition. A quiet week becomes part of your public story."
+      }
+    ]
+  },
+  {
+    "id": "crew-whisper",
+    "title": "A whisper in the crew",
+    "category": "Betrayal",
+    "text": "Two crew members disagree about a missing share. Neither speaks directly, but the silence is beginning to divide the room.",
+    "image": "/assets/crew-1.webp",
+    "weight": 8,
+    "requiresCrew": true,
+    "choices": [
+      {
+        "id": "listen",
+        "label": "Hear both accounts",
+        "description": "Spend 10 energy to learn what the silence hides.",
+        "effects": {
+          "energy": -10,
+          "loyalty": 2
+        },
+        "result": "You ask each person to speak plainly. The disagreement finally has a shape.",
+        "followUp": "crew-verdict"
+      },
+      {
+        "id": "cover",
+        "label": "Cover the missing share",
+        "description": "Spend $750 to protect trust quickly.",
+        "effects": {
+          "cash": -750,
+          "loyalty": 6
+        },
+        "result": "You cover the shortfall from your own account. The room relaxes, though the question remains."
+      },
+      {
+        "id": "ignore",
+        "label": "Let them settle it",
+        "description": "Save your time and risk the crew's trust.",
+        "effects": {
+          "energy": 5,
+          "loyalty": -7
+        },
+        "result": "Without your involvement, the silence turns into factions."
+      }
+    ]
+  },
+  {
+    "id": "crew-verdict",
+    "title": "The missing share",
+    "category": "Betrayal",
+    "text": "The accounts disagree by a single payment. An honest error and a deliberate betrayal would look much the same from here.",
+    "image": "/assets/crew-4.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiresCrew": true,
+    "choices": [
+      {
+        "id": "audit",
+        "label": "Review the whole account",
+        "description": "Trust careful judgment before reaching a verdict.",
+        "chance": 70,
+        "skill": "business",
+        "effects": {
+          "loyalty": 9,
+          "cash": 500,
+          "flags": [
+            "crew-account-settled"
+          ]
+        },
+        "failure": {
+          "loyalty": -5,
+          "energy": -10
+        },
+        "result": "The review finds a clerical mistake. The recovered share restores the crew's trust.",
+        "failureResult": "The review settles nothing. Everyone feels more exposed.",
+        "followUp": "crew-reconciliation",
+        "failureFollowUp": "crew-empty-chair"
+      },
+      {
+        "id": "amnesty",
+        "label": "Offer a fresh beginning",
+        "description": "Spend $600 and put unity before blame.",
+        "effects": {
+          "cash": -600,
+          "loyalty": 5,
+          "flags": [
+            "crew-account-settled"
+          ]
+        },
+        "result": "You settle the account without naming a culprit. The crew gets a chance to begin again.",
+        "followUp": "crew-reconciliation"
+      },
+      {
+        "id": "accuse",
+        "label": "Make a public accusation",
+        "description": "Assert authority at a steep cost to trust.",
+        "effects": {
+          "reputation": 8,
+          "loyalty": -12,
+          "heat": 3
+        },
+        "result": "Your authority is clear. The room feels colder than it did before.",
+        "followUp": "crew-empty-chair"
+      },
+      {
+        "id": "leave-unresolved",
+        "label": "Leave the verdict unresolved",
+        "description": "Let everyone return to work with less certainty about your leadership.",
+        "effects": {
+          "energy": 5,
+          "loyalty": -3,
+          "reputation": -2
+        },
+        "result": "You give no verdict today. The crew returns to work, carrying a smaller measure of confidence in your judgment."
+      }
+    ]
+  },
+  {
+    "id": "crew-reconciliation",
+    "title": "A table with room for everyone",
+    "category": "Betrayal",
+    "text": "The crew returns to work together. A small gesture now could turn an uneasy truce into a stronger commitment.",
+    "image": "/assets/crew-5.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiresCrew": true,
+    "choices": [
+      {
+        "id": "meal",
+        "label": "Pay for a shared meal",
+        "description": "Spend $350 to make room for ordinary conversation.",
+        "effects": {
+          "cash": -350,
+          "loyalty": 8,
+          "energy": 6
+        },
+        "result": "The crew talks about things other than money. The old tension finally loosens."
+      },
+      {
+        "id": "clarity",
+        "label": "Set clearer expectations",
+        "description": "Give 8 energy to a common agreement.",
+        "effects": {
+          "energy": -8,
+          "loyalty": 5,
+          "skillXp": {
+            "business": 15
+          }
+        },
+        "result": "Everyone leaves with the same understanding of the next deal."
+      },
+      {
+        "id": "quiet-pause",
+        "label": "Allow a quiet pause",
+        "description": "Recover your composure and accept that trust will mend slowly.",
+        "effects": {
+          "energy": 8,
+          "loyalty": -2
+        },
+        "result": "The crew returns to ordinary work without a celebration. You take a quiet pause; full trust will need more time."
+      }
+    ]
+  },
+  {
+    "id": "crew-empty-chair",
+    "title": "The empty chair",
+    "category": "Betrayal",
+    "text": "One crew member has stopped joining the evening meeting. They still work, but the distance is becoming obvious.",
+    "image": "/assets/crew-2.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiresCrew": true,
+    "choices": [
+      {
+        "id": "reach",
+        "label": "Make a personal apology",
+        "description": "A difficult conversation could restore confidence.",
+        "chance": 70,
+        "skill": "charisma",
+        "effects": {
+          "loyalty": 10,
+          "reputation": -3
+        },
+        "failure": {
+          "loyalty": -4
+        },
+        "result": "The apology is accepted. The empty chair is filled at the next meeting.",
+        "failureResult": "The words come too late for an easy repair. The distance remains."
+      },
+      {
+        "id": "bonus",
+        "label": "Offer a retention bonus",
+        "description": "Pay $900 for a concrete reason to stay engaged.",
+        "effects": {
+          "cash": -900,
+          "loyalty": 6
+        },
+        "result": "The bonus helps. Work resumes with a little less resentment."
+      },
+      {
+        "id": "accept",
+        "label": "Accept the distance",
+        "description": "Protect your authority and give up some loyalty.",
+        "effects": {
+          "reputation": 4,
+          "loyalty": -6
+        },
+        "result": "The crew learns that your door can remain closed. Their commitment becomes more cautious."
+      }
+    ]
+  },
+  {
+    "id": "missing-envelope",
+    "title": "An envelope comes back light",
+    "category": "Betrayal",
+    "text": "A routine handover returns less money than expected. The courier insists the original amount was wrong.",
+    "image": "/assets/item-2.webp",
+    "weight": 6,
+    "minRep": 75,
+    "choices": [
+      {
+        "id": "check",
+        "label": "Check the agreement",
+        "description": "Spend energy sorting the facts from the grievance.",
+        "chance": 72,
+        "skill": "streetSmarts",
+        "effects": {
+          "cash": 850,
+          "reputation": 5
+        },
+        "failure": {
+          "cash": -300,
+          "energy": -6
+        },
+        "result": "The original agreement supports your claim. The missing amount is returned.",
+        "failureResult": "The accounts remain uncertain. A review fee leaves you further behind."
+      },
+      {
+        "id": "forgive",
+        "label": "Write off the difference",
+        "description": "Absorb $400 to preserve the relationship.",
+        "effects": {
+          "cash": -400,
+          "relationships": {
+            "mara": 4
+          },
+          "heat": -2
+        },
+        "result": "You absorb the difference. Mara respects your refusal to turn a small loss into a feud."
+      },
+      {
+        "id": "leave-account",
+        "label": "Leave the account unsettled",
+        "description": "Let the courier go and accept a small loss of standing.",
+        "effects": {
+          "reputation": -2,
+          "heat": 2,
+          "energy": 3
+        },
+        "result": "The courier leaves with no agreement. Your reserve stays intact, but the unanswered claim weakens your standing."
+      }
+    ]
+  },
+  {
+    "id": "rival-recruiter",
+    "title": "A better offer",
+    "category": "Betrayal",
+    "text": "A rival has offered one of your people a generous contract. Your crew is waiting to see whether you treat loyalty as an obligation or a choice.",
+    "image": "/assets/crew-9.webp",
+    "weight": 7,
+    "requiresCrew": true,
+    "minRep": 150,
+    "choices": [
+      {
+        "id": "match",
+        "label": "Improve the crew's terms",
+        "description": "Spend $1,200 to back your expectations with money.",
+        "effects": {
+          "cash": -1200,
+          "loyalty": 9
+        },
+        "result": "The rival's offer loses its appeal. Your people see a future worth staying for."
+      },
+      {
+        "id": "trust",
+        "label": "Ask for their commitment",
+        "description": "Make a case for the life you are building together.",
+        "chance": 67,
+        "skill": "charisma",
+        "effects": {
+          "loyalty": 8,
+          "reputation": 6
+        },
+        "failure": {
+          "loyalty": -10,
+          "reputation": -4
+        },
+        "result": "The crew chooses your shared future. The rival gets a firm refusal.",
+        "failureResult": "Your appeal sounds like a demand. The rival's terms become harder to ignore."
+      },
+      {
+        "id": "cold",
+        "label": "Treat it as ordinary business",
+        "description": "Preserve cash and accept a colder relationship.",
+        "effects": {
+          "loyalty": -5,
+          "skillXp": {
+            "business": 8
+          }
+        },
+        "result": "You refuse to compete for affection. The crew understands the choice, but feels its cost."
+      }
+    ]
+  },
+  {
+    "id": "old-friend-debt",
+    "title": "An old friend's promise",
+    "category": "Betrayal",
+    "text": "Someone from your earlier life asks for another extension on a debt. They remember your loyalty better than their own deadline.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 7,
+    "choices": [
+      {
+        "id": "grace",
+        "label": "Give one final extension",
+        "description": "Sacrifice $450 for an old bond.",
+        "effects": {
+          "cash": -450,
+          "reputation": 5,
+          "relationships": {
+            "mara": 3
+          }
+        },
+        "result": "You give a final extension with clear terms. The old friendship has one more chance."
+      },
+      {
+        "id": "settle",
+        "label": "Ask for a fair settlement",
+        "description": "A patient conversation could recover the account.",
+        "chance": 74,
+        "skill": "charisma",
+        "effects": {
+          "cash": 750,
+          "reputation": 3
+        },
+        "failure": {
+          "reputation": -4,
+          "heat": 3
+        },
+        "result": "Your friend pays what they can. The matter closes without a bitter ending.",
+        "failureResult": "The request turns into an argument about the past. Nothing is settled."
+      }
+    ]
+  },
+  {
+    "id": "loyalty-dinner",
+    "title": "The crew asks for an evening",
+    "category": "Betrayal",
+    "text": "Your people want one night when every conversation does not become a new assignment. A leader can join them or remain at the desk.",
+    "image": "/assets/crew-8.webp",
+    "weight": 6,
+    "requiresCrew": true,
+    "choices": [
+      {
+        "id": "join",
+        "label": "Join the shared evening",
+        "description": "Spend $450 on the crew and put work aside.",
+        "effects": {
+          "cash": -450,
+          "loyalty": 7,
+          "energy": 10
+        },
+        "result": "The crew gets an ordinary evening together. Trust improves without a speech."
+      },
+      {
+        "id": "work",
+        "label": "Use the quiet to work",
+        "description": "Earn a small fee while the crew feels your absence.",
+        "effects": {
+          "cash": 650,
+          "loyalty": -3,
+          "energy": -10
+        },
+        "result": "The extra work pays. The crew's evening happens without you."
+      },
+      {
+        "id": "brief-evening",
+        "label": "Keep your evening private",
+        "description": "Recover alone and accept that the crew wanted your company.",
+        "effects": {
+          "energy": 7,
+          "loyalty": -2
+        },
+        "result": "You take a quiet evening away from work. The crew respects the limit, though they miss your presence."
+      }
+    ]
+  },
+  {
+    "id": "split-profit",
+    "title": "Who earned the windfall?",
+    "category": "Betrayal",
+    "text": "A profitable week has made the crew argue over contributions. The next split will say a great deal about your leadership.",
+    "image": "/assets/item-3.webp",
+    "weight": 6,
+    "requiresCrew": true,
+    "minRep": 200,
+    "choices": [
+      {
+        "id": "equal",
+        "label": "Give an equal bonus",
+        "description": "Spend $1,500 to put the whole crew first.",
+        "effects": {
+          "cash": -1500,
+          "loyalty": 10,
+          "influence": 2
+        },
+        "result": "The bonus reaches everyone. The crew sees a common stake in your success."
+      },
+      {
+        "id": "explain",
+        "label": "Explain the original terms",
+        "description": "Trust a fair argument to settle the disagreement.",
+        "chance": 73,
+        "skill": "business",
+        "effects": {
+          "loyalty": 5,
+          "skillXp": {
+            "business": 15
+          }
+        },
+        "failure": {
+          "loyalty": -6
+        },
+        "result": "The original agreement holds up. The crew accepts the split.",
+        "failureResult": "The explanation sounds convenient. Resentment survives the meeting."
+      },
+      {
+        "id": "keep",
+        "label": "Keep the surplus in reserve",
+        "description": "Gain cash and accept a loss of goodwill.",
+        "effects": {
+          "cash": 1200,
+          "loyalty": -8
+        },
+        "result": "Your reserve grows. The crew remembers who benefited first."
+      }
+    ]
+  },
+  {
+    "id": "confidential-note",
+    "title": "A private warning",
+    "category": "Betrayal",
+    "text": "Selene warns that a recent partner has been discussing your affairs outside the agreed circle. She wants to know whether discretion still matters to you.",
+    "image": "/assets/crew-9.webp",
+    "weight": 4,
+    "minRep": 450,
+    "choices": [
+      {
+        "id": "address",
+        "label": "Address the partner privately",
+        "description": "A measured conversation may restore the agreement.",
+        "chance": 68,
+        "skill": "charisma",
+        "effects": {
+          "heat": -7,
+          "relationships": {
+            "selene": 6
+          },
+          "reputation": 8
+        },
+        "failure": {
+          "heat": 9,
+          "relationships": {
+            "selene": -3
+          }
+        },
+        "result": "The partner accepts the reminder. Selene sees that you can protect a confidence.",
+        "failureResult": "The partner reacts badly and repeats the warning itself."
+      },
+      {
+        "id": "close",
+        "label": "End the partnership cleanly",
+        "description": "Pay $2,000 to close the account without a feud.",
+        "effects": {
+          "cash": -2000,
+          "heat": -10,
+          "relationships": {
+            "selene": 4
+          }
+        },
+        "result": "The partnership closes on clear terms. Your private circle becomes smaller and steadier."
+      }
+    ]
+  },
+  {
+    "id": "gang-truce",
+    "title": "A truce on the doorstep",
+    "category": "Gangs",
+    "text": "The Lanterns offer a neighborhood truce. They expect a contribution to a shared fund before they take your promise seriously.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 7,
+    "districtId": "old-quarter",
+    "minRep": 75,
+    "forbiddenFlag": "lantern-truce",
+    "choices": [
+      {
+        "id": "fund",
+        "label": "Contribute to the truce",
+        "description": "Spend $800 and join a fragile agreement.",
+        "effects": {
+          "cash": -800,
+          "heat": -5,
+          "flags": [
+            "lantern-truce"
+          ]
+        },
+        "result": "The Lanterns accept your contribution. The final terms still need a conversation.",
+        "followUp": "gang-terms"
+      },
+      {
+        "id": "talk",
+        "label": "Offer goodwill instead",
+        "description": "Try to earn a place without buying it.",
+        "chance": 62,
+        "skill": "charisma",
+        "effects": {
+          "reputation": 8,
+          "flags": [
+            "lantern-truce"
+          ]
+        },
+        "failure": {
+          "heat": 6,
+          "reputation": -3
+        },
+        "result": "The Lanterns hear you out. You are invited to discuss the terms.",
+        "failureResult": "Your offer sounds thin. The Lanterns close the discussion.",
+        "followUp": "gang-terms"
+      },
+      {
+        "id": "decline",
+        "label": "Stay independent",
+        "description": "Keep your cash and make the boundary clear.",
+        "effects": {
+          "reputation": 4,
+          "heat": 4
+        },
+        "result": "You decline the fund. Independence earns respect and a little suspicion."
+      }
+    ]
+  },
+  {
+    "id": "gang-terms",
+    "title": "Terms around a small table",
+    "category": "Gangs",
+    "text": "The truce's first meeting reveals a disagreement over who speaks for the block. Your answer will shape the agreement.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "choices": [
+      {
+        "id": "share",
+        "label": "Share the responsibility",
+        "description": "Give up prestige to build a broader peace.",
+        "effects": {
+          "reputation": -3,
+          "influence": 7,
+          "heat": -5,
+          "influenceDistrict": 6
+        },
+        "result": "The responsibility is shared. The truce gains support beyond a single crew.",
+        "followUp": "gang-third-party"
+      },
+      {
+        "id": "lead",
+        "label": "Offer to chair the group",
+        "description": "A confident proposal could give you greater standing.",
+        "chance": 66,
+        "skill": "charisma",
+        "effects": {
+          "reputation": 14,
+          "influence": 5,
+          "influenceDistrict": 7
+        },
+        "failure": {
+          "heat": 8,
+          "influence": -3,
+          "removeFlags": [
+            "lantern-truce"
+          ]
+        },
+        "result": "The room chooses you to chair the next meeting. Your promise now has witnesses.",
+        "failureResult": "The proposal feels like a takeover. The truce loses its footing.",
+        "followUp": "gang-third-party"
+      },
+      {
+        "id": "observe",
+        "label": "Take a modest role",
+        "description": "Keep the truce without making it about your name.",
+        "effects": {
+          "heat": -4,
+          "influence": 3
+        },
+        "result": "You take a modest role. The first meeting ends without a new grievance."
+      }
+    ]
+  },
+  {
+    "id": "gang-third-party",
+    "title": "The person left outside",
+    "category": "Gangs",
+    "text": "A small local crew complains that the new truce excluded them. Peace can look like a private club to those outside it.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "choices": [
+      {
+        "id": "invite",
+        "label": "Make room at the table",
+        "description": "Spend $500 to expand the shared fund.",
+        "effects": {
+          "cash": -500,
+          "heat": -6,
+          "influence": 5,
+          "reputation": 7
+        },
+        "result": "The smaller crew joins the agreement. The neighborhood's peace becomes less exclusive."
+      },
+      {
+        "id": "hold",
+        "label": "Keep the original agreement",
+        "description": "Protect the existing terms and accept friction.",
+        "effects": {
+          "reputation": 5,
+          "heat": 6,
+          "influence": -2
+        },
+        "result": "The original terms remain. The excluded crew keeps its grievance."
+      }
+    ]
+  },
+  {
+    "id": "lantern-block",
+    "title": "The block needs a guarantee",
+    "category": "Gangs",
+    "text": "A shared neighborhood meal risks cancellation because two crews refuse to share a street. Mara asks you to help keep it ordinary.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 5,
+    "districtId": "old-quarter",
+    "choices": [
+      {
+        "id": "sponsor",
+        "label": "Fund the neighborhood meal",
+        "description": "Spend $600 on a practical reason to cooperate.",
+        "effects": {
+          "cash": -600,
+          "reputation": 10,
+          "influence": 3,
+          "relationships": {
+            "mara": 5
+          }
+        },
+        "result": "The meal goes ahead. For one evening, the street belongs to everyone."
+      },
+      {
+        "id": "mediate",
+        "label": "Ask the crews to step back",
+        "description": "A patient appeal may preserve the evening.",
+        "chance": 74,
+        "skill": "charisma",
+        "effects": {
+          "heat": -5,
+          "reputation": 7
+        },
+        "failure": {
+          "heat": 5,
+          "energy": -5
+        },
+        "result": "Both crews accept a quiet boundary. The neighbors get their evening.",
+        "failureResult": "The appeal becomes another argument. The organizers postpone the meal."
+      },
+      {
+        "id": "postpone-meal",
+        "label": "Let the organizers postpone",
+        "description": "Keep your resources and accept disappointment on the block.",
+        "effects": {
+          "reputation": -2,
+          "heat": 2,
+          "energy": 4
+        },
+        "result": "The organizers postpone the shared meal. The block stays manageable, but your promised presence is missed."
+      }
+    ]
+  },
+  {
+    "id": "salt-picket",
+    "title": "A harbor line in the sand",
+    "category": "Gangs",
+    "text": "The Salt Union and a private contractor have stopped speaking. Rafe asks whether you can help keep the dispute from spreading.",
+    "image": "/assets/district-portside.webp",
+    "weight": 7,
+    "districtId": "portside",
+    "minRep": 100,
+    "choices": [
+      {
+        "id": "mediate",
+        "label": "Back a negotiated pause",
+        "description": "Spend 14 energy on a conversation between rivals.",
+        "chance": 71,
+        "skill": "charisma",
+        "effects": {
+          "heat": -7,
+          "influence": 5,
+          "relationships": {
+            "rafe": 6
+          },
+          "energy": -14
+        },
+        "failure": {
+          "heat": 8,
+          "energy": -14
+        },
+        "result": "A negotiated pause gives both sides room to return. Rafe credits your restraint.",
+        "failureResult": "Neither side accepts the pause. The argument reaches other crews."
+      },
+      {
+        "id": "fund",
+        "label": "Support the affected workers",
+        "description": "Give $900 directly to the hardship fund.",
+        "effects": {
+          "cash": -900,
+          "reputation": 12,
+          "influenceDistrict": 5
+        },
+        "result": "The workers receive help. The political dispute remains, but your support is remembered."
+      },
+      {
+        "id": "leave",
+        "label": "Leave the dispute to Rafe",
+        "description": "Keep your resources and lose a little standing.",
+        "effects": {
+          "relationships": {
+            "rafe": -3
+          },
+          "energy": 5
+        },
+        "result": "Rafe continues without your help. The harbor notices your absence."
+      }
+    ]
+  },
+  {
+    "id": "velvet-challenge",
+    "title": "An invitation with an edge",
+    "category": "Gangs",
+    "text": "The Velvet Circle offers you a prominent place at a private event. The invitation is also a test of how comfortably you share a room with rivals.",
+    "image": "/assets/district-the-strip.webp",
+    "weight": 6,
+    "districtId": "the-strip",
+    "minRep": 200,
+    "choices": [
+      {
+        "id": "grace",
+        "label": "Accept with restraint",
+        "description": "Pay $800 and rely on your social judgment.",
+        "chance": 73,
+        "skill": "charisma",
+        "effects": {
+          "cash": -800,
+          "reputation": 16,
+          "influence": 4,
+          "relationships": {
+            "ivo": 4
+          }
+        },
+        "failure": {
+          "cash": -800,
+          "heat": 7,
+          "reputation": -5
+        },
+        "result": "You keep the evening measured. The Circle offers respect without a scene.",
+        "failureResult": "The invitation becomes an uncomfortable public test. Your standing slips."
+      },
+      {
+        "id": "decline",
+        "label": "Decline without a grievance",
+        "description": "Protect your privacy and surrender the spotlight.",
+        "effects": {
+          "heat": -3,
+          "relationships": {
+            "ivo": -2
+          }
+        },
+        "result": "You send a courteous refusal. The room will discuss someone else tonight."
+      }
+    ]
+  },
+  {
+    "id": "foundry-warning",
+    "title": "The Foundry draws a boundary",
+    "category": "Gangs",
+    "text": "The Red Foundry warns that your growing interests are crowding its workers. Lin asks you to consider the cost of pushing farther.",
+    "image": "/assets/district-ironworks.webp",
+    "weight": 7,
+    "districtId": "ironworks",
+    "minRep": 350,
+    "choices": [
+      {
+        "id": "agreement",
+        "label": "Fund a workers' agreement",
+        "description": "Spend $2,200 on a shared foundation.",
+        "effects": {
+          "cash": -2200,
+          "heat": -8,
+          "influenceDistrict": 8,
+          "relationships": {
+            "lin": 6
+          }
+        },
+        "result": "The agreement gives workers a concrete stake. The Foundry's warning becomes a working boundary."
+      },
+      {
+        "id": "assert",
+        "label": "Assert your place",
+        "description": "Your standing may persuade them to make room.",
+        "chance": 61,
+        "skill": "combat",
+        "effects": {
+          "reputation": 20,
+          "influenceDistrict": 9,
+          "heat": 6
+        },
+        "failure": {
+          "heat": 15,
+          "health": -14,
+          "reputation": -8
+        },
+        "result": "The Foundry acknowledges your place. The new boundary is tense but clear.",
+        "failureResult": "The assertion leads to a bitter confrontation. Your place feels less secure."
+      },
+      {
+        "id": "pause",
+        "label": "Pause the expansion",
+        "description": "Surrender some momentum to cool the dispute.",
+        "effects": {
+          "reputation": -6,
+          "heat": -6,
+          "energy": 8
+        },
+        "result": "You pause the expansion. The workers see a leader who can listen."
+      }
+    ]
+  },
+  {
+    "id": "regency-invitation",
+    "title": "An offer from the Regency",
+    "category": "Gangs",
+    "text": "The Regency offers recognition in exchange for a sizeable contribution. Selene says the offer is respectable, though far from generous.",
+    "image": "/assets/district-crown-heights.webp",
+    "weight": 5,
+    "districtId": "crown-heights",
+    "minRep": 550,
+    "choices": [
+      {
+        "id": "join",
+        "label": "Pay for the recognition",
+        "description": "Spend $6,000 to enter the established circle.",
+        "effects": {
+          "cash": -6000,
+          "reputation": 30,
+          "influenceDistrict": 10,
+          "relationships": {
+            "selene": 6
+          }
+        },
+        "result": "The Regency acknowledges your standing. The skyline's old guard makes room."
+      },
+      {
+        "id": "negotiate",
+        "label": "Ask for equal terms",
+        "description": "A firm negotiation could win greater respect.",
+        "chance": 60,
+        "skill": "business",
+        "effects": {
+          "reputation": 24,
+          "influenceDistrict": 9
+        },
+        "failure": {
+          "heat": 10,
+          "relationships": {
+            "selene": -4
+          }
+        },
+        "result": "The Regency accepts a more equal arrangement. Your name enters its private ledger.",
+        "failureResult": "The old guard considers the request premature. Selene must smooth the response."
+      },
+      {
+        "id": "independent",
+        "label": "Remain your own circle",
+        "description": "Take independence and the scrutiny it brings.",
+        "effects": {
+          "reputation": 15,
+          "heat": 8,
+          "influence": 3
+        },
+        "result": "You decline the established place. The city now expects you to build a better one."
+      }
+    ]
+  },
+  {
+    "id": "turf-graffiti",
+    "title": "A new mark on the wall",
+    "category": "Gangs",
+    "text": "A rival mark appears outside one of your regular meeting places. It may be a challenge, or a restless young crew trying to be noticed.",
+    "image": "/assets/city.webp",
+    "weight": 8,
+    "minRep": 100,
+    "choices": [
+      {
+        "id": "repair",
+        "label": "Pay for the wall's repair",
+        "description": "Spend $300 and refuse a public argument.",
+        "effects": {
+          "cash": -300,
+          "heat": -4,
+          "reputation": 3
+        },
+        "result": "The wall is restored. The neighborhood gets a clean frontage instead of a new feud."
+      },
+      {
+        "id": "talk",
+        "label": "Offer a private conversation",
+        "description": "Street judgment may turn the gesture into an introduction.",
+        "chance": 70,
+        "skill": "streetSmarts",
+        "effects": {
+          "influence": 4,
+          "reputation": 7
+        },
+        "failure": {
+          "heat": 6,
+          "reputation": -3
+        },
+        "result": "The young crew admits it wanted attention. You turn a challenge into a clear agreement.",
+        "failureResult": "The private offer becomes a boast on the street. The challenge grows."
+      },
+      {
+        "id": "respond",
+        "label": "Answer with a public statement",
+        "description": "Show authority and draw more attention.",
+        "effects": {
+          "reputation": 8,
+          "heat": 7
+        },
+        "result": "Your statement reaches the block quickly. So does the rival's answer."
+      }
+    ]
+  },
+  {
+    "id": "peace-table",
+    "title": "Five chairs, one district",
+    "category": "Gangs",
+    "text": "Several local crews request a neutral meeting. Nobody wants to be the first person to sound weak.",
+    "image": "/assets/business-4.webp",
+    "weight": 5,
+    "minRep": 250,
+    "choices": [
+      {
+        "id": "host",
+        "label": "Host on equal terms",
+        "description": "Spend $1,200 to make the meeting possible.",
+        "chance": 73,
+        "skill": "charisma",
+        "effects": {
+          "cash": -1200,
+          "heat": -9,
+          "influence": 8,
+          "reputation": 12
+        },
+        "failure": {
+          "cash": -1200,
+          "heat": 8
+        },
+        "result": "Equal terms let the room reach a useful compromise. Every chair remains filled.",
+        "failureResult": "The meeting ends before an agreement. You absorb the cost of the failed effort."
+      },
+      {
+        "id": "delegate",
+        "label": "Let Mara represent you",
+        "description": "Put trust in someone with older connections.",
+        "effects": {
+          "relationships": {
+            "mara": 6
+          },
+          "influence": 3,
+          "reputation": -2
+        },
+        "result": "Mara takes your place with a clear mandate. The agreement gains an experienced voice."
+      }
+    ]
+  },
+  {
+    "id": "informant-nervous",
+    "title": "A nervous source",
+    "category": "Informants",
+    "text": "A source who once helped you now fears being blamed for a rival's loss. They ask whether your promises extend beyond useful information.",
+    "image": "/assets/crew-6.webp",
+    "weight": 7,
+    "minRep": 75,
+    "forbiddenFlag": "source-protected",
+    "choices": [
+      {
+        "id": "support",
+        "label": "Pay for personal support",
+        "description": "Spend $550 to stand behind the source.",
+        "effects": {
+          "cash": -550,
+          "reputation": 6,
+          "flags": [
+            "source-protected"
+          ]
+        },
+        "result": "The source accepts practical help. Their next choice will depend on the trust you offered.",
+        "followUp": "informant-decision"
+      },
+      {
+        "id": "reassure",
+        "label": "Offer reassurance",
+        "description": "Trust your words to hold the relationship together.",
+        "chance": 67,
+        "skill": "charisma",
+        "effects": {
+          "reputation": 5,
+          "flags": [
+            "source-protected"
+          ]
+        },
+        "failure": {
+          "heat": 8
+        },
+        "result": "Your reassurance is believed. The source agrees to speak again.",
+        "failureResult": "The reassurance feels hollow. The source makes a frightened public accusation.",
+        "followUp": "informant-decision",
+        "failureFollowUp": "informant-exposed"
+      },
+      {
+        "id": "distance",
+        "label": "Keep your distance",
+        "description": "Give up the relationship to protect your schedule.",
+        "effects": {
+          "energy": 5,
+          "reputation": -4,
+          "heat": 3
+        },
+        "result": "You decline to get involved. The source learns the limits of your promise."
+      }
+    ]
+  },
+  {
+    "id": "informant-decision",
+    "title": "A confidence offered freely",
+    "category": "Informants",
+    "text": "Your source returns with an account of a rival dispute. For once, they offer it without asking for a price.",
+    "image": "/assets/crew-6.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "choices": [
+      {
+        "id": "listen",
+        "label": "Listen and protect the confidence",
+        "description": "Give 8 energy to understanding the human stakes.",
+        "effects": {
+          "energy": -8,
+          "reputation": 10,
+          "skillXp": {
+            "streetSmarts": 25
+          },
+          "heat": -3
+        },
+        "result": "You hear the account and keep it private. Trust proves more valuable than a quick sale."
+      },
+      {
+        "id": "introduce",
+        "label": "Make a fair introduction",
+        "description": "A carefully chosen partner may pay for an ordinary resolution.",
+        "chance": 74,
+        "skill": "streetSmarts",
+        "effects": {
+          "cash": 1800,
+          "relationships": {
+            "mara": 4
+          }
+        },
+        "failure": {
+          "heat": 7,
+          "removeFlags": [
+            "source-protected"
+          ]
+        },
+        "result": "The introduction resolves a commercial dispute. Your source and partner both benefit.",
+        "failureResult": "The partner repeats too much of the story. Your source's confidence is damaged.",
+        "failureFollowUp": "informant-exposed"
+      },
+      {
+        "id": "keep-confidence",
+        "label": "Keep the confidence private",
+        "description": "Protect the source's trust and leave the opportunity unused.",
+        "effects": {
+          "reputation": 3,
+          "heat": -1,
+          "energy": 3
+        },
+        "result": "You keep the account private without acting on it. The source leaves knowing that trust does not always become a transaction."
+      }
+    ]
+  },
+  {
+    "id": "informant-exposed",
+    "title": "The source in the headlines",
+    "category": "Informants",
+    "text": "A frightened accusation has made the source's name public. Your response can offer support, but it cannot erase the story.",
+    "image": "/assets/city.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "choices": [
+      {
+        "id": "care",
+        "label": "Cover professional help",
+        "description": "Spend $1,000 and accept responsibility for the aftermath.",
+        "effects": {
+          "cash": -1000,
+          "heat": -6,
+          "reputation": 5,
+          "flags": [
+            "source-protected"
+          ]
+        },
+        "result": "Professional help steadies the source. The public account becomes less volatile."
+      },
+      {
+        "id": "statement",
+        "label": "Give a measured statement",
+        "description": "A credible response could reduce the damage.",
+        "chance": 64,
+        "skill": "charisma",
+        "effects": {
+          "heat": -9,
+          "reputation": 4
+        },
+        "failure": {
+          "heat": 8,
+          "reputation": -6
+        },
+        "result": "Your statement lowers the temperature. The city moves toward another story.",
+        "failureResult": "The statement adds to the argument. The source feels more exposed."
+      },
+      {
+        "id": "silence",
+        "label": "Say nothing publicly",
+        "description": "Preserve privacy while the accusation runs its course.",
+        "effects": {
+          "reputation": -5,
+          "heat": 3
+        },
+        "result": "You remain silent. The source receives no visible support from your circle."
+      }
+    ]
+  },
+  {
+    "id": "false-tip",
+    "title": "An expensive certainty",
+    "category": "Informants",
+    "text": "A broker offers supposedly certain information for an unusual fee. Their certainty is more convincing than their history.",
+    "image": "/assets/crew-4.webp",
+    "weight": 8,
+    "choices": [
+      {
+        "id": "review",
+        "label": "Check the story's credibility",
+        "description": "Spend energy and rely on your street judgment.",
+        "chance": 76,
+        "skill": "streetSmarts",
+        "effects": {
+          "energy": -8,
+          "cash": 600,
+          "skillXp": {
+            "streetSmarts": 15
+          }
+        },
+        "failure": {
+          "cash": -500,
+          "energy": -8
+        },
+        "result": "The claim falls apart under ordinary questions. You recover a previous overpayment.",
+        "failureResult": "The broker sells you a polished story. You pay for information that leads nowhere."
+      },
+      {
+        "id": "decline",
+        "label": "Decline the certainty",
+        "description": "Keep your money and sacrifice the promised opening.",
+        "effects": {
+          "heat": -2,
+          "energy": 3
+        },
+        "result": "You let the offer pass. The broker soon starts pitching someone else."
+      }
+    ]
+  },
+  {
+    "id": "anonymous-ledger",
+    "title": "A ledger with no sender",
+    "category": "Informants",
+    "text": "An anonymous package describes an old commercial feud. Its author wants you to take a side without ever meeting them.",
+    "image": "/assets/item-3.webp",
+    "weight": 5,
+    "minRep": 150,
+    "choices": [
+      {
+        "id": "mara",
+        "label": "Ask Mara for context",
+        "description": "Trade $300 for an experienced reading.",
+        "effects": {
+          "cash": -300,
+          "skillXp": {
+            "streetSmarts": 20
+          },
+          "relationships": {
+            "mara": 4
+          }
+        },
+        "result": "Mara recognizes the feud and explains the missing context. The anonymous request loses its power."
+      },
+      {
+        "id": "explore",
+        "label": "Explore a fair settlement",
+        "description": "Your business judgment may find a legitimate fee.",
+        "chance": 65,
+        "skill": "business",
+        "effects": {
+          "cash": 2400,
+          "reputation": 8
+        },
+        "failure": {
+          "heat": 8,
+          "cash": -700
+        },
+        "result": "You arrange a fair settlement of the old account. The fee arrives with a signed agreement.",
+        "failureResult": "The package was written to steer the dispute. Your involvement adds cost and attention."
+      },
+      {
+        "id": "return",
+        "label": "Refuse the anonymous request",
+        "description": "Keep your affairs clear of an unknown agenda.",
+        "effects": {
+          "heat": -3,
+          "reputation": 2
+        },
+        "result": "The package goes no farther. The feud remains with the people who began it."
+      }
+    ]
+  },
+  {
+    "id": "retired-clerk",
+    "title": "The retired clerk's account",
+    "category": "Informants",
+    "text": "A retired clerk remembers a deal everyone else has forgotten. They want someone to hear why the outcome still troubles them.",
+    "image": "/assets/district-portside.webp",
+    "weight": 6,
+    "minRep": 100,
+    "choices": [
+      {
+        "id": "listen",
+        "label": "Give the account your time",
+        "description": "Spend 10 energy on a piece of the city's history.",
+        "effects": {
+          "energy": -10,
+          "skillXp": {
+            "business": 20
+          },
+          "relationships": {
+            "rafe": 3
+          }
+        },
+        "result": "The clerk's account reveals how old promises still shape the harbor. Rafe appreciates the care."
+      },
+      {
+        "id": "help",
+        "label": "Help reopen the old claim",
+        "description": "Spend $750 for a chance at a fair resolution.",
+        "chance": 72,
+        "skill": "business",
+        "effects": {
+          "cash": -750,
+          "reputation": 15,
+          "influence": 4
+        },
+        "failure": {
+          "cash": -750,
+          "heat": 4
+        },
+        "result": "The old claim receives a proper hearing. Your role is remembered with gratitude.",
+        "failureResult": "The records are incomplete. The review ends without an answer."
+      },
+      {
+        "id": "decline-old-case",
+        "label": "Decline the old case gently",
+        "description": "Keep your present commitments and accept the clerk's disappointment.",
+        "effects": {
+          "reputation": -2,
+          "energy": 4
+        },
+        "result": "You explain that you cannot take on the old case. The clerk leaves disappointed, without a new promise to wait on."
+      }
+    ]
+  },
+  {
+    "id": "broker-apology",
+    "title": "A broker comes back",
+    "category": "Informants",
+    "text": "A broker who once misled you returns with an apology and a smaller, clearer offer. Forgiveness could be useful, but it has a price.",
+    "image": "/assets/crew-4.webp",
+    "weight": 6,
+    "minRep": 75,
+    "choices": [
+      {
+        "id": "trial",
+        "label": "Offer a small trial contract",
+        "description": "Stake $500 on the broker's new honesty.",
+        "chance": 68,
+        "skill": "business",
+        "effects": {
+          "cash": 1400,
+          "skillXp": {
+            "business": 12
+          }
+        },
+        "failure": {
+          "cash": -500,
+          "reputation": -3
+        },
+        "result": "The modest contract completes exactly as promised. The broker earns a cautious second chance.",
+        "failureResult": "Even the smaller promise fails. The apology was the best part of the offer."
+      },
+      {
+        "id": "refuse",
+        "label": "Accept the apology only",
+        "description": "Keep the relationship civil without sharing money.",
+        "effects": {
+          "reputation": 4,
+          "heat": -2
+        },
+        "result": "You accept the apology and close the business conversation. The boundary is clear."
+      }
+    ]
+  },
+  {
+    "id": "lost-contact",
+    "title": "A familiar channel goes quiet",
+    "category": "Informants",
+    "text": "A usually reliable contact has stopped answering. A mutual acquaintance says it is a personal crisis, not a change of allegiance.",
+    "image": "/assets/city.webp",
+    "weight": 5,
+    "choices": [
+      {
+        "id": "support",
+        "label": "Send practical support through Mara",
+        "description": "Give $400 without asking for information in return.",
+        "effects": {
+          "cash": -400,
+          "relationships": {
+            "mara": 5
+          },
+          "reputation": 4
+        },
+        "result": "The support reaches the contact. They remember that you did not attach a demand."
+      },
+      {
+        "id": "wait",
+        "label": "Give them room",
+        "description": "Accept slower progress and keep your expectations modest.",
+        "effects": {
+          "energy": 6,
+          "skillXp": {
+            "charisma": 8
+          }
+        },
+        "result": "You leave a quiet message of support. The contact is allowed time to recover."
+      },
+      {
+        "id": "replace",
+        "label": "Pay for another introduction",
+        "description": "Spend $600 to keep your own work moving.",
+        "effects": {
+          "cash": -600,
+          "skillXp": {
+            "streetSmarts": 12
+          },
+          "reputation": 2
+        },
+        "result": "Mara arranges a new introduction. Your work continues with less personal history."
+      }
+    ]
+  },
+  {
+    "id": "warehouse-offer",
+    "title": "The warehouse claim",
+    "category": "Opportunity",
+    "text": "A small partnership offers you a share in the Old Quarter's disputed warehouse stock. The margin is attractive; the rival claimant is less so.",
+    "image": "/assets/warehouse.webp",
+    "weight": 5,
+    "minRep": 75,
+    "districtId": "old-quarter",
+    "choices": [
+      {
+        "id": "stake",
+        "label": "Back the partnership",
+        "description": "Stake $600 and accept the coming dispute.",
+        "effects": {
+          "cash": -600,
+          "energy": -8,
+          "flags": [
+            "warehouse-backed"
+          ]
+        },
+        "result": "Your stake is accepted. The partners return once the claim reaches its decisive hour.",
+        "followUp": "warehouse-aftermath"
+      },
+      {
+        "id": "introduce",
+        "label": "Sell a fair introduction",
+        "description": "Take a modest fee without joining the partnership.",
+        "effects": {
+          "cash": 400,
+          "reputation": 3,
+          "heat": 2
+        },
+        "result": "You introduce an interested buyer. Your fee is small, clear and final."
+      },
+      {
+        "id": "decline",
+        "label": "Let the opportunity pass",
+        "description": "Protect your peace and keep the warehouse off your books.",
+        "effects": {
+          "heat": -2,
+          "energy": 3
+        },
+        "result": "The partnership finds another backer. You keep your resources for a better fit."
+      }
+    ]
+  },
+  {
+    "id": "warehouse-aftermath",
+    "title": "The claimant's answer",
+    "category": "Opportunity",
+    "text": "The warehouse partnership has reached its final dispute. Your share depends on whether the claim survives the rival's challenge.",
+    "image": "/assets/warehouse.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "choices": [
+      {
+        "id": "hold",
+        "label": "Hold the partnership's claim",
+        "description": "Your judgment may turn the stake into a substantial return.",
+        "chance": 65,
+        "skill": "streetSmarts",
+        "effects": {
+          "cash": 4800,
+          "reputation": 15,
+          "heat": 9,
+          "removeFlags": [
+            "warehouse-backed"
+          ]
+        },
+        "failure": {
+          "cash": -500,
+          "heat": 11,
+          "health": -9,
+          "removeFlags": [
+            "warehouse-backed"
+          ]
+        },
+        "result": "The partnership's claim holds. Your return reflects a difficult, uncertain investment.",
+        "failureResult": "The rival's challenge succeeds. The stake becomes a costly lesson."
+      },
+      {
+        "id": "settle",
+        "label": "Accept the smaller settlement",
+        "description": "Take a certain return and close the dispute.",
+        "effects": {
+          "cash": 900,
+          "heat": 3,
+          "reputation": 3,
+          "removeFlags": [
+            "warehouse-backed"
+          ]
+        },
+        "result": "You accept a modest settlement. The warehouse leaves your life without another argument."
+      }
+    ]
+  },
+  {
+    "id": "port-sponsor",
+    "title": "A share of the harbor",
+    "category": "Opportunity",
+    "text": "Rafe offers a short-term stake in a lawful harbor service contract. Demand is strong, but weather could still spoil the return.",
+    "image": "/assets/district-portside.webp",
+    "weight": 5,
+    "minRep": 100,
+    "choices": [
+      {
+        "id": "invest",
+        "label": "Take the contract stake",
+        "description": "Invest $1,800 and wait for the contract to close.",
+        "effects": {
+          "cash": -1800,
+          "relationships": {
+            "rafe": 3
+          },
+          "flags": [
+            "harbor-stake"
+          ]
+        },
+        "result": "Rafe records your share. The final return will arrive after the contract's closing review.",
+        "followUp": "port-dividend"
+      },
+      {
+        "id": "refer",
+        "label": "Refer another investor",
+        "description": "Take a $350 introduction fee instead.",
+        "effects": {
+          "cash": 350,
+          "relationships": {
+            "rafe": 2
+          }
+        },
+        "result": "Another investor takes the share. Rafe pays you for a useful introduction."
+      },
+      {
+        "id": "pass",
+        "label": "Keep your reserve intact",
+        "description": "Let Rafe proceed without tying up your cash.",
+        "effects": {
+          "energy": 4,
+          "skillXp": {
+            "business": 5
+          }
+        },
+        "result": "You keep the reserve. Rafe respects a partner who knows their own limits."
+      }
+    ]
+  },
+  {
+    "id": "port-dividend",
+    "title": "The harbor contract closes",
+    "category": "Opportunity",
+    "text": "The harbor service contract is complete. Rafe has a final account ready, along with a choice about the return.",
+    "image": "/assets/business-4.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "choices": [
+      {
+        "id": "cash",
+        "label": "Take the guaranteed return",
+        "description": "Receive $2,500 and close your short-term stake.",
+        "effects": {
+          "cash": 2500,
+          "removeFlags": [
+            "harbor-stake"
+          ],
+          "skillXp": {
+            "business": 10
+          }
+        },
+        "result": "The guaranteed return reaches your account. The contract closes with no loose end."
+      },
+      {
+        "id": "bonus",
+        "label": "Claim the performance bonus",
+        "description": "A final review could lift the return, or reduce it.",
+        "chance": 70,
+        "skill": "business",
+        "effects": {
+          "cash": 4200,
+          "reputation": 8,
+          "removeFlags": [
+            "harbor-stake"
+          ]
+        },
+        "failure": {
+          "cash": 1400,
+          "reputation": -2,
+          "removeFlags": [
+            "harbor-stake"
+          ]
+        },
+        "result": "The review approves the performance bonus. Rafe congratulates your patience.",
+        "failureResult": "Weather losses reduce the final share. The contract still returns part of your investment."
+      }
+    ]
+  },
+  {
+    "id": "vacant-store",
+    "title": "A vacant storefront",
+    "category": "Opportunity",
+    "text": "A landlord asks whether your circle could help a local shop reopen. The street needs a tenant more than another promise.",
+    "image": "/assets/business-1.webp",
+    "weight": 6,
+    "maxHeat": 50,
+    "choices": [
+      {
+        "id": "sponsor",
+        "label": "Back a local tenant",
+        "description": "Give $700 to a modest reopening plan.",
+        "effects": {
+          "cash": -700,
+          "reputation": 12,
+          "influence": 3
+        },
+        "result": "A local tenant gets the opening funds. A dark storefront becomes a daily source of activity."
+      },
+      {
+        "id": "broker",
+        "label": "Arrange a fair lease",
+        "description": "Your commercial judgment may earn a fee.",
+        "chance": 75,
+        "skill": "business",
+        "effects": {
+          "cash": 1100,
+          "reputation": 5
+        },
+        "failure": {
+          "energy": -8,
+          "cash": -200
+        },
+        "result": "You help both parties agree on a sustainable lease. The fee follows the signature.",
+        "failureResult": "The terms never meet. You absorb the cost of the unsuccessful review."
+      },
+      {
+        "id": "leave-landlord",
+        "label": "Leave it with the landlord",
+        "description": "Preserve your reserve and pass on a neighborhood responsibility.",
+        "effects": {
+          "reputation": -1,
+          "energy": 3
+        },
+        "result": "The landlord continues looking for support. The storefront remains outside your commitments."
+      }
+    ]
+  },
+  {
+    "id": "heirloom-claim",
+    "title": "An heirloom between families",
+    "category": "Opportunity",
+    "text": "Two families disagree over a valuable heirloom. They offer a fee to someone who can hear the old promises without taking the old grudges personally.",
+    "image": "/assets/item-39.webp",
+    "weight": 5,
+    "choices": [
+      {
+        "id": "mediate",
+        "label": "Mediate the claim",
+        "description": "Use your patience to reach an ordinary settlement.",
+        "chance": 72,
+        "skill": "charisma",
+        "effects": {
+          "cash": 1400,
+          "reputation": 9,
+          "energy": -10
+        },
+        "failure": {
+          "heat": 4,
+          "energy": -10
+        },
+        "result": "Both families accept a shared settlement. The heirloom stops carrying the whole feud.",
+        "failureResult": "The old promises mean different things to each family. The disagreement survives your meeting."
+      },
+      {
+        "id": "mara",
+        "label": "Refer the claim to Mara",
+        "description": "Give the families a more experienced listener.",
+        "effects": {
+          "relationships": {
+            "mara": 5
+          },
+          "cash": 250
+        },
+        "result": "Mara takes the claim and sends a modest introduction fee. The families receive patient help."
+      }
+    ]
+  },
+  {
+    "id": "rainy-auction",
+    "title": "An auction in the rain",
+    "category": "Opportunity",
+    "text": "Bad weather has emptied a lawful surplus auction. A modest purchase might be worth considerably more when the city dries out.",
+    "image": "/assets/item-5.webp",
+    "weight": 6,
+    "choices": [
+      {
+        "id": "bid",
+        "label": "Take a small commercial stake",
+        "description": "Commit $800 for an uncertain resale.",
+        "chance": 73,
+        "skill": "business",
+        "effects": {
+          "cash": 1600,
+          "skillXp": {
+            "business": 15
+          }
+        },
+        "failure": {
+          "cash": -800
+        },
+        "result": "The purchase finds a willing buyer. A rainy afternoon becomes a tidy profit.",
+        "failureResult": "The goods are less valuable than promised. The commercial stake is lost."
+      },
+      {
+        "id": "study",
+        "label": "Watch and learn",
+        "description": "Spend 8 energy understanding the market.",
+        "effects": {
+          "energy": -8,
+          "skillXp": {
+            "business": 20
+          }
+        },
+        "result": "You make no bid. The afternoon gives you a better sense of value."
+      },
+      {
+        "id": "leave-auction",
+        "label": "Leave before bidding",
+        "description": "Keep your reserve and take a quiet break from commercial pressure.",
+        "effects": {
+          "energy": 4,
+          "heat": -1
+        },
+        "result": "You leave the auction without a bid. The possible profit stays with someone willing to make the commitment."
+      }
+    ]
+  },
+  {
+    "id": "midnight-client",
+    "title": "A client with a deadline",
+    "category": "Opportunity",
+    "text": "A legitimate client needs a trusted mediator tonight. Their rush creates a generous fee and a difficult expectation.",
+    "image": "/assets/city.webp",
+    "weight": 7,
+    "minRep": 100,
+    "choices": [
+      {
+        "id": "take",
+        "label": "Accept the urgent meeting",
+        "description": "Spend 18 energy for a chance at $2,200.",
+        "chance": 78,
+        "skill": "charisma",
+        "effects": {
+          "cash": 2200,
+          "energy": -18,
+          "reputation": 7
+        },
+        "failure": {
+          "energy": -18,
+          "reputation": -3
+        },
+        "result": "The meeting reaches a useful agreement before the deadline. The client pays promptly.",
+        "failureResult": "The rushed expectations cannot be reconciled. The night ends without a fee."
+      },
+      {
+        "id": "later",
+        "label": "Offer a later appointment",
+        "description": "Take a smaller guaranteed booking fee.",
+        "effects": {
+          "cash": 350,
+          "energy": 4
+        },
+        "result": "The client accepts a later appointment. The smaller fee leaves your evening intact."
+      }
+    ]
+  },
+  {
+    "id": "skyline-patron",
+    "title": "The patron's small test",
+    "category": "Opportunity",
+    "text": "A Crown Heights patron offers a modest contract to assess your judgment. The work matters less than how you handle its expectations.",
+    "image": "/assets/district-crown-heights.webp",
+    "weight": 4,
+    "minRep": 450,
+    "choices": [
+      {
+        "id": "care",
+        "label": "Give the contract careful attention",
+        "description": "Spend $1,000 and 12 energy to build a valuable relationship.",
+        "chance": 75,
+        "skill": "business",
+        "effects": {
+          "cash": 2800,
+          "energy": -12,
+          "reputation": 18,
+          "relationships": {
+            "selene": 5
+          }
+        },
+        "failure": {
+          "cash": -1000,
+          "energy": -12,
+          "reputation": -5
+        },
+        "result": "The patron appreciates clear expectations and careful work. Selene hears favorable remarks.",
+        "failureResult": "The contract reveals a mismatch of expectations. The patron declines further work."
+      },
+      {
+        "id": "refer",
+        "label": "Refer an established specialist",
+        "description": "Take a modest fee and preserve your capacity.",
+        "effects": {
+          "cash": 600,
+          "relationships": {
+            "selene": 2
+          }
+        },
+        "result": "The specialist receives the work. Selene appreciates that you knew when to make an introduction."
+      }
+    ]
+  },
+  {
+    "id": "quick-contract",
+    "title": "A favor between appointments",
+    "category": "Opportunity",
+    "text": "Mara has a small lawful errand between two important meetings. Reliability here could be more useful than a dramatic payday.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 8,
+    "choices": [
+      {
+        "id": "help",
+        "label": "Make time for the favor",
+        "description": "Spend 9 energy for a certain, modest fee.",
+        "effects": {
+          "energy": -9,
+          "cash": 450,
+          "relationships": {
+            "mara": 4
+          },
+          "reputation": 3
+        },
+        "result": "The favor is completed on time. Mara adds your name to a shorter list of reliable people."
+      },
+      {
+        "id": "delegate",
+        "label": "Arrange a crew handover",
+        "description": "Give $150 and let your people share the trust.",
+        "requiredCrew": 1,
+        "effects": {
+          "cash": -150,
+          "loyalty": 3,
+          "relationships": {
+            "mara": 2
+          }
+        },
+        "result": "A crew member handles the favor well. Mara learns that your reliability extends beyond you."
+      },
+      {
+        "id": "decline",
+        "label": "Protect the day's schedule",
+        "description": "Save your energy and accept a missed introduction.",
+        "effects": {
+          "energy": 5,
+          "relationships": {
+            "mara": -1
+          }
+        },
+        "result": "Mara finds another volunteer. Your day remains yours to manage."
+      }
+    ]
+  },
+  {
+    "id": "crew-fall",
+    "title": "A hard landing",
+    "category": "Injury",
+    "text": "A crew member suffers an injury during an ordinary off-duty accident. They need support before returning to difficult work.",
+    "image": "/assets/crew-2.webp",
+    "weight": 7,
+    "requiresCrew": true,
+    "choices": [
+      {
+        "id": "care",
+        "label": "Pay for immediate care",
+        "description": "Spend $650 and show the crew what support means.",
+        "effects": {
+          "cash": -650,
+          "loyalty": 7,
+          "health": 5
+        },
+        "result": "Professional care begins promptly. The crew sees that an accident does not make someone disposable."
+      },
+      {
+        "id": "rest",
+        "label": "Give the crew time to recover",
+        "description": "Accept an injured crew member and slower momentum.",
+        "effects": {
+          "injuredCrew": true,
+          "loyalty": 2,
+          "energy": -8
+        },
+        "result": "The injured crew member takes a proper break. Everyone else adjusts to the quieter schedule."
+      },
+      {
+        "id": "push",
+        "label": "Keep the schedule unchanged",
+        "description": "Save money and accept a serious loss of trust.",
+        "effects": {
+          "injuredCrew": true,
+          "loyalty": -9,
+          "reputation": -3
+        },
+        "result": "The schedule continues. The crew remembers that care came second."
+      }
+    ]
+  },
+  {
+    "id": "exhaustion",
+    "title": "One decision too many",
+    "category": "Injury",
+    "text": "The day's conversations have left you exhausted. A final appointment is waiting, but even a simple answer feels heavier than usual.",
+    "image": "/assets/player.webp",
+    "weight": 8,
+    "choices": [
+      {
+        "id": "rest",
+        "label": "Cancel and recover",
+        "description": "Trade a little standing for health and energy.",
+        "effects": {
+          "reputation": -3,
+          "health": 8,
+          "energy": 18
+        },
+        "result": "You cancel honestly and take a proper break. Clearer judgment returns with the quiet."
+      },
+      {
+        "id": "finish",
+        "label": "Finish the appointment",
+        "description": "Push for a fee at a personal cost.",
+        "chance": 66,
+        "skill": "charisma",
+        "effects": {
+          "cash": 750,
+          "health": -6,
+          "energy": -12
+        },
+        "failure": {
+          "health": -10,
+          "energy": -14,
+          "reputation": -4
+        },
+        "result": "The appointment succeeds, though you pay for it in fatigue.",
+        "failureResult": "Fatigue makes the meeting stumble. You leave poorer in energy and standing."
+      }
+    ]
+  },
+  {
+    "id": "clinic-bill",
+    "title": "The clinic's reminder",
+    "category": "Injury",
+    "text": "An old treatment bill arrives with a polite note. The clinic remembers every account, even when you have moved on to bigger concerns.",
+    "image": "/assets/business-2.webp",
+    "weight": 5,
+    "choices": [
+      {
+        "id": "pay",
+        "label": "Settle the account",
+        "description": "Pay $500 and receive a routine follow-up.",
+        "effects": {
+          "cash": -500,
+          "health": 15,
+          "heat": -1
+        },
+        "result": "The account closes. The follow-up leaves you in better condition."
+      },
+      {
+        "id": "plan",
+        "label": "Ask for a payment plan",
+        "description": "A respectful request may keep the care available.",
+        "chance": 77,
+        "skill": "charisma",
+        "effects": {
+          "cash": -200,
+          "health": 8
+        },
+        "failure": {
+          "health": -4,
+          "reputation": -2
+        },
+        "result": "The clinic accepts a small payment now and a clear promise later.",
+        "failureResult": "The clinic declines another extension. The unresolved bill follows you home."
+      },
+      {
+        "id": "defer-follow-up",
+        "label": "Pause the optional follow-up",
+        "description": "Keep the account open and accept a small loss of goodwill.",
+        "effects": {
+          "reputation": -2,
+          "energy": 4
+        },
+        "result": "The clinic postpones the optional visit. The bill remains unresolved, but today brings no new charge."
+      }
+    ]
+  },
+  {
+    "id": "rival-mercy",
+    "title": "A rival asks for help",
+    "category": "Injury",
+    "text": "A member of a rival crew has been injured in a street accident. Helping them could soften a feud, though your people may question the expense.",
+    "image": "/assets/city.webp",
+    "weight": 4,
+    "minRep": 150,
+    "choices": [
+      {
+        "id": "help",
+        "label": "Cover professional care",
+        "description": "Spend $900 to put the injury before the rivalry.",
+        "effects": {
+          "cash": -900,
+          "heat": -5,
+          "reputation": 12,
+          "influence": 3
+        },
+        "result": "The rival receives care. Their crew acknowledges a debt that does not feel like business."
+      },
+      {
+        "id": "refer",
+        "label": "Arrange a clinic referral",
+        "description": "Give 8 energy to a useful introduction.",
+        "effects": {
+          "energy": -8,
+          "heat": -2,
+          "reputation": 5
+        },
+        "result": "The referral reaches the clinic. The rival's crew sees a measure of restraint."
+      },
+      {
+        "id": "distance",
+        "label": "Leave it to their own crew",
+        "description": "Keep your resources and reinforce the boundary.",
+        "effects": {
+          "energy": 4,
+          "heat": 2
+        },
+        "result": "Their crew handles the injury. The rivalry remains exactly where it was."
+      }
+    ]
+  },
+  {
+    "id": "old-wound",
+    "title": "An old injury speaks up",
+    "category": "Injury",
+    "text": "A familiar ache returns after a long day. It is a reminder that recovery has its own timetable.",
+    "image": "/assets/player.webp",
+    "weight": 6,
+    "choices": [
+      {
+        "id": "care",
+        "label": "Book a professional check",
+        "description": "Spend $400 for treatment and a quieter evening.",
+        "effects": {
+          "cash": -400,
+          "health": 18,
+          "energy": -5
+        },
+        "result": "The check catches the problem early. You leave with better care and clear advice."
+      },
+      {
+        "id": "rest",
+        "label": "Take a careful break",
+        "description": "Give time to recovery rather than another meeting.",
+        "effects": {
+          "energy": -12,
+          "health": 10,
+          "heat": -2
+        },
+        "result": "The quiet break helps. The old injury settles instead of becoming a new crisis."
+      },
+      {
+        "id": "ignore",
+        "label": "Finish the day's work",
+        "description": "Earn a small fee and risk a worse condition.",
+        "effects": {
+          "cash": 450,
+          "health": -12,
+          "energy": -8
+        },
+        "result": "The work is finished. The injury has become harder to ignore."
+      },
+      {
+        "id": "reduce-promises",
+        "label": "Make fewer promises today",
+        "description": "Recover quietly while clients accept a slower schedule.",
+        "effects": {
+          "energy": 6,
+          "health": 3,
+          "reputation": -2
+        },
+        "result": "You cancel the nonessential appointments honestly. Quiet time helps, though the delayed clients remember the interruption."
+      }
+    ]
+  },
+  {
+    "id": "street-collision",
+    "title": "A collision in the rain",
+    "category": "Injury",
+    "text": "A minor road collision leaves you shaken and a stranger facing repairs. The dispute can be settled before it becomes an argument.",
+    "image": "/assets/item-8.webp",
+    "weight": 5,
+    "choices": [
+      {
+        "id": "settle",
+        "label": "Pay a fair repair share",
+        "description": "Spend $450 and keep the exchange civil.",
+        "effects": {
+          "cash": -450,
+          "health": -3,
+          "heat": -2,
+          "reputation": 3
+        },
+        "result": "Both parties accept a fair repair share. The accident stays a small event."
+      },
+      {
+        "id": "review",
+        "label": "Ask for an ordinary review",
+        "description": "Your judgment may establish responsibility clearly.",
+        "chance": 76,
+        "skill": "driving",
+        "effects": {
+          "health": -2,
+          "cash": 250,
+          "skillXp": {
+            "driving": 12
+          }
+        },
+        "failure": {
+          "health": -6,
+          "cash": -550,
+          "heat": 3
+        },
+        "result": "The review confirms the other party's responsibility. A modest compensation follows.",
+        "failureResult": "The review assigns you the greater share of the repairs. The argument costs time and money."
+      },
+      {
+        "id": "insurance-review",
+        "label": "Wait for the standard claim",
+        "description": "Let the ordinary claim process handle the dispute.",
+        "effects": {
+          "energy": 3,
+          "reputation": -1,
+          "heat": 1
+        },
+        "result": "You leave the repair dispute to a standard claim. The other driver dislikes the delay, but the argument ends for today."
+      }
+    ]
+  },
+  {
+    "id": "flu-week",
+    "title": "A cold moves through the crew",
+    "category": "Injury",
+    "text": "Several of your people are unwell. The work can slow down now or suffer a larger disruption later.",
+    "image": "/assets/crew-3.webp",
+    "weight": 5,
+    "requiresCrew": true,
+    "choices": [
+      {
+        "id": "supplies",
+        "label": "Provide recovery supplies",
+        "description": "Spend $700 to keep people comfortable.",
+        "effects": {
+          "cash": -700,
+          "loyalty": 6,
+          "health": 6
+        },
+        "result": "Supplies reach the crew before the illness becomes a crisis. Your consideration is remembered."
+      },
+      {
+        "id": "light",
+        "label": "Give everyone a lighter day",
+        "description": "Trade energy and income for trust.",
+        "effects": {
+          "cash": -250,
+          "energy": -10,
+          "loyalty": 4,
+          "health": 5
+        },
+        "result": "A lighter schedule gives the crew room to recover. The next day looks more manageable."
+      },
+      {
+        "id": "normal",
+        "label": "Keep the usual pace",
+        "description": "Protect cash at the cost of health and loyalty.",
+        "effects": {
+          "health": -8,
+          "loyalty": -6,
+          "injuredCrew": true
+        },
+        "result": "The illness disrupts the schedule anyway. The crew feels the pressure you chose."
+      },
+      {
+        "id": "pause-appointments",
+        "label": "Pause nonessential appointments",
+        "description": "Accept slower business while everyone catches their breath.",
+        "effects": {
+          "reputation": -3,
+          "energy": 5,
+          "health": 2
+        },
+        "result": "The crew postpones nonessential appointments. A slower day helps people recover, though clients notice the reduced pace."
+      }
+    ]
+  },
+  {
+    "id": "restorative-break",
+    "title": "An hour by the harbor",
+    "category": "Injury",
+    "text": "A gap opens in your schedule near the water. Nothing is asking for your attention for the first time all day.",
+    "image": "/assets/district-portside.webp",
+    "weight": 6,
+    "choices": [
+      {
+        "id": "quiet",
+        "label": "Take the quiet hour",
+        "description": "Recover a little health and energy.",
+        "effects": {
+          "health": 6,
+          "energy": 14,
+          "heat": -2
+        },
+        "result": "You spend an hour listening to rain and harbor wind. The next decision feels clearer."
+      },
+      {
+        "id": "call",
+        "label": "Use the hour for a client call",
+        "description": "Take a small fee instead of the break.",
+        "effects": {
+          "cash": 500,
+          "energy": -7,
+          "skillXp": {
+            "business": 8
+          }
+        },
+        "result": "The client call pays for your time. The quiet hour becomes another piece of work."
+      }
+    ]
+  },
+  {
+    "id": "business-letter",
+    "title": "A notice at the counter",
+    "category": "Business",
+    "text": "A routine business review has flagged incomplete records. The notice is manageable, provided someone gives it proper attention.",
+    "image": "/assets/business-1.webp",
+    "weight": 7,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "prepare",
+        "label": "Prepare a professional response",
+        "description": "Spend $750 to put the account in order.",
+        "effects": {
+          "cash": -750,
+          "heat": -3,
+          "flags": [
+            "business-review"
+          ]
+        },
+        "result": "A professional response is prepared. The review will now have clear records to consider.",
+        "followUp": "business-inspection"
+      },
+      {
+        "id": "personal",
+        "label": "Review it yourself",
+        "description": "Spend 12 energy and trust your commercial judgment.",
+        "chance": 71,
+        "skill": "business",
+        "effects": {
+          "energy": -12,
+          "flags": [
+            "business-review"
+          ],
+          "skillXp": {
+            "business": 12
+          }
+        },
+        "failure": {
+          "cash": -650,
+          "heat": 6
+        },
+        "result": "The records are clearer than they first appeared. You request a closing review.",
+        "failureResult": "The missing details lead to an additional fee. The business remains under scrutiny.",
+        "followUp": "business-inspection",
+        "failureFollowUp": "business-recovery"
+      },
+      {
+        "id": "delay",
+        "label": "Delay the response",
+        "description": "Keep cash now and accept more attention.",
+        "effects": {
+          "heat": 6,
+          "reputation": -3
+        },
+        "result": "The response deadline passes. The next notice is less patient."
+      }
+    ]
+  },
+  {
+    "id": "business-inspection",
+    "title": "The records review",
+    "category": "Business",
+    "text": "The review is ready to close. A clear final account could leave your business with stronger standing than before.",
+    "image": "/assets/business-4.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "complete",
+        "label": "Complete the closing review",
+        "description": "Pay $900 for a certain conclusion.",
+        "effects": {
+          "cash": -900,
+          "heat": -10,
+          "reputation": 8,
+          "removeFlags": [
+            "business-review"
+          ]
+        },
+        "result": "The closing review accepts the records. Your business returns to an ordinary routine.",
+        "followUp": "business-recovery"
+      },
+      {
+        "id": "contest",
+        "label": "Contest the disputed fee",
+        "description": "Your accounting judgment may win a refund.",
+        "chance": 70,
+        "skill": "business",
+        "effects": {
+          "cash": 1200,
+          "heat": -8,
+          "removeFlags": [
+            "business-review"
+          ]
+        },
+        "failure": {
+          "cash": -1400,
+          "heat": 5,
+          "removeFlags": [
+            "business-review"
+          ]
+        },
+        "result": "The review finds the fee unjustified. A refund arrives with the closed notice.",
+        "failureResult": "The fee is confirmed and increased. The review closes at a painful cost.",
+        "followUp": "business-recovery",
+        "failureFollowUp": "business-recovery"
+      },
+      {
+        "id": "written-warning",
+        "label": "Accept a written warning",
+        "description": "Close the review without a fee and accept a public setback.",
+        "effects": {
+          "heat": 5,
+          "reputation": -6,
+          "energy": 5,
+          "removeFlags": [
+            "business-review"
+          ]
+        },
+        "result": "The review closes with a written warning. Your business can reopen, though its standing will need rebuilding."
+      }
+    ]
+  },
+  {
+    "id": "business-recovery",
+    "title": "Back to ordinary hours",
+    "category": "Business",
+    "text": "Your business has emerged from an uncomfortable review. Staff and customers need a sign that ordinary service has returned.",
+    "image": "/assets/business-1.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "refresh",
+        "label": "Fund a modest refresh",
+        "description": "Spend $600 to restore staff confidence.",
+        "effects": {
+          "cash": -600,
+          "reputation": 10,
+          "heat": -3,
+          "skillXp": {
+            "business": 15
+          }
+        },
+        "result": "The refreshed counter brings the regulars back. The review becomes a story from last week."
+      },
+      {
+        "id": "routine",
+        "label": "Let good service do the work",
+        "description": "Spend 10 energy supporting a dependable day.",
+        "effects": {
+          "energy": -10,
+          "cash": 450,
+          "reputation": 5
+        },
+        "result": "A dependable day restores confidence one customer at a time."
+      },
+      {
+        "id": "gentle-reopening",
+        "label": "Reopen at a gentler pace",
+        "description": "Recover your energy and accept slower rebuilding of the business's name.",
+        "effects": {
+          "energy": 8,
+          "reputation": -3,
+          "heat": -1
+        },
+        "result": "Shorter hours give everyone a manageable beginning. Confidence returns slowly, with no new expense on your account."
+      }
+    ]
+  },
+  {
+    "id": "cafe-feature",
+    "title": "A good review",
+    "category": "Business",
+    "text": "A neighborhood publication praises one of your businesses. The new attention could become a lasting customer base if handled well.",
+    "image": "/assets/business-1.webp",
+    "weight": 6,
+    "requiresBusiness": true,
+    "maxHeat": 50,
+    "choices": [
+      {
+        "id": "service",
+        "label": "Support the extra demand",
+        "description": "Spend $500 for a chance at a strong commercial week.",
+        "chance": 80,
+        "skill": "business",
+        "effects": {
+          "cash": 2100,
+          "reputation": 10
+        },
+        "failure": {
+          "cash": -500,
+          "reputation": -2
+        },
+        "result": "The extra demand is handled smoothly. New customers become familiar regulars.",
+        "failureResult": "The business struggles with the sudden crowd. The review raises expectations too quickly."
+      },
+      {
+        "id": "steady",
+        "label": "Keep the ordinary pace",
+        "description": "Take a smaller guaranteed bonus.",
+        "effects": {
+          "cash": 650,
+          "reputation": 4,
+          "heat": 1
+        },
+        "result": "The business keeps its ordinary pace. A few new regulars stay."
+      }
+    ]
+  },
+  {
+    "id": "supplier-strike",
+    "title": "The supplier's ultimatum",
+    "category": "Business",
+    "text": "A supplier threatens to pause service over disputed terms. Staff worry that a private disagreement will become their daily problem.",
+    "image": "/assets/business-5.webp",
+    "weight": 7,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "settle",
+        "label": "Pay to settle the terms",
+        "description": "Spend $850 and keep the business predictable.",
+        "effects": {
+          "cash": -850,
+          "heat": -2,
+          "reputation": 4
+        },
+        "result": "The supplier accepts a clear settlement. Staff can plan an ordinary week."
+      },
+      {
+        "id": "negotiate",
+        "label": "Negotiate a fair revision",
+        "description": "Commercial judgment may protect both sides.",
+        "chance": 72,
+        "skill": "business",
+        "effects": {
+          "cash": 450,
+          "skillXp": {
+            "business": 20
+          }
+        },
+        "failure": {
+          "cash": -1100,
+          "reputation": -4
+        },
+        "result": "The revised terms work for both parties. A small credit corrects the earlier account.",
+        "failureResult": "The negotiation fails. Temporary service costs more than the original dispute."
+      },
+      {
+        "id": "change",
+        "label": "Change the supplier",
+        "description": "Spend $500 on a fresh commercial relationship.",
+        "effects": {
+          "cash": -500,
+          "energy": -8,
+          "heat": -1
+        },
+        "result": "A new supplier begins work. The transition takes effort, but the old ultimatum ends."
+      },
+      {
+        "id": "suspend-orders",
+        "label": "Suspend the affected orders",
+        "description": "Keep your reserve and accept a less dependable business day.",
+        "effects": {
+          "reputation": -3,
+          "heat": 2,
+          "energy": 5
+        },
+        "result": "You suspend the orders rather than make an unaffordable promise. Customers hear the explanation, but the interruption hurts your standing."
+      }
+    ]
+  },
+  {
+    "id": "loyal-regular",
+    "title": "A regular brings friends",
+    "category": "Business",
+    "text": "A longtime customer has introduced a whole group to your business. They expect the same care that brought them back in the first place.",
+    "image": "/assets/business-1.webp",
+    "weight": 8,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "welcome",
+        "label": "Give the group careful service",
+        "description": "Spend 8 energy for steady income and goodwill.",
+        "effects": {
+          "energy": -8,
+          "cash": 850,
+          "reputation": 5
+        },
+        "result": "The group receives the familiar care. Your regular leaves pleased to have made the introduction."
+      },
+      {
+        "id": "thank",
+        "label": "Offer a small thank-you",
+        "description": "Spend $200 and deepen the relationship.",
+        "effects": {
+          "cash": -200,
+          "reputation": 8,
+          "influence": 2
+        },
+        "result": "The thank-you feels personal rather than promotional. The regular keeps recommending your place."
+      },
+      {
+        "id": "ordinary-welcome",
+        "label": "Keep the ordinary service",
+        "description": "Leave the usual staff to manage the group without an extra gesture.",
+        "effects": {
+          "reputation": -2,
+          "energy": 3
+        },
+        "result": "The group receives ordinary service. Your regular accepts the visit but misses the personal welcome they expected."
+      }
+    ]
+  },
+  {
+    "id": "surprise-bonus",
+    "title": "A stronger close",
+    "category": "Business",
+    "text": "Your business's accounts show a better week than expected. A surplus gives you a choice between immediate cash and another investment in trust.",
+    "image": "/assets/item-3.webp",
+    "weight": 7,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "take",
+        "label": "Take the surplus",
+        "description": "Receive a certain $1,500 bonus.",
+        "effects": {
+          "cash": 1500,
+          "heat": 1
+        },
+        "result": "The surplus reaches your reserve. The business has paid for a little more breathing room."
+      },
+      {
+        "id": "share",
+        "label": "Share the surplus with staff",
+        "description": "Take a smaller bonus and strengthen your standing.",
+        "effects": {
+          "cash": 450,
+          "reputation": 12,
+          "influence": 3
+        },
+        "result": "Staff receive a share of the good week. The business's success becomes easier to sustain."
+      },
+      {
+        "id": "reinvest",
+        "label": "Reinvest in a client offer",
+        "description": "A carefully judged offer could multiply the surplus.",
+        "chance": 69,
+        "skill": "business",
+        "effects": {
+          "cash": 2800,
+          "skillXp": {
+            "business": 15
+          }
+        },
+        "failure": {
+          "cash": 300,
+          "reputation": -2
+        },
+        "result": "The reinvestment brings a valuable new client. The stronger close becomes a stronger month.",
+        "failureResult": "The new offer attracts less interest than expected. Only a small surplus remains."
+      }
+    ]
+  },
+  {
+    "id": "silent-partner",
+    "title": "The partner behind the offer",
+    "category": "Business",
+    "text": "A proposed investor prefers to remain private. Their money is substantial, but their expectations are unusually vague.",
+    "image": "/assets/business-4.webp",
+    "weight": 5,
+    "requiresBusiness": true,
+    "minRep": 200,
+    "choices": [
+      {
+        "id": "terms",
+        "label": "Insist on clear terms",
+        "description": "Your business judgment may preserve a useful partnership.",
+        "chance": 69,
+        "skill": "business",
+        "effects": {
+          "cash": 3200,
+          "reputation": 9,
+          "heat": 2
+        },
+        "failure": {
+          "energy": -10,
+          "heat": 5
+        },
+        "result": "Clear terms reveal a workable, ordinary investment. The partner agrees to the written account.",
+        "failureResult": "The investor withdraws rather than explain the expectations. The unanswered offer leaves a little attention."
+      },
+      {
+        "id": "decline",
+        "label": "Decline the vague money",
+        "description": "Choose predictability and preserve the business's standing.",
+        "effects": {
+          "heat": -4,
+          "reputation": 5,
+          "skillXp": {
+            "business": 8
+          }
+        },
+        "result": "You decline politely. The business keeps its simpler obligations."
+      }
+    ]
+  },
+  {
+    "id": "staff-bonus",
+    "title": "The staff ask for recognition",
+    "category": "Business",
+    "text": "A difficult month has tested your business's staff. They ask for something more concrete than praise.",
+    "image": "/assets/business-2.webp",
+    "weight": 6,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "bonus",
+        "label": "Pay a meaningful bonus",
+        "description": "Spend $1,000 to recognize the work.",
+        "effects": {
+          "cash": -1000,
+          "reputation": 12,
+          "influence": 3
+        },
+        "result": "The bonus matches the difficult month. Staff see their work reflected in your decisions."
+      },
+      {
+        "id": "time",
+        "label": "Fund a lighter schedule",
+        "description": "Spend $450 and absorb some extra work yourself.",
+        "effects": {
+          "cash": -450,
+          "energy": -10,
+          "reputation": 8
+        },
+        "result": "A lighter schedule gives the staff room to recover. You take responsibility for the gap."
+      },
+      {
+        "id": "defer",
+        "label": "Defer the conversation",
+        "description": "Preserve cash and accept a loss of standing.",
+        "effects": {
+          "reputation": -8,
+          "heat": 2
+        },
+        "result": "The conversation is postponed. The staff's disappointment remains part of the ordinary day."
+      }
+    ]
+  },
+  {
+    "id": "power-cut",
+    "title": "An hour without power",
+    "category": "Business",
+    "text": "A neighborhood outage interrupts your business. The inconvenience is ordinary; the response can still define how customers remember the day.",
+    "image": "/assets/business-1.webp",
+    "weight": 6,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "refund",
+        "label": "Offer fair refunds",
+        "description": "Spend $500 and protect customer trust.",
+        "effects": {
+          "cash": -500,
+          "reputation": 7,
+          "heat": -1
+        },
+        "result": "Customers receive fair refunds without an argument. Most promise to return."
+      },
+      {
+        "id": "adapt",
+        "label": "Arrange a modest alternative",
+        "description": "Your commercial judgment may salvage the day.",
+        "chance": 75,
+        "skill": "business",
+        "effects": {
+          "cash": 650,
+          "energy": -10,
+          "reputation": 4
+        },
+        "failure": {
+          "cash": -350,
+          "energy": -10
+        },
+        "result": "A modest alternative lets the business serve its waiting customers. The day ends respectably.",
+        "failureResult": "The alternative proves impractical. The staff close early and absorb the lost effort."
+      },
+      {
+        "id": "close-early",
+        "label": "Close early with a clear explanation",
+        "description": "Recover some energy and accept the inconvenience to customers.",
+        "effects": {
+          "energy": 5,
+          "reputation": -2,
+          "heat": 1
+        },
+        "result": "The staff close calmly and explain the outage. Customers are disappointed, but the day ends without a new expense."
+      }
+    ]
+  },
+  {
+    "id": "tax-quarter",
+    "title": "The quarter's account",
+    "category": "Business",
+    "text": "A routine financial obligation is due. Your adviser recommends an ordinary payment rather than another disputed bill.",
+    "image": "/assets/item-3.webp",
+    "weight": 5,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "pay",
+        "label": "Pay the ordinary obligation",
+        "description": "Spend $1,200 for a calmer commercial quarter.",
+        "effects": {
+          "cash": -1200,
+          "heat": -8,
+          "reputation": 4
+        },
+        "result": "The obligation is recorded on time. Your adviser has one fewer reason to call."
+      },
+      {
+        "id": "review",
+        "label": "Request a proper review",
+        "description": "A legitimate correction could reduce the account.",
+        "chance": 72,
+        "skill": "business",
+        "effects": {
+          "cash": -500,
+          "heat": -5,
+          "skillXp": {
+            "business": 15
+          }
+        },
+        "failure": {
+          "cash": -1500,
+          "heat": 4
+        },
+        "result": "The review finds a legitimate correction. The smaller amount closes the obligation.",
+        "failureResult": "The account is confirmed with a late fee. The review costs more than it saves."
+      },
+      {
+        "id": "standard-extension",
+        "label": "Request a standard extension",
+        "description": "Preserve cash today and accept continued scrutiny of the open account.",
+        "effects": {
+          "heat": 3,
+          "reputation": -2,
+          "energy": 3
+        },
+        "result": "The ordinary extension is recorded. Nothing is paid today, and the open account remains part of your business's public record."
+      }
+    ]
+  },
+  {
+    "id": "business-anniversary",
+    "title": "Another year of open doors",
+    "category": "Business",
+    "text": "A business under your care reaches an anniversary. Customers remember the place more fondly than you expected.",
+    "image": "/assets/business-6.webp",
+    "weight": 4,
+    "requiresBusiness": true,
+    "choices": [
+      {
+        "id": "community",
+        "label": "Mark it with a community meal",
+        "description": "Spend $900 and share the milestone.",
+        "effects": {
+          "cash": -900,
+          "reputation": 16,
+          "influence": 4,
+          "heat": -3
+        },
+        "result": "The meal fills with familiar customers. The business feels like a lasting piece of the neighborhood."
+      },
+      {
+        "id": "ordinary",
+        "label": "Keep the day pleasantly ordinary",
+        "description": "Take a modest anniversary bonus.",
+        "effects": {
+          "cash": 1100,
+          "reputation": 5
+        },
+        "result": "Customers bring their own good wishes. The ordinary day closes with a healthy account."
+      }
+    ]
+  },
+  {
+    "id": "jail-arrival",
+    "title": "The first quiet hour",
+    "category": "Prison",
+    "text": "Custody strips the day of its usual appointments. A quiet first hour offers a chance to decide how you will use the time.",
+    "image": "/assets/district-ironworks.webp",
+    "weight": 10,
+    "jailOnly": true,
+    "choices": [
+      {
+        "id": "settle",
+        "label": "Settle into the routine",
+        "description": "Trade energy for a calmer period in custody.",
+        "effects": {
+          "energy": -8,
+          "heat": -4,
+          "health": 3
+        },
+        "result": "You accept the routine without creating a new dispute. The first hour becomes manageable."
+      },
+      {
+        "id": "reflect",
+        "label": "Review your recent decisions",
+        "description": "Give time to learning from the consequences.",
+        "effects": {
+          "energy": -12,
+          "skillXp": {
+            "streetSmarts": 20
+          },
+          "reputation": 2
+        },
+        "result": "The review is uncomfortable and useful. You begin to see which promises were too large."
+      },
+      {
+        "id": "quiet-routine",
+        "label": "Keep to a quiet routine",
+        "description": "Recover some energy and let your public standing wait.",
+        "effects": {
+          "energy": 10,
+          "heat": -2,
+          "reputation": -1
+        },
+        "result": "You accept a quiet routine and make no new demands. A little strength returns while the city continues without you."
+      }
+    ]
+  },
+  {
+    "id": "jail-library",
+    "title": "A borrowed book",
+    "category": "Prison",
+    "text": "The custody library has a worn book about business disputes. With nowhere urgent to be, you can finally finish something.",
+    "image": "/assets/item-2.webp",
+    "weight": 7,
+    "jailOnly": true,
+    "choices": [
+      {
+        "id": "study",
+        "label": "Study the book carefully",
+        "description": "Spend 15 energy on commercial judgment.",
+        "effects": {
+          "energy": -15,
+          "skillXp": {
+            "business": 30
+          },
+          "heat": -2
+        },
+        "result": "The book makes familiar mistakes easier to name. You return it with a better sense of your own limits."
+      },
+      {
+        "id": "rest",
+        "label": "Take a quiet rest instead",
+        "description": "Recover energy and a little health.",
+        "effects": {
+          "energy": 16,
+          "health": 5
+        },
+        "result": "You leave the book for someone else and take the quiet seriously."
+      }
+    ]
+  },
+  {
+    "id": "jail-visitor",
+    "title": "A visitor keeps a promise",
+    "category": "Prison",
+    "text": "Mara arrives for a scheduled visit. She brings news of the neighborhood and asks what you want people to hear about your absence.",
+    "image": "/assets/crew-5.webp",
+    "weight": 7,
+    "jailOnly": true,
+    "choices": [
+      {
+        "id": "honest",
+        "label": "Give an honest account",
+        "description": "Accept some humility and preserve the relationship.",
+        "effects": {
+          "reputation": -3,
+          "relationships": {
+            "mara": 7
+          },
+          "heat": -4,
+          "energy": 8
+        },
+        "result": "Mara accepts the honest account. The neighborhood receives a story without excuses."
+      },
+      {
+        "id": "promise",
+        "label": "Promise a calmer return",
+        "description": "Build trust around a modest commitment.",
+        "effects": {
+          "relationships": {
+            "mara": 4
+          },
+          "heat": -3,
+          "skillXp": {
+            "charisma": 12
+          }
+        },
+        "result": "Mara asks you to keep the promise small enough to honor. The visit ends warmly."
+      },
+      {
+        "id": "demand",
+        "label": "Ask her to defend your standing",
+        "description": "Protect reputation at a cost to personal trust.",
+        "effects": {
+          "reputation": 5,
+          "relationships": {
+            "mara": -4
+          }
+        },
+        "result": "Mara agrees to correct false rumors. She leaves less certain about what you learned."
+      }
+    ]
+  },
+  {
+    "id": "jail-yard",
+    "title": "A disagreement in the yard",
+    "category": "Prison",
+    "text": "Two people in custody ask you to settle a small argument. Getting involved could help the routine, or give you a new grievance to carry.",
+    "image": "/assets/district-ironworks.webp",
+    "weight": 6,
+    "jailOnly": true,
+    "choices": [
+      {
+        "id": "mediate",
+        "label": "Offer a fair compromise",
+        "description": "A careful word may restore the routine.",
+        "chance": 70,
+        "skill": "charisma",
+        "effects": {
+          "reputation": 6,
+          "heat": -3,
+          "skillXp": {
+            "charisma": 15
+          }
+        },
+        "failure": {
+          "health": -8,
+          "jailDays": 1
+        },
+        "result": "Both accept the compromise. The ordinary routine returns.",
+        "failureResult": "The argument turns against your involvement. A disciplinary day extends the sentence."
+      },
+      {
+        "id": "distance",
+        "label": "Keep to your own routine",
+        "description": "Preserve health and spend the time quietly.",
+        "effects": {
+          "energy": 5,
+          "heat": -2
+        },
+        "result": "You remain outside the argument. The routine continues around you."
+      }
+    ]
+  },
+  {
+    "id": "jail-canteen",
+    "title": "A small canteen account",
+    "category": "Prison",
+    "text": "Someone has run short on ordinary essentials. A modest contribution would make custody easier for them, without creating a grand obligation.",
+    "image": "/assets/item-4.webp",
+    "weight": 6,
+    "jailOnly": true,
+    "choices": [
+      {
+        "id": "share",
+        "label": "Cover the small account",
+        "description": "Give $200 and keep the gesture simple.",
+        "effects": {
+          "cash": -200,
+          "reputation": 5,
+          "health": 3
+        },
+        "result": "The essentials arrive. Your help is remembered as ordinary decency."
+      },
+      {
+        "id": "advice",
+        "label": "Help them ask for support",
+        "description": "Spend 7 energy on a useful conversation.",
+        "effects": {
+          "energy": -7,
+          "skillXp": {
+            "charisma": 12
+          },
+          "reputation": 2
+        },
+        "result": "You help explain the request clearly. Staff arrange an ordinary support option."
+      },
+      {
+        "id": "honest-limit",
+        "label": "Admit you cannot help today",
+        "description": "Keep the boundary honest and accept a disappointed acquaintance.",
+        "effects": {
+          "energy": 4,
+          "reputation": -1
+        },
+        "result": "You explain your own limits without promising supplies. They look elsewhere for help, and the routine continues."
+      }
+    ]
+  },
+  {
+    "id": "jail-release-offer",
+    "title": "A lawful review of your sentence",
+    "category": "Prison",
+    "text": "An adviser says a routine review might shorten your remaining custody. The application costs money, and its outcome is uncertain.",
+    "image": "/assets/business-4.webp",
+    "weight": 4,
+    "jailOnly": true,
+    "choices": [
+      {
+        "id": "apply",
+        "label": "Fund the lawful application",
+        "description": "Spend $1,100 for a chance at an earlier release.",
+        "chance": 76,
+        "skill": "business",
+        "effects": {
+          "cash": -1100,
+          "jailDays": -2,
+          "heat": -5
+        },
+        "failure": {
+          "cash": -1100,
+          "energy": -5
+        },
+        "result": "The review approves a shorter sentence. Two days are removed from the custody account.",
+        "failureResult": "The review confirms the original sentence. The application fee is spent."
+      },
+      {
+        "id": "serve",
+        "label": "Finish the sentence quietly",
+        "description": "Preserve cash and recover composure.",
+        "effects": {
+          "energy": 10,
+          "heat": -4,
+          "health": 4
+        },
+        "result": "You accept the remaining time. The quiet routine gives you room to recover."
+      }
+    ]
+  },
+  {
+    "id": "prison-favor",
+    "title": "A favor across the table",
+    "category": "Prison",
+    "text": "A person in custody asks for help writing an ordinary family letter. They promise to remember the kindness when your own day becomes difficult.",
+    "image": "/assets/item-2.webp",
+    "weight": 5,
+    "jailOnly": true,
+    "forbiddenFlag": "custody-favor",
+    "choices": [
+      {
+        "id": "help",
+        "label": "Help write the letter",
+        "description": "Spend 10 energy on a personal favor.",
+        "effects": {
+          "energy": -10,
+          "reputation": 4,
+          "flags": [
+            "custody-favor"
+          ]
+        },
+        "result": "The letter is written clearly. The promise of a returned favor is quiet and sincere.",
+        "followUp": "prison-tab"
+      },
+      {
+        "id": "supplies",
+        "label": "Pay for ordinary supplies",
+        "description": "Give $150 and let them write in their own words.",
+        "effects": {
+          "cash": -150,
+          "reputation": 3,
+          "flags": [
+            "custody-favor"
+          ]
+        },
+        "result": "The supplies arrive. They thank you for leaving the letter itself personal.",
+        "followUp": "prison-tab"
+      },
+      {
+        "id": "decline",
+        "label": "Keep to your own concerns",
+        "description": "Protect your energy for the remaining sentence.",
+        "effects": {
+          "energy": 5,
+          "reputation": -1
+        },
+        "result": "You decline the favor. The letter waits for another volunteer."
+      }
+    ]
+  },
+  {
+    "id": "prison-tab",
+    "title": "The returned kindness",
+    "category": "Prison",
+    "text": "The person you helped offers to introduce a reputable adviser. They describe it as a returned kindness rather than a new bargain.",
+    "image": "/assets/item-2.webp",
+    "weight": 1,
+    "jailOnly": true,
+    "followUpOnly": true,
+    "choices": [
+      {
+        "id": "adviser",
+        "label": "Accept the adviser introduction",
+        "description": "Pay $200 for an ordinary consultation.",
+        "effects": {
+          "cash": -200,
+          "skillXp": {
+            "business": 15
+          },
+          "removeFlags": [
+            "custody-favor"
+          ]
+        },
+        "result": "The adviser explains a lawful sentence review. You can now decide whether to fund it.",
+        "followUp": "jail-release-offer"
+      },
+      {
+        "id": "friend",
+        "label": "Keep the kindness personal",
+        "description": "Ask for nothing more than a calmer routine.",
+        "effects": {
+          "health": 6,
+          "energy": 8,
+          "heat": -3,
+          "removeFlags": [
+            "custody-favor"
+          ]
+        },
+        "result": "The favor closes without a transaction. The remainder of the day feels easier."
+      }
+    ]
+  },
+  {
+    "id": "city-storm",
+    "title": "A storm over Blackwater",
+    "category": "City",
+    "text": "Heavy rain slows the whole city. Appointments dissolve, streets grow quiet, and everyone has to choose what still deserves their time.",
+    "image": "/assets/city.webp",
+    "weight": 7,
+    "choices": [
+      {
+        "id": "rest",
+        "label": "Let the day slow down",
+        "description": "Recover energy while attention fades.",
+        "effects": {
+          "energy": 16,
+          "heat": -4,
+          "health": 3
+        },
+        "result": "You accept the slower day. Rain settles the city and your own pace."
+      },
+      {
+        "id": "help",
+        "label": "Support affected neighbors",
+        "description": "Spend $500 on practical local help.",
+        "effects": {
+          "cash": -500,
+          "reputation": 9,
+          "influence": 3
+        },
+        "result": "The help reaches households dealing with the storm. Your name carries a useful association."
+      },
+      {
+        "id": "work",
+        "label": "Take a weather-delayed contract",
+        "description": "Spend energy for a larger ordinary fee.",
+        "chance": 68,
+        "skill": "driving",
+        "effects": {
+          "cash": 1300,
+          "energy": -16
+        },
+        "failure": {
+          "energy": -16,
+          "cash": -250
+        },
+        "result": "The delayed contract is completed despite the weather. The client pays generously.",
+        "failureResult": "The weather defeats the timetable. You absorb the expense of the failed appointment."
+      }
+    ]
+  },
+  {
+    "id": "family-message",
+    "title": "A message from home",
+    "category": "City",
+    "text": "Someone from your family asks if your new life has room for an ordinary conversation. No deal is attached to the request.",
+    "image": "/assets/player.webp",
+    "weight": 6,
+    "choices": [
+      {
+        "id": "call",
+        "label": "Make time for the conversation",
+        "description": "Put 8 energy toward a bond beyond the city.",
+        "effects": {
+          "energy": -8,
+          "health": 7,
+          "heat": -2
+        },
+        "result": "You talk about ordinary things. The conversation restores a part of your life ambition cannot replace."
+      },
+      {
+        "id": "gift",
+        "label": "Send practical support",
+        "description": "Give $400 and promise a later conversation.",
+        "effects": {
+          "cash": -400,
+          "health": 3,
+          "reputation": 4
+        },
+        "result": "The support is received with thanks. The promised conversation still matters."
+      },
+      {
+        "id": "later",
+        "label": "Let the message wait",
+        "description": "Keep your schedule and accept the emotional strain.",
+        "effects": {
+          "energy": 5,
+          "health": -4
+        },
+        "result": "The day continues at full speed. The unanswered message remains at its edge."
+      },
+      {
+        "id": "brief-reply",
+        "label": "Leave a brief honest reply",
+        "description": "Acknowledge the message without making another promise today.",
+        "effects": {
+          "energy": 3,
+          "heat": -1
+        },
+        "result": "You send a brief reply explaining the difficult day. The longer conversation waits, but the silence no longer feels like indifference."
+      }
+    ]
+  },
+  {
+    "id": "small-celebration",
+    "title": "A modest milestone",
+    "category": "City",
+    "text": "Mara points out that your life has become larger than the rooms you first worked in. She suggests acknowledging the people who helped it grow.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 5,
+    "minRep": 150,
+    "choices": [
+      {
+        "id": "thanks",
+        "label": "Share a modest thank-you meal",
+        "description": "Spend $650 and recognize the old connections.",
+        "effects": {
+          "cash": -650,
+          "relationships": {
+            "mara": 6
+          },
+          "loyalty": 4,
+          "reputation": 7
+        },
+        "result": "The meal brings familiar people together. Your success feels less like a private possession."
+      },
+      {
+        "id": "quiet",
+        "label": "Thank them privately",
+        "description": "Spend 10 energy on personal conversations.",
+        "effects": {
+          "energy": -10,
+          "relationships": {
+            "mara": 4
+          },
+          "loyalty": 2
+        },
+        "result": "The private thanks are specific and sincere. Each person knows you remembered their part."
+      },
+      {
+        "id": "private-milestone",
+        "label": "Keep the milestone private",
+        "description": "Recover quietly and accept that others hoped to share the moment.",
+        "effects": {
+          "energy": 5,
+          "loyalty": -2,
+          "reputation": -1
+        },
+        "result": "You let the milestone pass without an occasion. Rest comes easily; the people who helped you rise feel a little farther away."
+      }
+    ]
+  },
+  {
+    "id": "anniversary-promise",
+    "title": "The promise you began with",
+    "category": "City",
+    "text": "An old note reminds you of the person you intended to become when you arrived. The city has offered easier reasons to forget.",
+    "image": "/assets/item-2.webp",
+    "weight": 4,
+    "minRep": 300,
+    "choices": [
+      {
+        "id": "honor",
+        "label": "Honor one old commitment",
+        "description": "Spend $1,200 on a promise with no immediate return.",
+        "effects": {
+          "cash": -1200,
+          "reputation": 15,
+          "influence": 4,
+          "heat": -4
+        },
+        "result": "The old commitment is honored. Your rise gains a little continuity with its beginning."
+      },
+      {
+        "id": "reflect",
+        "label": "Take time to reconsider your path",
+        "description": "Give 12 energy to a clear-eyed review.",
+        "effects": {
+          "energy": -12,
+          "skillXp": {
+            "streetSmarts": 25
+          },
+          "health": 5
+        },
+        "result": "The review does not change the past. It makes your next promise more deliberate."
+      },
+      {
+        "id": "forward",
+        "label": "Focus on the next opportunity",
+        "description": "Gain momentum while accepting a harder reputation.",
+        "effects": {
+          "cash": 600,
+          "reputation": 4,
+          "heat": 3
+        },
+        "result": "You put the note away. The next opportunity becomes the day's priority."
+      }
+    ]
+  },
+  {
+    "id": "rooftop-look",
+    "title": "A view above the noise",
+    "category": "City",
+    "text": "From a quiet rooftop, the districts look closer together than they do from the street. You have a rare moment to think beyond tomorrow's fee.",
+    "image": "/assets/city.webp",
+    "weight": 4,
+    "minRep": 200,
+    "choices": [
+      {
+        "id": "plan",
+        "label": "Consider a longer horizon",
+        "description": "Spend 10 energy on business judgment.",
+        "effects": {
+          "energy": -10,
+          "skillXp": {
+            "business": 25
+          },
+          "influence": 2
+        },
+        "result": "A few ambitions become clearer and a few lose their urgency. The longer horizon feels useful."
+      },
+      {
+        "id": "quiet",
+        "label": "Enjoy the quiet view",
+        "description": "Recover health and energy without another plan.",
+        "effects": {
+          "health": 5,
+          "energy": 10,
+          "heat": -2
+        },
+        "result": "You let the skyline remain a view for a while. The city's noise feels farther away."
+      }
+    ]
+  },
+  {
+    "id": "lost-suitcase",
+    "title": "A suitcase in the lobby",
+    "category": "City",
+    "text": "A visitor has left an ordinary suitcase in a shared lobby. Its owner is easy to find, and your response will be remembered locally.",
+    "image": "/assets/item-5.webp",
+    "weight": 5,
+    "choices": [
+      {
+        "id": "return",
+        "label": "Arrange its return",
+        "description": "Spend 6 energy and accept a modest thank-you.",
+        "effects": {
+          "energy": -6,
+          "cash": 200,
+          "reputation": 5,
+          "heat": -1
+        },
+        "result": "The visitor receives the suitcase intact. The shared lobby gets a small story about reliability."
+      },
+      {
+        "id": "desk",
+        "label": "Leave it with the building desk",
+        "description": "Make the ordinary responsible choice and continue.",
+        "effects": {
+          "reputation": 2,
+          "energy": 2
+        },
+        "result": "The building desk takes care of the return. The day continues without a new obligation."
+      }
+    ]
+  },
+  {
+    "id": "clean-interview",
+    "title": "A different kind of profile",
+    "category": "City",
+    "text": "A local publication wants to discuss the legitimate work behind your reputation. The interview could show a more complete account of your life.",
+    "image": "/assets/business-6.webp",
+    "weight": 4,
+    "minRep": 250,
+    "maxHeat": 45,
+    "choices": [
+      {
+        "id": "interview",
+        "label": "Give a careful interview",
+        "description": "Your social judgment may earn useful public credit.",
+        "chance": 76,
+        "skill": "charisma",
+        "effects": {
+          "reputation": 18,
+          "heat": -5,
+          "influence": 3
+        },
+        "failure": {
+          "heat": 6,
+          "reputation": -3
+        },
+        "result": "The profile emphasizes real work and people helped. Your name gains a calmer association.",
+        "failureResult": "The interview drifts toward private disputes. The finished profile raises awkward questions."
+      },
+      {
+        "id": "staff",
+        "label": "Let staff describe their work",
+        "description": "Keep yourself private and share the recognition.",
+        "requiredCrew": 1,
+        "effects": {
+          "loyalty": 5,
+          "reputation": 9,
+          "heat": -3
+        },
+        "result": "Your people describe what they have built. The recognition reaches more than one name."
+      },
+      {
+        "id": "decline",
+        "label": "Decline the profile politely",
+        "description": "Protect your privacy and let the story wait.",
+        "effects": {
+          "heat": -2,
+          "energy": 4
+        },
+        "result": "The publication accepts the refusal. Your private life stays out of this week's pages."
+      }
+    ]
+  },
+  {
+    "id": "long-evening",
+    "title": "The last light in the office",
+    "category": "City",
+    "text": "The office is quiet and tomorrow's list is already full. You can make one more decision, or leave space for a better version of yourself to make it later.",
+    "image": "/assets/player.webp",
+    "weight": 6,
+    "choices": [
+      {
+        "id": "close",
+        "label": "Close the office for the night",
+        "description": "Recover health and energy by honoring a limit.",
+        "effects": {
+          "health": 6,
+          "energy": 15,
+          "heat": -1
+        },
+        "result": "You close the office. The city's demands can wait until you can meet them well."
+      },
+      {
+        "id": "finish",
+        "label": "Complete one ordinary account",
+        "description": "Spend 10 energy for a certain small fee.",
+        "effects": {
+          "energy": -10,
+          "cash": 550,
+          "skillXp": {
+            "business": 10
+          }
+        },
+        "result": "The account closes neatly. You finally turn off the last light."
+      }
+    ]
+  }
+]

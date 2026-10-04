@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">BLACKLINE</string>
+    <string name="title_activity_main">BLACKLINE</string>
+    <string name="package_name">com.blackline.crimelife</string>
+    <string name="custom_url_scheme">com.blackline.crimelife</string>
+</resources>

@@ -1,0 +1,37 @@
+{
+  "name": "BLACKLINE",
+  "version": "1.0.0",
+  "versionCode": 1,
+  "appId": "com.blackline.crimelife",
+  "minSdk": 24,
+  "targetSdk": 36,
+  "orientation": "portrait",
+  "files": [
+    {
+      "name": "BLACKLINE-1.0.0-debug.apk",
+      "bytes": 11581300,
+      "sha256": "09c7b5ca47452126e05ac055b760755986e017ae9225ec03ad9cae9865c14f8a",
+      "signing": "development key"
+    },
+    {
+      "name": "BLACKLINE-1.0.0-release-unsigned.aab",
+      "bytes": 9841033,
+      "sha256": "bdb76cd9571825bcfe3db0932ef41f4fd3cd2ab1d6c2a50941411486c5be8230",
+      "signing": "unsigned"
+    }
+  ],
+  "verification": {
+    "unitTests": 220,
+    "browserJourneys": 15,
+    "phoneWidths": [
+      320,
+      360,
+      393,
+      412
+    ],
+    "offlineBrowser": "passed",
+    "offlineAndroid": "passed on Android 16 emulator",
+    "nativeSaveAndSettingsRecovery": "passed",
+    "physicalDeviceQa": "pending"
+  }
+}

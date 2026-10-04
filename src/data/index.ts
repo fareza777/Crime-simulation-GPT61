@@ -1,0 +1,23 @@
+import districtData from './districts.json';
+import activityData from './activities.json';
+import eventData from './events.json';
+import crewData from './crew.json';
+import businessData from './businesses.json';
+import itemData from './items.json';
+import questData from './quests.json';
+import contactData from './contacts.json';
+import safehouseData from './safehouse-upgrades.json';
+import heistData from './heist.json';
+import type { Activity, Business, Contact, CrewMember, District, GameEvent, HeistDefinition, Item, Quest, SafehouseUpgrade, SkillKey } from '../game/types';
+
+export const districts: District[] = districtData;
+export const activities: Activity[] = activityData as Activity[];
+export const events: GameEvent[] = eventData as GameEvent[];
+export const crew: CrewMember[] = crewData as CrewMember[];
+export const businesses: Business[] = businessData as Business[];
+export const items: Item[] = itemData as Item[];
+export const quests: Quest[] = questData as Quest[];
+export const contacts: Contact[] = contactData;
+export const safehouseUpgrades: SafehouseUpgrade[] = safehouseData;
+export const heist: HeistDefinition = heistData as HeistDefinition;
+export const skillKeys: SkillKey[] = ['charisma', 'streetSmarts', 'combat', 'driving', 'stealth', 'business'];

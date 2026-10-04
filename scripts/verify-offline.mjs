@@ -1,0 +1,34 @@
+import {chromium,devices} from '@playwright/test';
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const browser=await chromium.launch({headless:true});
+const context=await browser.newContext({...devices['Pixel 7'],viewport:{width:393,height:851}});
+const page=await context.newPage();const errors=[];
+page.on('pageerror',error=>errors.push(error.message));
+await page.goto('http://127.0.0.1:5188');
+await page.getByRole('button',{name:'New game',exact:true}).waitFor();
+await page.evaluate(async()=>{await navigator.serviceWorker.ready;});
+await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
+await page.getByRole('button',{name:'New game',exact:true}).click();
+await page.getByRole('button',{name:'Skip introduction'}).click();
+await page.getByLabel('Your name').fill('Offline Vale');
+await page.getByRole('button',{name:'Enter Blackwater'}).click();
+await page.waitForFunction(()=>Boolean(localStorage.getItem('blackline.save.v1')));
+await context.setOffline(true);
+await page.reload();
+await page.getByRole('button',{name:'Continue story',exact:true}).click();
+await page.getByRole('button',{name:'Character profile: Offline Vale',exact:true}).waitFor();
+for(const screen of ['City','Operations','Empire','Crew','Overview']){
+  await page.getByRole('button',{name:screen,exact:true}).last().click();
+  await page.waitForTimeout(180);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`${screen} overflows`);
+  assert.equal(await page.evaluate(()=>Array.from(document.querySelectorAll('img')).every(img=>img.complete&&img.naturalWidth>0)),true,`${screen} has missing offline images`);
+}
+await page.getByRole('button',{name:'Plan operation',exact:true}).click();
+await page.getByRole('button',{name:/Pay an informant/}).click();
+await page.getByRole('button',{name:'Continue',exact:true}).waitFor();
+assert.deepEqual(errors,[]);
+await fs.mkdir('output/screenshots',{recursive:true});
+await page.screenshot({path:'output/screenshots/mobile-offline-result.png'});
+console.log('Production offline PASS: reload, local story, all five screens, bundled art and operation resolution.');
+await browser.close();

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Outfit Variable'; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url('@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'Oswald Variable'; font-style: normal; font-weight: 200 700; font-display: swap;
+  src: url('@fontsource-variable/oswald/files/oswald-latin-wght-normal.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+}

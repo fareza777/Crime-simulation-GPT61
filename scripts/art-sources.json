@@ -1,0 +1,11 @@
+{
+  "city": "art/source/city.png",
+  "districts": "art/source/districts.png",
+  "crew": "art/source/crew.png",
+  "businesses": "art/source/businesses.png",
+  "warehouse": "art/source/warehouse.png",
+  "icon": "art/source/icon.png",
+  "itemsA": "art/source/itemsA.png",
+  "itemsB": "art/source/itemsB.png",
+  "itemsC": "art/source/itemsC.png"
+}

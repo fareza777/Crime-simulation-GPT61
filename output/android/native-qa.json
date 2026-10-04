@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "serial": "emulator-5658",
+  "androidOffline": true,
+  "checks": [
+    "bundled first launch",
+    "menu bounds",
+    "create character",
+    "five screens and images",
+    "resolve job and event",
+    "native Back",
+    "six player stats and settings survive force-stop/relaunch"
+  ],
+  "viewport": {
+    "width": 412,
+    "height": 842,
+    "scrollHeight": 842
+  }
+}

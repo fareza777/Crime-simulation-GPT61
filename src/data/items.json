@@ -1,0 +1,503 @@
+[
+  {
+    "id": "urban-kit",
+    "name": "Urban kit",
+    "category": "tools",
+    "description": "A compact professional kit for the crew's specialist work.",
+    "image": "/assets/item-1.webp",
+    "cost": 1200,
+    "requiredRep": 50,
+    "bonuses": {
+      "stealth": 1
+    }
+  },
+  {
+    "id": "notebook",
+    "name": "Street notebook",
+    "category": "tools",
+    "description": "Names, promises and lessons that deserve to be remembered.",
+    "image": "/assets/item-2.webp",
+    "cost": 300,
+    "requiredRep": 0,
+    "bonuses": {
+      "streetSmarts": 1
+    }
+  },
+  {
+    "id": "crew-planner",
+    "name": "Crew planner",
+    "category": "tools",
+    "description": "A shared calendar keeps ambitious people working together.",
+    "image": "/assets/item-3.webp",
+    "cost": 900,
+    "requiredRep": 75,
+    "bonuses": {
+      "business": 1
+    }
+  },
+  {
+    "id": "market-ledger",
+    "name": "Market ledger",
+    "category": "tools",
+    "description": "An annotated guide to the city's shifting commercial circles.",
+    "image": "/assets/item-4.webp",
+    "cost": 1500,
+    "requiredRep": 100,
+    "bonuses": {
+      "business": 2
+    }
+  },
+  {
+    "id": "first-aid-kit",
+    "name": "Recovery pack",
+    "category": "tools",
+    "description": "Restorative supplies for one difficult day.",
+    "image": "/assets/item-5.webp",
+    "cost": 350,
+    "requiredRep": 0,
+    "bonuses": {
+      "health": 30
+    },
+    "consumable": true
+  },
+  {
+    "id": "coffee-flask",
+    "name": "Strong coffee",
+    "category": "tools",
+    "description": "A short break with a little extra energy.",
+    "image": "/assets/item-6.webp",
+    "cost": 220,
+    "requiredRep": 0,
+    "bonuses": {
+      "energy": 25
+    },
+    "consumable": true
+  },
+  {
+    "id": "negotiation-cards",
+    "name": "Conversation notes",
+    "category": "tools",
+    "description": "A reminder to listen before making a promise.",
+    "image": "/assets/item-7.webp",
+    "cost": 650,
+    "requiredRep": 0,
+    "bonuses": {
+      "charisma": 1
+    }
+  },
+  {
+    "id": "field-binoculars",
+    "name": "Field glasses",
+    "category": "tools",
+    "description": "A clear view makes patience easier.",
+    "image": "/assets/item-8.webp",
+    "cost": 1800,
+    "requiredRep": 150,
+    "bonuses": {
+      "streetSmarts": 1,
+      "stealth": 1
+    }
+  },
+  {
+    "id": "portable-workshop",
+    "name": "Workshop case",
+    "category": "tools",
+    "description": "A durable case for maintaining a crew's everyday equipment.",
+    "image": "/assets/item-9.webp",
+    "cost": 4200,
+    "requiredRep": 300,
+    "bonuses": {
+      "business": 1,
+      "driving": 1
+    }
+  },
+  {
+    "id": "archive-index",
+    "name": "Archive index",
+    "category": "tools",
+    "description": "A curated history of the city's old disputes.",
+    "image": "/assets/item-10.webp",
+    "cost": 3600,
+    "requiredRep": 250,
+    "bonuses": {
+      "streetSmarts": 2
+    }
+  },
+  {
+    "id": "riding-jacket",
+    "name": "Riding jacket",
+    "category": "equipment",
+    "description": "Weatherproof comfort for long evenings on the road.",
+    "image": "/assets/item-11.webp",
+    "cost": 700,
+    "requiredRep": 25,
+    "bonuses": {
+      "driving": 1
+    }
+  },
+  {
+    "id": "driving-gloves",
+    "name": "Driver's gloves",
+    "category": "equipment",
+    "description": "A familiar feel behind any wheel.",
+    "image": "/assets/item-12.webp",
+    "cost": 1800,
+    "requiredRep": 100,
+    "bonuses": {
+      "driving": 2
+    }
+  },
+  {
+    "id": "tailored-suit",
+    "name": "Tailored suit",
+    "category": "equipment",
+    "description": "Quiet confidence belongs in every room.",
+    "image": "/assets/item-13.webp",
+    "cost": 2300,
+    "requiredRep": 150,
+    "bonuses": {
+      "charisma": 2
+    }
+  },
+  {
+    "id": "sturdy-boots",
+    "name": "Sturdy boots",
+    "category": "equipment",
+    "description": "Comfort and support when a night goes badly.",
+    "image": "/assets/item-14.webp",
+    "cost": 650,
+    "requiredRep": 0,
+    "bonuses": {
+      "combat": 1
+    }
+  },
+  {
+    "id": "encrypted-radio",
+    "name": "Private radio",
+    "category": "equipment",
+    "description": "A secure crew channel, required for major jobs.",
+    "image": "/assets/item-15.webp",
+    "cost": 2800,
+    "requiredRep": 150,
+    "bonuses": {
+      "streetSmarts": 1,
+      "heatReduction": 1
+    }
+  },
+  {
+    "id": "protective-vest",
+    "name": "Protective vest",
+    "category": "equipment",
+    "description": "Peace of mind for confrontations you hope to avoid.",
+    "image": "/assets/item-16.webp",
+    "cost": 2100,
+    "requiredRep": 125,
+    "bonuses": {
+      "combat": 2
+    }
+  },
+  {
+    "id": "dress-watch",
+    "name": "Dress watch",
+    "category": "equipment",
+    "description": "A restrained piece that says you value the other person's time.",
+    "image": "/assets/item-17.webp",
+    "cost": 3400,
+    "requiredRep": 200,
+    "bonuses": {
+      "charisma": 1,
+      "business": 1
+    }
+  },
+  {
+    "id": "street-coat",
+    "name": "Night coat",
+    "category": "equipment",
+    "description": "Unremarkable comfort for an ordinary-looking evening.",
+    "image": "/assets/item-18.webp",
+    "cost": 1100,
+    "requiredRep": 75,
+    "bonuses": {
+      "stealth": 1,
+      "heatReduction": 1
+    }
+  },
+  {
+    "id": "crew-earpieces",
+    "name": "Crew earpieces",
+    "category": "equipment",
+    "description": "Shared communication makes a tense room easier to manage.",
+    "image": "/assets/item-19.webp",
+    "cost": 4800,
+    "requiredRep": 350,
+    "bonuses": {
+      "streetSmarts": 2
+    }
+  },
+  {
+    "id": "weatherproof-case",
+    "name": "Weatherproof case",
+    "category": "equipment",
+    "description": "Valuable documents deserve a reliable home.",
+    "image": "/assets/item-20.webp",
+    "cost": 1400,
+    "requiredRep": 100,
+    "bonuses": {
+      "business": 1
+    }
+  },
+  {
+    "id": "training-kit",
+    "name": "Training kit",
+    "category": "equipment",
+    "description": "Good habits start with showing up every day.",
+    "image": "/assets/item-21.webp",
+    "cost": 3200,
+    "requiredRep": 225,
+    "bonuses": {
+      "combat": 1,
+      "driving": 1
+    }
+  },
+  {
+    "id": "formal-attire",
+    "name": "Regency attire",
+    "category": "equipment",
+    "description": "A considered wardrobe for the city's most selective circles.",
+    "image": "/assets/item-22.webp",
+    "cost": 7200,
+    "requiredRep": 500,
+    "bonuses": {
+      "charisma": 3
+    }
+  },
+  {
+    "id": "city-bike",
+    "name": "City bike",
+    "category": "vehicles",
+    "description": "A modest ride that turns distant favors into local errands.",
+    "image": "/assets/item-23.webp",
+    "cost": 1100,
+    "requiredRep": 0,
+    "bonuses": {
+      "driving": 1
+    }
+  },
+  {
+    "id": "compact-car",
+    "name": "Compact car",
+    "category": "vehicles",
+    "description": "Reliable transport with a reassuringly ordinary profile.",
+    "image": "/assets/item-24.webp",
+    "cost": 3600,
+    "requiredRep": 75,
+    "bonuses": {
+      "driving": 1,
+      "heatReduction": 1
+    }
+  },
+  {
+    "id": "utility-van",
+    "name": "Utility van",
+    "category": "vehicles",
+    "description": "A practical vehicle for a growing commercial life.",
+    "image": "/assets/item-25.webp",
+    "cost": 6500,
+    "requiredRep": 150,
+    "bonuses": {
+      "driving": 1,
+      "business": 1
+    }
+  },
+  {
+    "id": "classic-sedan",
+    "name": "Classic sedan",
+    "category": "vehicles",
+    "description": "Old-world comfort and a steady reputation.",
+    "image": "/assets/item-26.webp",
+    "cost": 9500,
+    "requiredRep": 225,
+    "bonuses": {
+      "driving": 2,
+      "charisma": 1
+    }
+  },
+  {
+    "id": "silver-coupe",
+    "name": "Silver coupe",
+    "category": "vehicles",
+    "description": "An elegant statement for someone whose name travels.",
+    "image": "/assets/item-27.webp",
+    "cost": 14500,
+    "requiredRep": 300,
+    "bonuses": {
+      "driving": 3
+    }
+  },
+  {
+    "id": "armored-suv",
+    "name": "Guarded SUV",
+    "category": "vehicles",
+    "description": "Comfortable transport with protection built into the price.",
+    "image": "/assets/item-28.webp",
+    "cost": 22000,
+    "requiredRep": 400,
+    "bonuses": {
+      "driving": 2,
+      "combat": 1
+    }
+  },
+  {
+    "id": "executive-car",
+    "name": "Executive car",
+    "category": "vehicles",
+    "description": "A discreet arrival for meetings that decide the skyline.",
+    "image": "/assets/item-29.webp",
+    "cost": 28000,
+    "requiredRep": 500,
+    "bonuses": {
+      "driving": 2,
+      "charisma": 2
+    }
+  },
+  {
+    "id": "grand-tourer",
+    "name": "Grand tourer",
+    "category": "vehicles",
+    "description": "The kind of car you buy when the city already knows you.",
+    "image": "/assets/item-30.webp",
+    "cost": 42000,
+    "requiredRep": 650,
+    "bonuses": {
+      "driving": 4
+    }
+  },
+  {
+    "id": "executive-pass",
+    "name": "Executive pass",
+    "category": "special",
+    "description": "An invitation to the city's private circles, required for Meridian.",
+    "image": "/assets/item-31.webp",
+    "cost": 6500,
+    "requiredRep": 450,
+    "bonuses": {
+      "charisma": 1,
+      "business": 1
+    }
+  },
+  {
+    "id": "old-quarter-map",
+    "name": "Quarter history",
+    "category": "special",
+    "description": "Mara's annotated account of the people who shaped these streets.",
+    "image": "/assets/item-32.webp",
+    "cost": 500,
+    "requiredRep": 0,
+    "bonuses": {
+      "streetSmarts": 1
+    }
+  },
+  {
+    "id": "harbor-membership",
+    "name": "Harbor membership",
+    "category": "special",
+    "description": "A place in a respected dockside commercial association.",
+    "image": "/assets/item-33.webp",
+    "cost": 2400,
+    "requiredRep": 100,
+    "bonuses": {
+      "business": 1,
+      "heatReduction": 1
+    }
+  },
+  {
+    "id": "velvet-invitation",
+    "name": "Velvet invitation",
+    "category": "special",
+    "description": "A private welcome to Ivo's best rooms.",
+    "image": "/assets/item-34.webp",
+    "cost": 3800,
+    "requiredRep": 200,
+    "bonuses": {
+      "charisma": 2
+    }
+  },
+  {
+    "id": "union-letter",
+    "name": "Union letter",
+    "category": "special",
+    "description": "Lin's endorsement of a person willing to honor the workers' interests.",
+    "image": "/assets/item-35.webp",
+    "cost": 5100,
+    "requiredRep": 350,
+    "bonuses": {
+      "charisma": 1,
+      "streetSmarts": 1
+    }
+  },
+  {
+    "id": "private-retainer",
+    "name": "Professional retainer",
+    "category": "special",
+    "description": "An adviser on call when public attention becomes a burden.",
+    "image": "/assets/item-36.webp",
+    "cost": 8200,
+    "requiredRep": 400,
+    "bonuses": {
+      "heatReduction": 3
+    }
+  },
+  {
+    "id": "collectors-seal",
+    "name": "Collector's seal",
+    "category": "special",
+    "description": "A token of standing within the city's private galleries.",
+    "image": "/assets/item-37.webp",
+    "cost": 12000,
+    "requiredRep": 550,
+    "bonuses": {
+      "business": 2,
+      "charisma": 1
+    }
+  },
+  {
+    "id": "safehouse-stock",
+    "name": "Recovery supplies",
+    "category": "special",
+    "description": "A fully stocked recovery pack for one very long evening.",
+    "image": "/assets/item-38.webp",
+    "cost": 850,
+    "requiredRep": 75,
+    "bonuses": {
+      "health": 50,
+      "energy": 30
+    },
+    "consumable": true
+  },
+  {
+    "id": "vintage-token",
+    "name": "Lantern token",
+    "category": "special",
+    "description": "A small reminder that influence begins with belonging somewhere.",
+    "image": "/assets/item-39.webp",
+    "cost": 1600,
+    "requiredRep": 75,
+    "bonuses": {
+      "charisma": 1,
+      "heatReduction": 1
+    }
+  },
+  {
+    "id": "meridian-dossier",
+    "name": "Meridian dossier",
+    "category": "special",
+    "description": "A briefing on the political stakes of the city's largest private reserve.",
+    "image": "/assets/item-40.webp",
+    "cost": 9500,
+    "requiredRep": 550,
+    "bonuses": {
+      "streetSmarts": 2,
+      "business": 1
+    }
+  }
+]

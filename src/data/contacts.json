@@ -1,0 +1,8 @@
+[
+  {"id":"mara","name":"Mara Velez","role":"Neighborhood fixer","portrait":"/assets/crew-5.webp","description":"Mara gave you your first introduction. She wants the Old Quarter to have a future.","requiredRep":0,"initialRelationship":45},
+  {"id":"rafe","name":"Rafe Bell","role":"Dock broker","portrait":"/assets/crew-8.webp","description":"Rafe mediates disputes at the docks. His word holds only while yours does.","requiredRep":100,"initialRelationship":20},
+  {"id":"ivo","name":"Ivo Saint","role":"Club owner","portrait":"/assets/crew-6.webp","description":"Ivo knows every guest and every rumor on the Strip. He remembers generosity.","requiredRep":200,"initialRelationship":15},
+  {"id":"lin","name":"Lin Calder","role":"Union mediator","portrait":"/assets/crew-7.webp","description":"Lin listens to workers before bosses. Reputation means little without responsibility.","requiredRep":350,"initialRelationship":15},
+  {"id":"selene","name":"Selene Ash","role":"Private adviser","portrait":"/assets/crew-9.webp","description":"Selene offers a view from Crown Heights. Her invitations always come with expectations.","requiredRep":550,"initialRelationship":10},
+  {"id":"vale","name":"Detective Vale","role":"City liaison","portrait":"/assets/crew-10.webp","description":"Vale notices when the streets get quieter. Cooperation and public goodwill can cool an investigation.","requiredRep":75,"initialRelationship":10}
+]
