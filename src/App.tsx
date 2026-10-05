@@ -5,7 +5,7 @@ import { Capacitor } from '@capacitor/core';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
 import { createGame, gameReducer } from './game/engine';
-import { getStrategy } from './game/strategy';
+import { dailySupplyRemaining, getStrategy } from './game/strategy';
 import type { Difficulty } from './game/strategy-types';
 import type { CareerPath, GameAction, GameState, Settings } from './game/types';
 import { defaultSettings, clearSave, exportSave, importSave, loadGame, loadSettings, saveGame, saveSettings } from './services/storage';
@@ -61,7 +61,7 @@ export default function App(){
   async function download(){if(!state)return;try{const data=exportSave(state);const name=`BLACKLINE-Day-${state.day}.json`;if(Capacitor.isNativePlatform()){const file=await Filesystem.writeFile({path:name,data,directory:Directory.Cache,encoding:Encoding.UTF8});await Share.share({title:'BLACKLINE save',files:[file.uri],dialogTitle:'Keep your BLACKLINE save'});}else{const url=URL.createObjectURL(new Blob([data],{type:'application/json'}));const anchor=document.createElement('a');anchor.href=url;anchor.download=name;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}notify('Save exported. Keep it somewhere safe.');}catch(e){notify(e instanceof Error?e.message:'The save could not be exported.');}}
   async function upload(file:File){try{if(file.size>2*1024*1024)throw Error('Save file is too large.');const imported=importSave(await file.text());await saveGame(imported);pendingAdDay.current=null;setState(imported);setStage('game');setScreen('overview');setOverlay(null);notify('Your story has been restored.');}catch(e){notify(e instanceof Error?e.message:'This is not a valid BLACKLINE save.');}}
   async function reset(){try{await clearSave();pendingAdDay.current=null;setState(null);setStage('menu');setOverlay(null);notify('Local story removed. A new life awaits.');}catch(e){notify(e instanceof Error?e.message:'Could not remove the local save.');}}
-  async function claimSupply(kind:RewardedPlacement){if(monetizationStatus.busy)return;const completed=monetizationStatus.removeAds||await monetization.showRewarded(kind);if(completed)act({type:'CLAIM_AD_REWARD',kind});else notify('No reward was claimed. You can keep playing.');}
+  async function claimSupply(kind:RewardedPlacement){if(monetizationStatus.busy||!state)return;if(dailySupplyRemaining(state)===0){notify('Today’s supply has been claimed. End the day to choose another.');return;}if(kind==='energy'&&state.stats.energy>=100){notify('Energy is already full.');return;}const completed=monetizationStatus.removeAds||await monetization.showRewarded(kind);if(completed)act({type:'CLAIM_AD_REWARD',kind});else notify('No reward was claimed. You can keep playing.');}
   async function buyRemoveAds(){const completed=await monetization.buyRemoveAds();if(completed)notify('Ads removed. Daily supplies are now available without videos.');else notify(monetization.getSnapshot().error??'No purchase was completed.');}
   async function restorePurchases(){const restored=await monetization.restorePurchases();notify(restored?'Remove Ads restored on this device.':monetization.getSnapshot().error??'No completed Remove Ads purchase was found.');}
   const props:ScreenProps|null=state?{state,act,nav:navigate,open:setOverlay}:null;

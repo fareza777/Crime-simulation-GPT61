@@ -135,6 +135,7 @@ function validStrategy(value: unknown, state: GameState): boolean {
     || !Object.values(value.counters).every(entry => number(entry, 0, MAX_COUNTER, true))
     || (value.counters.battlesWon as number) > (value.counters.battlesFought as number)
     || (value.counters.battlesWon as number) > (value.counters.zonesCaptured as number)) return false;
+  // Preserve valid older saves with two energy claims; the engine enforces the shared one-claim cap.
   if (!shape(value.rewardClaims, ['day', 'energy', 'cash']) || !number(value.rewardClaims.day, 1, state.day, true)
     || !number(value.rewardClaims.energy, 0, 2, true) || !number(value.rewardClaims.cash, 0, 1, true)) return false;
   if (value.lastDaily !== null && (!shape(value.lastDaily, ['day', 'zoneIncome', 'zoneUpkeep', 'businessPressure', 'notices'])

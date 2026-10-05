@@ -34,7 +34,7 @@ Choose Balanced, Profit, Silent or War priorities. Standard, Hard and Ruthless s
 
 The app includes the original icon and splash, onboarding, character creation, continue/new game, settings, About, sharing, save export/import and a rate action. The Rate button explains that the listing is pending; set its URL after publication.
 
-Android now includes native adaptive banner, guarded day-end interstitial and optional rewarded ads using **official Google test IDs in both builds**. Unavailable ads never block offline play or fabricate rewards. Daily supplies offer up to two +20 Energy claims and one +$500 Cash claim per game day. The non-consumable `remove_ads` integration removes all three formats and grants those same capped supplies without videos. The requested **US$4.99** price, product and public verification key require the owner's Play Console setup; browser previews cannot make purchases. See [monetization setup](docs/monetization.md).
+Android now includes native adaptive banner, guarded day-end interstitial and optional rewarded ads using **official Google test IDs in both builds**. Unavailable ads never block offline play or fabricate rewards. Daily supplies allow **one total claim per game day**: choose +20 Energy or +$500 Cash. The allowance resets after **End day** and remains spent across restarts. The non-consumable `remove_ads` integration removes all three formats and grants that same capped supply without a video. The requested **US$4.99** price, product and public verification key require the owner's Play Console setup; browser previews cannot make purchases. See [monetization setup](docs/monetization.md).
 
 ## Presentation
 

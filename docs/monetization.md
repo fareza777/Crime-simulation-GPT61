@@ -50,6 +50,8 @@ Call `onDayEnd(newDay)` only after a completed gameplay day, when the resulting 
 
 `showRewarded()` is an explicit optional action. It returns true only for the matching native request after both Google's earned callback and fullscreen dismissal. Dismissal alone, lifecycle resume/destruction, no fill, missing consent, a timeout, and SDK errors return false. A consumed native ad/session cannot resolve twice. Only one fullscreen request can be active. The UI grants the advertised reward through the engine's capped daily claim action after a true result. Purchased players use the same capped engine claim directly; the service never pretends they watched an ad.
 
+Daily supplies share **one total claim per game day**, choosing **+20 Energy or +$500 Cash**. Taking either closes both choices until **End day**. Remove Ads uses the same allowance without a video. Restarting/restoring a save retains the spent allowance; valid older saves with multiple already-consumed claims remain readable and receive no further supply that day. Full energy and incomplete/unavailable videos do not consume a claim.
+
 The legacy `ads.ts` facade retains its public types and optional service injection. Rewarded calls use this controller by default. Its old interstitial method lacks a day number and always returns false; new UI must use `monetization.onDayEnd(day)`.
 
 ## Consent and audio

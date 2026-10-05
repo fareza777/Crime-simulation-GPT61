@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createGame, gameReducer } from '../game/engine';
-import { getStrategy } from '../game/strategy';
+import { getStrategy, strategySummary } from '../game/strategy';
 import { createStorageService, exportSave, importSave, isValidGame, storageKeys } from './storage';
 import type { GameState } from '../game/types';
 
@@ -54,6 +54,28 @@ describe('strategy save migration', () => {
     expect(importSave(exportSave(operation))).toEqual(operation);
     const reward = gameReducer(ready(), { type: 'CLAIM_AD_REWARD', kind: 'cash' });
     expect(importSave(exportSave(reward)).strategy?.rewardClaims.cash).toBe(1);
+  });
+
+  it('keeps the daily supply spent across save restoration and reward kinds', () => {
+    const rewarded = gameReducer(ready(), { type: 'CLAIM_AD_REWARD', kind: 'cash' });
+    const restored = gameReducer(importSave(exportSave(rewarded)), { type: 'DISMISS_RESULT' });
+    restored.stats.energy = 20;
+    const repeated = gameReducer(restored, { type: 'CLAIM_AD_REWARD', kind: 'energy' });
+    expect(repeated.stats).toEqual(restored.stats);
+    expect(repeated.result?.success).toBe(false);
+  });
+
+  it('accepts previously valid multi-claim saves without granting extra supplies', () => {
+    const previous = ready();
+    previous.stats.energy = 20;
+    previous.strategy!.rewardClaims.energy = 2;
+    previous.strategy!.rewardClaims.cash = 1;
+    const restored = importSave(exportSave(previous));
+    expect(restored).toEqual(previous);
+    expect(strategySummary(restored).rewardEnergyRemaining).toBe(0);
+    expect(strategySummary(restored).rewardCashRemaining).toBe(0);
+    const repeated = gameReducer(restored, { type: 'CLAIM_AD_REWARD', kind: 'cash' });
+    expect(repeated.stats).toEqual(previous.stats);
   });
 });
 

@@ -6,18 +6,18 @@
   "minSdk": 24,
   "targetSdk": 36,
   "orientation": "portrait",
-  "verifiedAt": "2026-10-05T02:22:10.573Z",
+  "verifiedAt": "2026-10-05T03:58:51.031Z",
   "files": [
     {
       "name": "BLACKLINE-1.1.0-debug.apk",
-      "bytes": 18110341,
-      "sha256": "763c70b8014d90700cd3e631091084a2274f4e9b4cc76a3838020b5b9fd3ec0c",
+      "bytes": 18110281,
+      "sha256": "402b8aae4e574caf74107747581b6ac48999b8b722dcc67c5435b0ad6b39d6fa",
       "signing": "development key"
     },
     {
       "name": "BLACKLINE-1.1.0-release-unsigned.aab",
-      "bytes": 14799596,
-      "sha256": "a561fa04e8ff28f0674a77e6755c491efd6e87cff88ab63aa531b9df4990261b",
+      "bytes": 14799659,
+      "sha256": "67369818d6c27bf0b712eb107bbf19ac854ecb8877d0a8b98d2fbe24bf6fdd15",
       "signing": "unsigned"
     }
   ],
@@ -40,16 +40,23 @@
     "banner": true,
     "interstitial": true,
     "rewarded": true,
+    "dailySupply": {
+      "claimsPerGameDay": 1,
+      "sharedAcrossKinds": true,
+      "energy": 20,
+      "cash": 500,
+      "reset": "End day"
+    },
     "removeAdsProduct": "remove_ads",
     "plannedUSPrice": 4.99,
     "currency": "USD",
     "licensedPurchaseTest": "not attempted; owner Play Console product/public key required"
   },
   "verification": {
-    "unitTests": 304,
+    "unitTests": 307,
     "unitSuites": 10,
     "nativeJvmTests": 6,
-    "browserJourneys": 27,
+    "browserJourneys": 29,
     "intentionalDesktopSkips": 1,
     "androidLintErrors": 0,
     "androidLintWarnings": 30,
@@ -70,6 +77,8 @@
     ],
     "nativeAds": "PASS",
     "rewardedEnergy": "68 → 88",
+    "dailySupplyCap": "one shared claim; fresh unit and desktop/mobile restart coverage",
+    "nativeRuntimeEvidence": "native SDK/offline/upgrade reports precede the shared TypeScript daily-cap adjustment; native implementation unchanged",
     "physicalDeviceQa": "pending",
     "playStorePublication": "not published"
   }

@@ -185,11 +185,15 @@ export function operationChoiceInfo(state: GameState, choiceId: string): Operati
   const suspicion = choice.suspicion + (strategy.agenda === 'silent' ? -3 : strategy.agenda === 'profit' ? 3 : 0);
   return { cost: price(state, choice.cost), energy: choice.energy, chance, requirements: resourceRequirements(state, price(state, choice.cost), choice.energy), progress: choice.progress, suspicion, injuryChance: clamp(choice.injuryChance + strategyRiskPenalty(state) * .5), consequence: 'Success earns the listed progress. A setback earns 10 progress, adds 18 extra suspicion and risks a crew injury. Finish with 85 progress and suspicion below 80 to receive the payout; suspicion of 90 ends the attempt.' };
 }
+export function dailySupplyRemaining(state: GameState): number {
+  const claims = getStrategy(state).rewardClaims;
+  return claims.day === state.day ? Math.max(0, 1 - claims.energy - claims.cash) : 1;
+}
 export function strategySummary(state: GameState) {
   const strategy = getStrategy(state);
   const owned = zones.map(zone => zoneView(state, zone.id)!).filter(zone => zone.owned);
-  const claims = strategy.rewardClaims.day === state.day ? strategy.rewardClaims : { energy: 0, cash: 0 };
-  return { ownedZones: owned.length, connectedZones: connectedZoneIds(state).length, zoneIncome: owned.reduce((sum, zone) => sum + zone.income, 0), zoneUpkeep: owned.reduce((sum, zone) => sum + zone.upkeep, 0), battlesWon: strategy.counters.battlesWon, operationsCompleted: strategy.counters.operationsCompleted, activeCrewIds: strategyAvailableCrew(state), rewardEnergyRemaining: 2 - claims.energy, rewardCashRemaining: 1 - claims.cash };
+  const remaining = dailySupplyRemaining(state);
+  return { ownedZones: owned.length, connectedZones: connectedZoneIds(state).length, zoneIncome: owned.reduce((sum, zone) => sum + zone.income, 0), zoneUpkeep: owned.reduce((sum, zone) => sum + zone.upkeep, 0), battlesWon: strategy.counters.battlesWon, operationsCompleted: strategy.counters.operationsCompleted, activeCrewIds: strategyAvailableCrew(state), rewardEnergyRemaining: remaining, rewardCashRemaining: remaining };
 }
 /** Accounts are calculated from yesterday's holdings; retaliation determines tomorrow's supply. */
 export function processStrategyDay(state: GameState, next: GameState, context: StrategyContext, businessIncome: number): Effects {
@@ -265,10 +269,10 @@ export function reduceStrategy(state: GameState, next: GameState, action: Strate
     case 'CLAIM_AD_REWARD': {
       if (action.kind !== 'energy' && action.kind !== 'cash') return state;
       if (strategy.rewardClaims.day !== state.day) strategy.rewardClaims = { day: state.day, energy: 0, cash: 0 };
-      if (strategy.rewardClaims[action.kind] >= (action.kind === 'energy' ? 2 : 1)) return reject(['This supply has reached its daily limit.']);
+      if (dailySupplyRemaining(next) === 0) return reject(['Today’s supply has been claimed. End the day to choose another.']);
       if (action.kind === 'energy' && state.stats.energy >= 100) return reject(['Energy is already full.']);
       strategy.rewardClaims[action.kind] += 1;
-      return finish('Supply received', action.kind === 'energy' ? 'Recovery supplies restore up to 20 energy. Two claims are available each game day.' : 'Your supply claim provides $500. One cash claim is available each game day.', true, action.kind === 'energy' ? { energy: 20 } : { cash: 500 });
+      return finish('Supply received', action.kind === 'energy' ? 'Recovery supplies restore up to 20 energy. Your next supply is available after End day.' : 'Your supply provides $500. Your next supply is available after End day.', true, action.kind === 'energy' ? { energy: 20 } : { cash: 500 });
     }
     case 'ASSIGN_LIEUTENANT': {
       const view = zoneView(state, action.zoneId);

@@ -83,19 +83,20 @@ describe('underworld strategy foundations', () => {
     expect(action(state, { type: 'START_BATTLE', zoneId: 'foundry-row', crewIds: ['cleo'], approach: 'balanced' }).stats).toEqual(state.stats);
   });
 
-  it('caps callback supply rewards by kind and game day', () => {
+  it.each(['energy', 'cash'] as const)('allows only one daily supply after choosing %s', (kind) => {
     let state = ready();
     state.stats.energy = 10;
-    state = command(state, { type: 'CLAIM_AD_REWARD', kind: 'energy' });
-    expect(state.stats.energy).toBe(30);
-    state = command(state, { type: 'CLAIM_AD_REWARD', kind: 'energy' });
-    expect(state.stats.energy).toBe(50);
-    state = command(state, { type: 'CLAIM_AD_REWARD', kind: 'energy' });
-    expect(state.stats.energy).toBe(50);
-    state = command(state, { type: 'CLAIM_AD_REWARD', kind: 'cash' });
-    expect(state.stats.cash).toBe(100500);
-    state = command(state, { type: 'CLAIM_AD_REWARD', kind: 'cash' });
-    expect(state.stats.cash).toBe(100500);
+    state = command(state, { type: 'CLAIM_AD_REWARD', kind });
+    expect(state.stats.energy).toBe(kind === 'energy' ? 30 : 10);
+    expect(state.stats.cash).toBe(kind === 'cash' ? 100500 : 100000);
+    const rewardedStats = { ...state.stats };
+    expect(strategySummary(state).rewardEnergyRemaining).toBe(0);
+    expect(strategySummary(state).rewardCashRemaining).toBe(0);
+    for (const repeatedKind of ['energy', 'cash'] as const) {
+      state = command(state, { type: 'CLAIM_AD_REWARD', kind: repeatedKind });
+      expect(state.stats).toEqual(rewardedStats);
+      expect(state.result?.success).toBe(false);
+    }
   });
 });
 
@@ -222,8 +223,10 @@ describe('supply, accounts and retaliation', () => {
     let state = ready();
     expect(action(state, { type: 'CLAIM_AD_REWARD', kind: 'energy' }).strategy?.rewardClaims.energy).toBe(0);
     state = action(state, { type: 'CLAIM_AD_REWARD', kind: 'cash' });
+    expect(strategySummary(state).rewardEnergyRemaining).toBe(0);
     expect(strategySummary(state).rewardCashRemaining).toBe(0);
     state = command(state, { type: 'NEXT_DAY' });
+    expect(strategySummary(state).rewardEnergyRemaining).toBe(1);
     expect(strategySummary(state).rewardCashRemaining).toBe(1);
   });
 });

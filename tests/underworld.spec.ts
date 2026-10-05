@@ -116,3 +116,25 @@ test('Remove Ads uses a clear store flow and never fakes a browser payment', asy
   await expect(dialog.getByRole('button', { name: /Buy|Google Play/ }).first()).toBeDisabled();
   await expect(dialog.getByText(/Android|Google Play/).first()).toBeVisible();
 });
+
+test('one daily supply closes both reward choices after restarting', async ({ page }) => {
+  await veteran(page);
+  await page.evaluate(async () => {
+    const enginePath = '/src/game/engine.ts', storagePath = '/src/services/storage.ts';
+    const [engine, storage] = await Promise.all([import(enginePath), import(storagePath)]);
+    const state = await storage.loadGame();
+    state.stats.energy = 30;
+    const rewarded = engine.gameReducer(state, { type: 'CLAIM_AD_REWARD', kind: 'energy' });
+    await storage.saveGame(engine.gameReducer(rewarded, { type: 'DISMISS_RESULT' }));
+  });
+  await page.reload();
+  await page.getByRole('button', { name: 'Continue story', exact: true }).click();
+  await page.getByRole('button', { name: 'Command centre', exact: true }).click();
+  await page.getByRole('button', { name: 'Daily supplies', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'Daily supplies' });
+  const claimed = dialog.getByRole('button', { name: 'Claimed today', exact: true });
+  await expect(claimed).toHaveCount(2);
+  await expect(claimed.nth(0)).toBeDisabled();
+  await expect(claimed.nth(1)).toBeDisabled();
+  await expect(dialog.getByText('1 claim left this game day')).toHaveCount(0);
+});

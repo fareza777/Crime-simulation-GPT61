@@ -4,7 +4,7 @@ Verified on 5 October 2026. This records the delivered local build, not a publis
 
 ## Game rules and saves
 
-`npm test`: **304 passed**, across **10 suites**. These cover the catalogue (5 districts, 15 zones, 5 rival organizations, 30 activities, 132 events, 11 crew, 15 businesses, 40 items and 38 quests), existing jobs/Heat/police/jail/progression, the four-stage Meridian heist, and three repeatable three-stage operations.
+`npm test`: **307 passed**, across **10 suites**. These cover the catalogue (5 districts, 15 zones, 5 rival organizations, 30 activities, 132 events, 11 crew, 15 businesses, 40 items and 38 quests), existing jobs/Heat/police/jail/progression, the four-stage Meridian heist, and three repeatable three-stage operations.
 
 Strategy cases exercise attack previews and resource costs, three tactical rounds, morale/exposure/injury/fatigue, retreat, committed crew locks, operation planning and setbacks, equipment and skill requirements, rival retaliation, supply connectivity, lieutenants, fortification, truces, agendas, difficulty, daily income/upkeep and capped supply claims. Validation rejects forged, malformed or conflicting pending states. Old v1 saves without strategy migrate without losing their story. New catalogue zone/rival IDs still require an explicit migration; see the expansion guide.
 
@@ -14,7 +14,7 @@ Native cache migration tests cover retiring a legacy worker, preserving unrelate
 
 ## Browser journeys and phone layout
 
-`npm run test:e2e`: **27 passed, 1 intentional desktop skip**. Desktop uses 1440 × 1000; phone uses 393 × 851. The skip is the desktop duplicate of a phone-only width test.
+`npm run test:e2e`: **29 passed, 1 intentional desktop skip**. Desktop uses 1440 × 1000; phone uses 393 × 851. The skip is the desktop duplicate of a phone-only width test. Both layouts verify that a consumed daily supply closes both reward choices after restarting.
 
 Journeys exercise creation/job/event/reload, damaged settings, all five screens, crew and business income/payroll, training, main/side quest claims, actual save download/delete/import, custody and bail, all four Meridian stages, zone selection/scouting, restoring owned control, attack crew commitment/retreat/reload, all three operation stages with a restart, difficulty/agendas, and the truthful unavailable browser purchase flow.
 
@@ -38,9 +38,11 @@ Runtime uses only the isolated `blackline_underworld_qa` Android 16/API 36 emula
 
 Both build variants intentionally use the official Google **test** app ID and banner/interstitial/rewarded unit IDs requested by the user. Real Android services include Mobile Ads **25.5.0**, UMP **4.0.0** and Play Billing **9.1.0**. Consent gates requests; no-fill/network failures leave offline gameplay available. The sibling banner resizes the WebView rather than covering navigation. Ads are muted only after SDK initialization, and game ambience is suspended during full-screen services. A demonstrated pre-initialization mute crash was repaired and its online launch repeated.
 
-Nineteen controller/facade tests cover genuine earned-plus-dismissed reward confirmation, duplicate/stale requests, unavailable browser, subscriptions, interstitial limits and ownership changes. Three further day-opportunity tests prevent delayed interstitials after obstructing events. Reward claims remain capped at two energy supplies and one cash supply per game day.
+Nineteen controller/facade tests cover genuine earned-plus-dismissed reward confirmation, duplicate/stale requests, unavailable browser, subscriptions, interstitial limits and ownership changes. Three further day-opportunity tests prevent delayed interstitials after obstructing events. Rewarded supplies now share **one total claim per game day**: **+20 Energy or +$500 Cash**, including the video-free Remove Ads allowance. Regression tests cover either first choice, repeated/cross-kind claims, save restoration, the next-day reset and previously valid multi-claim saves.
 
 Native test-format display and SDK callback results are recorded separately in `ad-qa.json`; an SDK protocol probe is distinguished from the browser's day-end flow. The actual banner reserves 64dp, and a completed rewarded sample increased energy from 68 to 88 and consumed exactly one daily claim. No fake ad completion or purchase receipt is used. The separate inspection file records SDK availability/loading snapshots.
+
+The subsequent one-claim adjustment changes the shared TypeScript game/UI policy. Its updated web and Android bundles use the same native SDK integration. The native display/callback and offline-upgrade reports above precede this policy adjustment; the cap and restart behavior have fresh unit and desktop/phone browser coverage.
 
 The permanent `remove_ads` product removes all formats and permits the same capped supplies without videos. The US **$4.99** price must be configured in Play Console; available regional prices come from Google ProductDetails. A blank public licensing key or unconfigured product prevents payment launch. No charge or licensed store transaction was attempted. Store-backed purchase, cancellation, pending payment, acknowledgement, restore and refund tests require the owner's Console and license tester. See `docs/monetization.md`.
 
