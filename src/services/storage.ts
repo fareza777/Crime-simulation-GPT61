@@ -1,7 +1,9 @@
 import { Capacitor } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
-import { activities, businesses, crew, districts, events, heist, items, quests, safehouseUpgrades } from '../data';
+import { activities, businesses, crew, districts, events, heist, items, operations, quests, rivals, safehouseUpgrades, zones } from '../data';
 import type { GameState, Settings } from '../game/types';
+import { battleChoices, createStrategy, difficulties, agendas } from '../game/strategy';
+import type { StrategyState } from '../game/strategy-types';
 
 export interface StorageAdapter {
   getItem(key: string): string | null | Promise<string | null>;
@@ -102,6 +104,97 @@ function rosterKeysMatch(values: Record<string, number>, owned: Set<string>): bo
   return keys.length === owned.size && keys.every(key => owned.has(key));
 }
 
+function validStrategy(value: unknown, state: GameState): boolean {
+  if (!shape(value, ['difficulty', 'agenda', 'zones', 'rivals', 'crewFatigue', 'battle', 'operation', 'counters', 'operationCooldowns', 'rewardClaims', 'lastDaily'])
+    || typeof value.difficulty !== 'string' || !new Set<string>(difficulties).has(value.difficulty)
+    || typeof value.agenda !== 'string' || !new Set<string>(agendas).has(value.agenda)
+    || !shape(value.zones, zones.map(zone => zone.id)) || !shape(value.rivals, rivals.map(rival => rival.id))) return false;
+  const owned = new Set(state.crew);
+  const lieutenants: string[] = [];
+  for (const definition of zones) {
+    const zone = value.zones[definition.id];
+    if (!shape(zone, ['owner', 'control', 'intel', 'fortification', 'lieutenantId', 'disruptedUntil'])
+      || (zone.owner !== 'player' && zone.owner !== definition.rivalId)
+      || !number(zone.control, 0, 100, true) || !number(zone.intel, 0, 100, true)
+      || !number(zone.fortification, 0, 3, true) || !number(zone.disruptedUntil, 0, Math.min(MAX_COUNTER, state.day + 2), true)
+      || (zone.lieutenantId !== null && (!id(zone.lieutenantId) || !owned.has(zone.lieutenantId) || zone.owner !== 'player'))) return false;
+    if (definition.id === 'market-street' && (zone.owner !== 'player' || zone.control !== 100 || zone.disruptedUntil !== 0)) return false;
+    if (typeof zone.lieutenantId === 'string') lieutenants.push(zone.lieutenantId);
+  }
+  if (new Set(lieutenants).size !== lieutenants.length) return false;
+  for (const definition of rivals) {
+    const rival = value.rivals[definition.id];
+    if (!shape(rival, ['strength', 'hostility', 'alert', 'truceUntil'])
+      || !number(rival.strength, 0, 100, true) || !number(rival.hostility, 0, 100, true)
+      || !number(rival.alert, 0, 100, true) || !number(rival.truceUntil, 0, Math.min(MAX_COUNTER, state.day + 3), true)) return false;
+  }
+  if (!numberMap(value.crewFatigue, 0, 100, true, 64) || !Object.keys(value.crewFatigue).every(id => owned.has(id))
+    || !numberMap(value.operationCooldowns, 0, Math.min(MAX_COUNTER, state.day + 4), true, operations.length)
+    || !Object.keys(value.operationCooldowns).every(id => operations.some(operation => operation.id === id))) return false;
+  if (!shape(value.counters, ['battlesWon', 'battlesFought', 'operationsCompleted', 'zonesCaptured'])
+    || !Object.values(value.counters).every(entry => number(entry, 0, MAX_COUNTER, true))
+    || (value.counters.battlesWon as number) > (value.counters.battlesFought as number)
+    || (value.counters.battlesWon as number) > (value.counters.zonesCaptured as number)) return false;
+  if (!shape(value.rewardClaims, ['day', 'energy', 'cash']) || !number(value.rewardClaims.day, 1, state.day, true)
+    || !number(value.rewardClaims.energy, 0, 2, true) || !number(value.rewardClaims.cash, 0, 1, true)) return false;
+  if (value.lastDaily !== null && (!shape(value.lastDaily, ['day', 'zoneIncome', 'zoneUpkeep', 'businessPressure', 'notices'])
+    || !number(value.lastDaily.day, 2, state.day, true) || !number(value.lastDaily.zoneIncome, 0, MAX_CASH)
+    || !number(value.lastDaily.zoneUpkeep, 0, MAX_CASH) || !number(value.lastDaily.businessPressure, 0, MAX_CASH)
+    || !Array.isArray(value.lastDaily.notices) || value.lastDaily.notices.length > 32
+    || !Array.from(value.lastDaily.notices).every(entry => textValue(entry, 1024)))) return false;
+  const strategy = value as unknown as StrategyState;
+  if (strategy.battle && strategy.operation) return false;
+  if ((strategy.battle || strategy.operation) && (state.pendingJob || state.pendingEvent || state.jail || (state.heist && !state.heist.completed) || state.result?.nextEvent)) return false;
+  if (strategy.battle !== null) {
+    const battle: unknown = strategy.battle;
+    if (!shape(battle, ['zoneId', 'rivalId', 'crewIds', 'approach', 'round', 'momentum', 'morale', 'exposure', 'choices', 'woundedCrewIds'])
+      || !id(battle.zoneId) || !id(battle.rivalId) || !strings(battle.crewIds, 3) || battle.crewIds.length < 1
+      || !['silent', 'balanced', 'force'].includes(battle.approach as string)
+      || !number(battle.round, 0, 2, true) || !number(battle.momentum, -100, 100, true)
+      || !number(battle.morale, 16, 100, true) || !number(battle.exposure, 0, 84, true)
+      || !strings(battle.choices, 2, false) || battle.choices.length !== battle.round
+      || !battle.choices.every(id => battleChoices.some(choice => choice.id === id && id !== 'retreat'))
+      || !strings(battle.woundedCrewIds, 3) || !battle.woundedCrewIds.every(id => (battle.crewIds as string[]).includes(id))) return false;
+    const zone = zones.find(zone => zone.id === battle.zoneId);
+    if (!zone || zone.rivalId !== battle.rivalId || strategy.zones[zone.id].owner === 'player'
+      || !battle.crewIds.every(id => owned.has(id) && state.crewInjured[id] === 0 && state.crewLoyalty[id] >= 35 && (strategy.crewFatigue[id] ?? 0) < 70 && !lieutenants.includes(id))) return false;
+    if (battle.woundedCrewIds.length > battle.round) return false;
+    if (battle.round === 0 && (battle.momentum !== (battle.approach === 'force' ? 8 : 0) || battle.morale !== 75 || battle.exposure !== (battle.approach === 'force' ? 15 : battle.approach === 'silent' ? 0 : 6))) return false;
+  }
+  if (strategy.operation !== null) {
+    const progress: unknown = strategy.operation;
+    if (!shape(progress, ['operationId', 'crewIds', 'stage', 'progress', 'suspicion', 'successes', 'choices'])
+      || !id(progress.operationId) || !strings(progress.crewIds, 3) || !number(progress.stage, 0, 64, true)
+      || !number(progress.progress, 0, 150, true) || !number(progress.suspicion, 0, 89, true)
+      || !number(progress.successes, 0, progress.stage as number, true) || !strings(progress.choices, 64, false)
+      || progress.choices.length !== progress.stage) return false;
+    const operation = operations.find(operation => operation.id === progress.operationId);
+    if (!operation || progress.stage >= operation.stages.length || progress.crewIds.length !== operation.requiredCrew
+      || !progress.choices.every((id, index) => operation.stages[index]?.choices.some(choice => choice.id === id))
+      || !operation.requiredItems.every(id => state.inventory.includes(id))
+      || !progress.crewIds.every(id => owned.has(id) && state.crewLoyalty[id] >= 35 && (strategy.crewFatigue[id] ?? 0) < 70 && !lieutenants.includes(id) && ((progress.stage as number) > 0 || state.crewInjured[id] === 0))) return false;
+    // A pending operation contains at most two resolved stages. Every possible success pattern
+    // has known progress/exposure changes, so fabricated progress cannot buy a payout.
+    const stageCount = progress.stage;
+    let possible = false;
+    for (let mask = 0; mask < 2 ** stageCount; mask += 1) {
+      let successes = 0;
+      let amount = 0;
+      let suspicion = 0;
+      for (let index = 0; index < stageCount; index += 1) {
+        const choice = operation.stages[index].choices.find(choice => choice.id === (progress.choices as string[])[index])!;
+        const success = Boolean(mask & (1 << index));
+        successes += success ? 1 : 0;
+        amount = Math.min(150, amount + (success ? choice.progress : 10));
+        suspicion = Math.min(100, Math.max(0, suspicion + choice.suspicion + (strategy.agenda === 'silent' ? -3 : strategy.agenda === 'profit' ? 3 : 0) + (success ? 0 : 18)));
+      }
+      if (successes === progress.successes && amount === progress.progress && suspicion === progress.suspicion) { possible = true; break; }
+    }
+    if (!possible) return false;
+  }
+  return true;
+}
+
 /** Shape-valid saves must also point to content the UI and engine can actually resolve. */
 function validContent(state: GameState): boolean {
   if (!/^\/assets\/(?:player|crew-(?:[1-9]|1[01]))\.webp$/.test(state.player.portrait)
@@ -135,7 +228,7 @@ function validContent(state: GameState): boolean {
 /** Validates every persisted field without trusting TypeScript or a JSON checksum. */
 export function isValidGame(value: unknown): value is GameState {
   const fields = ['version', 'player', 'day', 'stats', 'skills', 'skillXp', 'districtId', 'crew', 'crewLoyalty', 'crewInjured', 'businesses', 'inventory', 'safehouse', 'territories', 'relationships', 'flags', 'claimedQuests', 'counters', 'pendingJob', 'pendingEvent', 'result', 'jail', 'heist', 'log', 'seed'];
-  if (!shape(value, fields) || value.version !== 1) return false;
+  if (!shape(value, fields, ['strategy']) || value.version !== 1) return false;
   if (!shape(value.player, ['name', 'path', 'portrait']) || !textValue(value.player.name, 60)
     || typeof value.player.path !== 'string' || !careerPaths.includes(value.player.path)
     || !textValue(value.player.portrait, 1024)) return false;
@@ -170,7 +263,12 @@ export function isValidGame(value: unknown): value is GameState {
     || !Array.from(value.log).every(entry => shape(entry, ['day', 'title', 'text', 'good'])
       && number(entry.day, 1, MAX_COUNTER, true) && textValue(entry.title, 200)
       && textValue(entry.text, 8192) && typeof entry.good === 'boolean')) return false;
+  if (value.strategy !== undefined && !validStrategy(value.strategy, value as unknown as GameState)) return false;
   return validContent(value as unknown as GameState);
+}
+
+export function migrateGame(state: GameState): GameState & { strategy: StrategyState } {
+  return { ...state, strategy: state.strategy ?? createStrategy(state.day) };
 }
 
 function checkSize(raw: string): void {
@@ -194,7 +292,9 @@ export function exportSave(state: GameState): string {
   checkSize(stateRaw);
   const snapshot: unknown = JSON.parse(stateRaw);
   if (!isValidGame(snapshot)) throw new Error('Invalid serialized game state. Your existing save was not changed.');
-  const raw = JSON.stringify({ format: 'blackline.save', version: 1, savedAt: Date.now(), checksum: checksum(stateRaw), state: snapshot });
+  const migrated = migrateGame(snapshot);
+  const migratedRaw = JSON.stringify(migrated);
+  const raw = JSON.stringify({ format: 'blackline.save', version: 1, savedAt: Date.now(), checksum: checksum(migratedRaw), state: migrated });
   checkSize(raw);
   return raw;
 }
@@ -214,11 +314,11 @@ export function importSave(raw: string): GameState {
     }
     if (checksum(JSON.stringify(parsed.state)) !== parsed.checksum) throw new Error('This save is damaged: its checksum does not match.');
     if (!isValidGame(parsed.state)) throw new Error('This save contains an invalid game state or unknown city content.');
-    return parsed.state;
+    return migrateGame(parsed.state);
   }
   // Early builds stored the same version 1 state without an envelope.
   if (!isValidGame(parsed)) throw new Error('This save contains an invalid game state, unknown city content or unsupported version.');
-  return parsed;
+  return migrateGame(parsed);
 }
 
 function validSavedGame(raw: string | null): GameState | null {

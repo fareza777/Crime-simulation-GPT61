@@ -1,3 +1,5 @@
+import type { StrategyAction, StrategyState } from './strategy-types';
+
 export type StatKey = 'cash' | 'reputation' | 'heat' | 'health' | 'energy' | 'influence';
 export type SkillKey = 'charisma' | 'streetSmarts' | 'combat' | 'driving' | 'stealth' | 'business';
 export type CareerPath = 'thief' | 'smuggler' | 'leader' | 'fixer' | 'businessman' | 'boss';
@@ -49,7 +51,7 @@ export interface Item {
 export interface Quest {
   id: string; name: string; description: string; kind: 'main' | 'side';
   chapter?: string; prerequisite?: string; target: number;
-  metric: 'jobsSucceeded' | 'cash' | 'reputation' | 'crew' | 'businesses' | 'influence' | 'items' | 'heist' | 'days' | 'districts' | 'training' | 'lowHeat';
+  metric: 'jobsSucceeded' | 'cash' | 'reputation' | 'crew' | 'businesses' | 'influence' | 'items' | 'heist' | 'days' | 'districts' | 'training' | 'lowHeat' | 'zones' | 'battles' | 'operations';
   reward: Effects; contact: string; image: string;
 }
 export interface Contact {
@@ -87,8 +89,10 @@ export interface GameState {
   heist: { stage: number; crewIds: string[]; successes: number; choices: string[]; completed: boolean } | null;
   log: { day: number; title: string; text: string; good: boolean }[];
   seed: number;
+  /** Optional only for source-compatible legacy saves; createGame and importSave supply it. */
+  strategy?: StrategyState;
 }
-export type GameAction =
+export type GameAction = StrategyAction
   | { type: 'START_JOB'; id: string }
   | { type: 'RESOLVE_JOB'; approach: 'rush' | 'informant' | 'scout' | 'leave' }
   | { type: 'CHOOSE_EVENT'; choiceId: string }

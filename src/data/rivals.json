@@ -1,0 +1,7 @@
+[
+  {"id":"lanterns","name":"The Lanterns","districtId":"old-quarter","description":"A cautious neighborhood alliance. Respectful terms work better than a public humiliation.","strength":34,"hostility":25,"image":"/assets/district-old-quarter.webp"},
+  {"id":"salt-union","name":"Salt Union","districtId":"portside","description":"A disciplined harbor coalition that values routes and reliable payments.","strength":48,"hostility":36,"image":"/assets/district-portside.webp"},
+  {"id":"velvet-circle","name":"Velvet Circle","districtId":"the-strip","description":"An influential club network quick to turn exposure into leverage.","strength":60,"hostility":43,"image":"/assets/district-the-strip.webp"},
+  {"id":"red-foundry","name":"Red Foundry","districtId":"ironworks","description":"A resilient industrial organization that tests thinly defended holdings.","strength":74,"hostility":52,"image":"/assets/district-ironworks.webp"},
+  {"id":"regency","name":"The Regency","districtId":"crown-heights","description":"A wealthy private circle. Their strength recovers quickly unless you secure lasting terms.","strength":88,"hostility":60,"image":"/assets/district-crown-heights.webp"}
+]

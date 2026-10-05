@@ -1,0 +1,44 @@
+[
+  {
+    "nativeSupported": true,
+    "initialized": true,
+    "removeAds": false,
+    "price": null,
+    "canRequestAds": true,
+    "bannerVisible": true,
+    "bannerHeight": 64,
+    "rewardedReady": true,
+    "interstitialReady": true,
+    "privacyRequired": false,
+    "busy": false,
+    "error": null
+  },
+  {
+    "nativeSupported": true,
+    "initialized": true,
+    "removeAds": false,
+    "price": null,
+    "canRequestAds": true,
+    "bannerVisible": false,
+    "bannerHeight": 0,
+    "rewardedReady": true,
+    "interstitialReady": false,
+    "privacyRequired": false,
+    "busy": false,
+    "error": null
+  },
+  {
+    "nativeSupported": true,
+    "initialized": true,
+    "removeAds": false,
+    "price": null,
+    "canRequestAds": true,
+    "bannerVisible": false,
+    "bannerHeight": 0,
+    "rewardedReady": false,
+    "interstitialReady": true,
+    "privacyRequired": false,
+    "busy": false,
+    "error": null
+  }
+]

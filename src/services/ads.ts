@@ -1,4 +1,5 @@
-export type RewardedPlacement = 'energy' | 'cash';
+import { monetization, type RewardedPlacement } from './monetization';
+export type { RewardedPlacement } from './monetization';
 export type InterstitialPlacement = 'day-end';
 export interface AdsService {
   isAvailable(): boolean;
@@ -11,7 +12,12 @@ export class DisabledAdsService implements AdsService {
   async showInterstitial(_placement: InterstitialPlacement): Promise<boolean> { return false; }
 }
 
-let activeService: AdsService = new DisabledAdsService();
+let activeService: AdsService = {
+  isAvailable: () => monetization.getSnapshot().canRequestAds,
+  showRewarded: placement => monetization.showRewarded(placement),
+  // Old callers have no completed day number. They cannot bypass the day-end policy.
+  showInterstitial: async () => false,
+};
 
 /** A stable facade keeps existing callers connected when a published build installs an SDK. */
 export const ads: AdsService = {

@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "serial": "emulator-5658",
+  "testIdsOnly": true,
+  "ready": {
+    "nativeSupported": true,
+    "initialized": true,
+    "removeAds": false,
+    "price": null,
+    "canRequestAds": true,
+    "bannerVisible": true,
+    "bannerHeight": 64,
+    "rewardedReady": true,
+    "interstitialReady": true,
+    "privacyRequired": false,
+    "busy": false,
+    "error": null
+  },
+  "interstitial": {
+    "shown": true,
+    "method": "native SDK eligible-day protocol probe; actual display and dismissal"
+  },
+  "rewarded": {
+    "method": "Daily supplies UI; actual SDK earned and dismissed callbacks",
+    "energyBefore": 68,
+    "energyAfter": 88,
+    "claimsBefore": 0,
+    "claimsAfter": 1
+  },
+  "purchases": "No purchase attempted. Play Console product/key and a licensed tester are required."
+}

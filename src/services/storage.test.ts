@@ -9,6 +9,7 @@ vi.mock('@capacitor/preferences', () => ({ Preferences: {
 } }));
 import type { GameState, Settings } from '../game/types';
 import { createGame, gameReducer } from '../game/engine';
+import { createStrategy } from '../game/strategy';
 import {
   createStorageService, defaultSettings, exportSave, importSave, isValidGame, storageKeys,
   clearSave, loadGame, loadSettings, saveGame, saveSettings,
@@ -48,6 +49,7 @@ function game(): GameState {
     heist: { stage: 1, crewIds: ['cleo', 'mace', 'nika'], successes: 1, choices: ['patient-terms'], completed: false },
     log: [{ day: 3, title: 'Delivery', text: 'You earned a little trust.', good: true }],
     seed: 4294967295,
+    strategy: createStrategy(4),
   };
 }
 
@@ -84,7 +86,9 @@ describe('save import and validation', () => {
   });
 
   it('migrates an earlier unwrapped version 1 game', () => {
-    expect(importSave(JSON.stringify(game()))).toEqual(game());
+    const legacy = game();
+    delete legacy.strategy;
+    expect(importSave(JSON.stringify(legacy))).toEqual(game());
   });
 
   it('detects edited payloads instead of trusting a valid-looking state', () => {

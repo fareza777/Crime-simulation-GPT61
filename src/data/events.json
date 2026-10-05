@@ -3997,5 +3997,2917 @@
         "result": "The account closes neatly. You finally turn off the last light."
       }
     ]
+  },
+  {
+    "id": "uw-broken-link",
+    "title": "A line that stops halfway",
+    "category": "Supply chain",
+    "text": "Rafe's suppliers can cover one side of Portside, but a rival dispute has stranded the other. You must decide whose promises your reserve can carry.",
+    "image": "/assets/underworld-map.webp",
+    "weight": 5,
+    "minRep": 100,
+    "districtId": "portside",
+    "requiresBusiness": true,
+    "forbiddenFlag": "uw-link-seen",
+    "choices": [
+      {
+        "id": "buffer",
+        "label": "Fund a temporary reserve",
+        "description": "Pay $850 and 6 energy; gain influence, then decide who receives support.",
+        "effects": {
+          "cash": -850,
+          "energy": -6,
+          "influence": 3,
+          "flags": [
+            "uw-link-seen",
+            "uw-link-committed"
+          ]
+        },
+        "result": "Your reserve buys breathing room. Rafe asks you to choose between competing requests.",
+        "followUp": "uw-link-buffer"
+      },
+      {
+        "id": "question",
+        "label": "Challenge the timetable",
+        "description": "Use 10 energy to test Rafe's account. A mistake costs $250 and credibility.",
+        "chance": 62,
+        "skill": "streetSmarts",
+        "effects": {
+          "energy": -10,
+          "influence": 4,
+          "flags": [
+            "uw-link-seen",
+            "uw-link-committed"
+          ]
+        },
+        "failure": {
+          "energy": -10,
+          "cash": -250,
+          "reputation": -5,
+          "flags": [
+            "uw-link-seen",
+            "uw-link-committed"
+          ]
+        },
+        "result": "The shortfall is smaller than claimed. You can still decide how to share the reserve.",
+        "failureResult": "The promise was already overdue. Several customers now expect you to answer for it.",
+        "followUp": "uw-link-buffer",
+        "failureFollowUp": "uw-link-shortfall"
+      },
+      {
+        "id": "freeze",
+        "label": "Cancel the extra promises",
+        "description": "Spend nothing; lower heat but lose standing with people left waiting.",
+        "effects": {
+          "heat": -3,
+          "reputation": -4,
+          "flags": [
+            "uw-link-seen"
+          ]
+        },
+        "result": "You promise only what you already have. The disappointed calls stop before they become debts."
+      }
+    ]
+  },
+  {
+    "id": "uw-link-buffer",
+    "title": "Two promises, one reserve",
+    "category": "Supply chain",
+    "text": "A small neighborhood shop and a lucrative client both need the reserve. Helping one means explaining the delay to the other.",
+    "image": "/assets/warehouse.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-link-committed",
+    "choices": [
+      {
+        "id": "split",
+        "label": "Cover both in smaller shares",
+        "description": "Pay $600 and 6 energy; gain loyalty and a modest reputation boost.",
+        "effects": {
+          "cash": -600,
+          "energy": -6,
+          "loyalty": 3,
+          "reputation": 5,
+          "flags": [
+            "uw-link-supported"
+          ]
+        },
+        "result": "Neither gets everything. Both accept an honest limit, and your crew hears how you kept it.",
+        "followUp": "uw-link-reckoning"
+      },
+      {
+        "id": "client",
+        "label": "Put the large client first",
+        "description": "Use 8 energy for $1,200. Gain attention and lose neighborhood influence.",
+        "effects": {
+          "energy": -8,
+          "cash": 1200,
+          "heat": 5,
+          "influence": -3,
+          "loyalty": -2
+        },
+        "result": "The larger payment arrives. The shopkeeper remembers which promise was easier for you to break.",
+        "followUp": "uw-link-reckoning"
+      },
+      {
+        "id": "return",
+        "label": "Withdraw your offer",
+        "description": "Keep the remaining cash; lose reputation rather than create another obligation.",
+        "effects": {
+          "reputation": -4,
+          "relationships": {
+            "rafe": -2
+          }
+        },
+        "result": "Rafe returns both requests. Your reserve stays intact, but your offer no longer carries much weight."
+      }
+    ]
+  },
+  {
+    "id": "uw-link-shortfall",
+    "title": "The waiting room at the docks",
+    "category": "Supply chain",
+    "text": "Nobody has received what was promised. A crowd waits at Rafe's office while your crew asks whether they should still defend your account.",
+    "image": "/assets/district-portside.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-link-committed",
+    "choices": [
+      {
+        "id": "refund",
+        "label": "Pay the small accounts first",
+        "description": "Spend $550; restore some trust and accept a smaller margin.",
+        "effects": {
+          "cash": -550,
+          "reputation": 6,
+          "loyalty": 2,
+          "flags": [
+            "uw-link-supported"
+          ]
+        },
+        "result": "The smallest accounts leave with something real. The larger clients agree to hear your next decision.",
+        "followUp": "uw-link-reckoning"
+      },
+      {
+        "id": "terms",
+        "label": "Ask for a narrower agreement",
+        "description": "Use 8 energy. A convincing limit saves influence; refusal damages standing.",
+        "chance": 65,
+        "skill": "charisma",
+        "effects": {
+          "energy": -8,
+          "heat": -3,
+          "influence": 3
+        },
+        "failure": {
+          "energy": -8,
+          "reputation": -8,
+          "loyalty": -3
+        },
+        "result": "The customers accept a smaller promise. Your next move must be one you can afford.",
+        "failureResult": "The customers hear another excuse. Your crew still expects you to settle the lesson.",
+        "followUp": "uw-link-reckoning",
+        "failureFollowUp": "uw-link-reckoning"
+      },
+      {
+        "id": "close",
+        "label": "Close the disputed account",
+        "description": "Spend nothing; accept lost influence and crew disappointment.",
+        "effects": {
+          "influence": -3,
+          "loyalty": -3,
+          "reputation": -3
+        },
+        "result": "You stop defending the promise. The shortfall becomes a warning attached to your name."
+      }
+    ]
+  },
+  {
+    "id": "uw-link-reckoning",
+    "title": "What a connection costs",
+    "category": "Supply chain",
+    "text": "Rafe offers to keep working with you, provided the next commitment has a reserve behind it. The lesson is simple; the price is less comfortable.",
+    "image": "/assets/underworld-map.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-link-committed",
+    "choices": [
+      {
+        "id": "backing",
+        "label": "Back the next promise",
+        "description": "Pay $900 and 6 energy; gain 7 influence and Rafe's respect.",
+        "effects": {
+          "cash": -900,
+          "energy": -6,
+          "influence": 7,
+          "relationships": {
+            "rafe": 5
+          },
+          "flags": [
+            "uw-link-backed"
+          ]
+        },
+        "result": "Rafe accepts the reserve as evidence. Your influence grows because the next promise has a cost you can name."
+      },
+      {
+        "id": "smaller",
+        "label": "Make a smaller commitment",
+        "description": "Use 8 energy; lower heat and rebuild standing without another cash stake.",
+        "effects": {
+          "energy": -8,
+          "heat": -4,
+          "reputation": 7,
+          "skillXp": {
+            "business": 14
+          }
+        },
+        "result": "You reduce the plan until it fits your means. The quieter account earns slower, steadier respect."
+      },
+      {
+        "id": "leave",
+        "label": "End the partnership here",
+        "description": "Spend nothing; accept a small loss of standing and keep your freedom.",
+        "effects": {
+          "reputation": -3,
+          "relationships": {
+            "rafe": -2
+          }
+        },
+        "result": "Rafe closes the discussion. You leave with fewer promises and one hard lesson."
+      },
+      {
+        "id": "endorsed",
+        "label": "Let the smaller shops endorse you",
+        "description": "Requires shared support. Use 10 energy for goodwill instead of a larger reserve.",
+        "requiredFlag": "uw-link-supported",
+        "effects": {
+          "energy": -10,
+          "influence": 5,
+          "reputation": 8,
+          "heat": 2
+        },
+        "result": "The shops vouch for what they received. Their public support brings influence and a little extra attention."
+      }
+    ]
+  },
+  {
+    "id": "uw-borrowed-map",
+    "title": "A map drawn from memory",
+    "category": "Intelligence",
+    "text": "A broker offers an account of changing rival boundaries. It may be yesterday's truth, and buying it would make you responsible for judging the difference.",
+    "image": "/assets/underworld-map.webp",
+    "weight": 5,
+    "minRep": 75,
+    "forbiddenFlag": "uw-map-seen",
+    "choices": [
+      {
+        "id": "review",
+        "label": "Buy an independent review",
+        "description": "Pay $750 and 5 energy for a careful assessment rather than a quick promise.",
+        "effects": {
+          "cash": -750,
+          "energy": -5,
+          "skillXp": {
+            "streetSmarts": 12
+          },
+          "flags": [
+            "uw-map-seen",
+            "uw-map-committed"
+          ]
+        },
+        "result": "A second account agrees on some details and questions others. You now have a useful uncertainty.",
+        "followUp": "uw-map-proof"
+      },
+      {
+        "id": "memory",
+        "label": "Judge it from your own experience",
+        "description": "Use 10 energy. Good judgment earns influence; a wrong call raises heat.",
+        "chance": 61,
+        "skill": "streetSmarts",
+        "effects": {
+          "energy": -10,
+          "influence": 3,
+          "heat": -2,
+          "flags": [
+            "uw-map-seen",
+            "uw-map-committed"
+          ]
+        },
+        "failure": {
+          "energy": -10,
+          "heat": 6,
+          "reputation": -4,
+          "flags": [
+            "uw-map-seen",
+            "uw-map-committed"
+          ]
+        },
+        "result": "Your doubts expose a missing detail. The broker agrees to discuss the limits of the account.",
+        "failureResult": "You repeat a detail someone recognizes as false. The broker's uncertainty now carries your name.",
+        "followUp": "uw-map-proof",
+        "failureFollowUp": "uw-map-compromise"
+      },
+      {
+        "id": "decline",
+        "label": "Leave the account with its owner",
+        "description": "Spend nothing; pass up possible influence without accepting the rumor.",
+        "effects": {
+          "reputation": -2,
+          "flags": [
+            "uw-map-seen"
+          ]
+        },
+        "result": "The broker looks for another buyer. You keep your judgment and your money uncommitted."
+      }
+    ]
+  },
+  {
+    "id": "uw-map-proof",
+    "title": "The hour nobody recorded",
+    "category": "Intelligence",
+    "text": "The accounts agree until one unexplained hour. Publishing the whole story would make it sound more certain than it is.",
+    "image": "/assets/item-18.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-map-committed",
+    "choices": [
+      {
+        "id": "verify",
+        "label": "Pay to settle the discrepancy",
+        "description": "Spend $600 and 4 energy; reduce heat and keep a verified account.",
+        "effects": {
+          "cash": -600,
+          "energy": -4,
+          "heat": -4,
+          "flags": [
+            "uw-map-verified"
+          ]
+        },
+        "result": "The missing hour changes the conclusion. Your amended account is smaller and defensible.",
+        "followUp": "uw-map-verdict"
+      },
+      {
+        "id": "confidence",
+        "label": "Sell the confident version",
+        "description": "Use 8 energy for a possible $1,200. Failure costs $400 and credibility.",
+        "chance": 64,
+        "skill": "business",
+        "effects": {
+          "energy": -8,
+          "cash": 1200,
+          "heat": 8,
+          "reputation": 3
+        },
+        "failure": {
+          "energy": -8,
+          "cash": -400,
+          "reputation": -7,
+          "heat": 5
+        },
+        "result": "The buyer pays for certainty you do not quite possess. Their confidence brings fresh attention.",
+        "failureResult": "The buyer challenges the missing hour. Your claim becomes someone else's complaint.",
+        "followUp": "uw-map-verdict",
+        "failureFollowUp": "uw-map-compromise"
+      },
+      {
+        "id": "shelve",
+        "label": "Shelve the incomplete account",
+        "description": "Spend nothing; lose a little standing and end the discussion.",
+        "effects": {
+          "reputation": -3
+        },
+        "result": "You label the account incomplete and put it away. Nobody else is asked to trust it."
+      }
+    ]
+  },
+  {
+    "id": "uw-map-compromise",
+    "title": "A familiar false detail",
+    "category": "Intelligence",
+    "text": "Rafe recognizes the disputed detail and asks who will correct it. Silence is cheap today, but your next introduction may cost more.",
+    "image": "/assets/district-portside.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-map-committed",
+    "choices": [
+      {
+        "id": "correct",
+        "label": "Fund the correction",
+        "description": "Pay $900; lower heat, repair the relationship, and keep a verified account.",
+        "effects": {
+          "cash": -900,
+          "heat": -6,
+          "relationships": {
+            "rafe": 4
+          },
+          "flags": [
+            "uw-map-verified"
+          ]
+        },
+        "result": "You pay for the mistake without defending it. Rafe accepts the correction and asks what you learned.",
+        "followUp": "uw-map-verdict"
+      },
+      {
+        "id": "own",
+        "label": "Accept responsibility in person",
+        "description": "Use 10 energy; surrender standing to recover some trust.",
+        "effects": {
+          "energy": -10,
+          "reputation": -6,
+          "heat": -4,
+          "relationships": {
+            "rafe": 3
+          }
+        },
+        "result": "The apology costs you standing. It also gives Rafe a reason to take your next doubt seriously.",
+        "followUp": "uw-map-verdict"
+      },
+      {
+        "id": "silence",
+        "label": "Let the disputed account expire",
+        "description": "Spend nothing; accept lost influence and a colder relationship.",
+        "effects": {
+          "influence": -3,
+          "relationships": {
+            "rafe": -4
+          }
+        },
+        "result": "Nobody defends the account again. Rafe remembers that he had to correct it himself."
+      }
+    ]
+  },
+  {
+    "id": "uw-map-verdict",
+    "title": "The value of saying uncertain",
+    "category": "Intelligence",
+    "text": "Your contacts want a final judgment. A confident answer sells easily; an honest limit may serve you longer.",
+    "image": "/assets/underworld-map.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-map-committed",
+    "choices": [
+      {
+        "id": "limited",
+        "label": "Share only what you can defend",
+        "description": "Use 8 energy; gain reputation and judgment while keeping attention low.",
+        "effects": {
+          "energy": -8,
+          "reputation": 9,
+          "heat": -3,
+          "skillXp": {
+            "streetSmarts": 16
+          }
+        },
+        "result": "You name the limits before anyone else can. The account travels slowly, with your credibility intact."
+      },
+      {
+        "id": "private",
+        "label": "Keep the conclusion private",
+        "description": "Spend nothing; preserve discretion but surrender some influence.",
+        "effects": {
+          "heat": -2,
+          "influence": -2
+        },
+        "result": "The conclusion stays in your own files. Your contacts receive no promise to repeat."
+      },
+      {
+        "id": "verified",
+        "label": "Present the verified conclusion",
+        "description": "Requires a correction or review. Use 6 energy to gain influence and Rafe's trust.",
+        "requiredFlag": "uw-map-verified",
+        "effects": {
+          "energy": -6,
+          "influence": 6,
+          "relationships": {
+            "rafe": 4
+          },
+          "heat": 2
+        },
+        "result": "The corrected account withstands questions. Its growing audience brings influence and a little attention."
+      }
+    ]
+  },
+  {
+    "id": "uw-second-shift",
+    "title": "The same names on every shift",
+    "category": "Crew command",
+    "text": "Your crew has started covering one another's commitments without asking. They call it loyalty; Mara calls it a debt you cannot see in the accounts.",
+    "image": "/assets/crew-8.webp",
+    "weight": 5,
+    "requiresCrew": true,
+    "minRep": 90,
+    "forbiddenFlag": "uw-shift-seen",
+    "choices": [
+      {
+        "id": "relief",
+        "label": "Pay for a lighter schedule",
+        "description": "Spend $650; gain loyalty and recover energy before reviewing the roster.",
+        "effects": {
+          "cash": -650,
+          "energy": 8,
+          "loyalty": 4,
+          "flags": [
+            "uw-shift-seen",
+            "uw-shift-committed"
+          ]
+        },
+        "result": "You cover the cost of fewer commitments. The crew finally has room to explain what went wrong.",
+        "followUp": "uw-shift-rotation"
+      },
+      {
+        "id": "ask",
+        "label": "Ask for one last shared effort",
+        "description": "Use 10 energy and one healthy crew member. Failure loses trust and requires injury recovery.",
+        "requiredCrew": 1,
+        "chance": 58,
+        "skill": "charisma",
+        "effects": {
+          "energy": -10,
+          "loyalty": 2,
+          "cash": 450,
+          "flags": [
+            "uw-shift-seen",
+            "uw-shift-committed"
+          ]
+        },
+        "failure": {
+          "energy": -10,
+          "loyalty": -6,
+          "reputation": -3,
+          "injuredCrew": true,
+          "flags": [
+            "uw-shift-seen",
+            "uw-shift-committed"
+          ]
+        },
+        "result": "The crew accepts one defined commitment. Nobody agrees to make it the new normal.",
+        "failureResult": "The exhausted shift ends badly. One member needs recovery, and the crew asks why another promise mattered more than rest.",
+        "followUp": "uw-shift-rotation",
+        "failureFollowUp": "uw-shift-fracture"
+      },
+      {
+        "id": "cancel",
+        "label": "Cancel the extra commitments",
+        "description": "Spend nothing; gain a little loyalty while losing reputation for the cancellations.",
+        "effects": {
+          "loyalty": 2,
+          "reputation": -5,
+          "flags": [
+            "uw-shift-seen"
+          ]
+        },
+        "result": "The calls are uncomfortable, but the crew hears you making them yourself."
+      }
+    ]
+  },
+  {
+    "id": "uw-shift-rotation",
+    "title": "A fair roster has an empty space",
+    "category": "Crew command",
+    "text": "The new roster leaves a profitable commitment uncovered. Your most loyal member offers to take it, despite already doing enough.",
+    "image": "/assets/crew-1.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-shift-committed",
+    "choices": [
+      {
+        "id": "protect",
+        "label": "Protect the promised break",
+        "description": "Pay $500; strengthen loyalty and keep the roster fair.",
+        "effects": {
+          "cash": -500,
+          "loyalty": 5,
+          "flags": [
+            "uw-shift-fair"
+          ]
+        },
+        "result": "You absorb the missing commitment's cost. The crew sees that rest was a promise you meant.",
+        "followUp": "uw-shift-account"
+      },
+      {
+        "id": "cover",
+        "label": "Cover the gap yourself",
+        "description": "Use 20 energy; gain loyalty and modest income at a personal cost.",
+        "effects": {
+          "energy": -20,
+          "cash": 700,
+          "loyalty": 3
+        },
+        "result": "The commitment pays, and the crew keeps its break. You return too tired to call it a free solution.",
+        "followUp": "uw-shift-account"
+      },
+      {
+        "id": "drop",
+        "label": "Let the commitment go",
+        "description": "Spend nothing; lose some standing and finish the roster review.",
+        "effects": {
+          "reputation": -4,
+          "influence": -1
+        },
+        "result": "The uncovered space stays empty. You accept that an honest roster cannot contain every opportunity."
+      }
+    ]
+  },
+  {
+    "id": "uw-shift-fracture",
+    "title": "The complaint nobody signed",
+    "category": "Crew command",
+    "text": "A note says the crew can survive danger more easily than favoritism. No name appears at the bottom, and everyone knows why.",
+    "image": "/assets/crew-4.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-shift-committed",
+    "choices": [
+      {
+        "id": "fund",
+        "label": "Cover the unequal shares",
+        "description": "Pay $950; recover loyalty and acknowledge the debt.",
+        "effects": {
+          "cash": -950,
+          "loyalty": 6,
+          "flags": [
+            "uw-shift-fair"
+          ]
+        },
+        "result": "The payment does not erase the complaint. It gives the crew a reason to hear your next rule.",
+        "followUp": "uw-shift-account"
+      },
+      {
+        "id": "listen",
+        "label": "Hear the room without defending it",
+        "description": "Use 12 energy; lose standing inside the room to rebuild trust.",
+        "effects": {
+          "energy": -12,
+          "reputation": -4,
+          "loyalty": 4
+        },
+        "result": "You let the accounts stand. The crew agrees to discuss a rule that applies to everyone.",
+        "followUp": "uw-shift-account"
+      },
+      {
+        "id": "distance",
+        "label": "Reduce the crew's commitments",
+        "description": "Spend nothing; preserve resources while accepting a smaller reputation.",
+        "effects": {
+          "reputation": -6,
+          "influence": -2,
+          "loyalty": 1
+        },
+        "result": "You stop asking the crew to carry the dispute and the work together. Your reach becomes smaller."
+      }
+    ]
+  },
+  {
+    "id": "uw-shift-account",
+    "title": "A rule that includes the leader",
+    "category": "Crew command",
+    "text": "Mara asks whether the new limits also apply to you. The answer will matter more than the speech that accompanies it.",
+    "image": "/assets/crew-8.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-shift-committed",
+    "choices": [
+      {
+        "id": "same",
+        "label": "Keep the same limit for everyone",
+        "description": "Spend $300 and 8 energy; gain loyalty and Mara's trust by keeping the same limit.",
+        "effects": {
+          "energy": -8,
+          "cash": -300,
+          "loyalty": 6,
+          "relationships": {
+            "mara": 5
+          },
+          "flags": [
+            "uw-shift-rule"
+          ]
+        },
+        "result": "Your name appears beside the same limits. The room trusts the roster because it limits your ambition too."
+      },
+      {
+        "id": "bonus",
+        "label": "Buy goodwill with a final bonus",
+        "description": "Pay $1,100; earn loyalty quickly, but keep the deeper argument unresolved.",
+        "effects": {
+          "cash": -1100,
+          "loyalty": 7,
+          "influence": -2
+        },
+        "result": "The bonus is welcome. Mara records the payment without calling it a fair rule."
+      },
+      {
+        "id": "smaller",
+        "label": "Promise less for now",
+        "description": "Spend nothing; lose reputation and protect the crew from another large promise.",
+        "effects": {
+          "reputation": -4,
+          "loyalty": 2
+        },
+        "result": "You leave the next month smaller than planned. The crew has less to celebrate and less to fear."
+      }
+    ]
+  },
+  {
+    "id": "uw-rival-deadline",
+    "title": "A demand before the street wakes",
+    "category": "Rival pressure",
+    "text": "The Lanterns send a demand for recognition of their standing. Your lieutenant wants a firm reply; the shopkeepers want tomorrow to feel ordinary.",
+    "image": "/assets/underworld-conflict.webp",
+    "weight": 5,
+    "minRep": 110,
+    "districtId": "old-quarter",
+    "requiresCrew": true,
+    "forbiddenFlag": "uw-deadline-seen",
+    "choices": [
+      {
+        "id": "table",
+        "label": "Pay for a neutral meeting",
+        "description": "Spend $800 and 6 energy; lower heat and bring the demand to a table.",
+        "effects": {
+          "cash": -800,
+          "energy": -6,
+          "heat": -4,
+          "flags": [
+            "uw-deadline-seen",
+            "uw-deadline-committed"
+          ]
+        },
+        "result": "A neutral host agrees to hear both sides. Your lieutenant accepts that a meeting still needs a boundary.",
+        "followUp": "uw-deadline-table"
+      },
+      {
+        "id": "firm",
+        "label": "Send a firm, limited reply",
+        "description": "Use 10 energy and one healthy crew member. Failure raises heat and risks a crew injury.",
+        "requiredCrew": 1,
+        "chance": 60,
+        "skill": "charisma",
+        "effects": {
+          "energy": -10,
+          "influence": 5,
+          "heat": 3,
+          "flags": [
+            "uw-deadline-seen",
+            "uw-deadline-committed"
+          ]
+        },
+        "failure": {
+          "energy": -10,
+          "heat": 8,
+          "loyalty": -3,
+          "injuredCrew": true,
+          "flags": [
+            "uw-deadline-seen",
+            "uw-deadline-committed"
+          ]
+        },
+        "result": "The Lanterns accept a meeting without accepting your claim. Your lieutenant calls that a beginning.",
+        "failureResult": "The rival challenge becomes a brief clash. One crew member returns hurt, and the street waits for your next decision.",
+        "followUp": "uw-deadline-table",
+        "failureFollowUp": "uw-deadline-standoff"
+      },
+      {
+        "id": "yield",
+        "label": "Give the dispute no audience",
+        "description": "Spend nothing; lower heat while accepting lost influence and crew disappointment.",
+        "effects": {
+          "heat": -3,
+          "influence": -4,
+          "loyalty": -2,
+          "flags": [
+            "uw-deadline-seen"
+          ]
+        },
+        "result": "The street wakes without a public dispute. Your lieutenant knows exactly what that quiet cost."
+      }
+    ]
+  },
+  {
+    "id": "uw-deadline-table",
+    "title": "An empty chair between rivals",
+    "category": "Rival pressure",
+    "text": "The host offers one shared statement. It must acknowledge both organizations, which makes your lieutenant uncomfortable.",
+    "image": "/assets/underworld-conflict.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-deadline-committed",
+    "choices": [
+      {
+        "id": "shared",
+        "label": "Accept mutual recognition",
+        "description": "Use 6 energy; lower heat and gain influence, at a small loyalty cost.",
+        "effects": {
+          "energy": -6,
+          "heat": -6,
+          "influence": 4,
+          "loyalty": -2,
+          "flags": [
+            "uw-deadline-measured"
+          ]
+        },
+        "result": "The statement admits that both sides matter. The host asks who will pay for the street's lost day.",
+        "followUp": "uw-deadline-cost"
+      },
+      {
+        "id": "terms",
+        "label": "Argue for stronger wording",
+        "description": "Use 12 energy. Success earns standing; failure returns the demand to the street.",
+        "chance": 57,
+        "skill": "charisma",
+        "effects": {
+          "energy": -12,
+          "reputation": 10,
+          "loyalty": 3,
+          "heat": 3
+        },
+        "failure": {
+          "energy": -12,
+          "heat": 7,
+          "influence": -3
+        },
+        "result": "Your wording survives the room. Winning the sentence does not settle who carries its consequences.",
+        "failureResult": "The other chair empties. Your lieutenant now expects you to decide how far the argument goes.",
+        "followUp": "uw-deadline-cost",
+        "failureFollowUp": "uw-deadline-standoff"
+      },
+      {
+        "id": "leave",
+        "label": "Leave without a statement",
+        "description": "Spend nothing; accept a loss of standing and end this negotiation.",
+        "effects": {
+          "reputation": -5,
+          "influence": -2
+        },
+        "result": "The host closes the room without a statement. Nobody can turn your silence into an agreement."
+      }
+    ]
+  },
+  {
+    "id": "uw-deadline-standoff",
+    "title": "A crowd waiting for certainty",
+    "category": "Rival pressure",
+    "text": "The argument has become public. Your crew wants reassurance, while local shops count the cost of another unsettled day.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-deadline-committed",
+    "choices": [
+      {
+        "id": "repair",
+        "label": "Fund the shops' lost day",
+        "description": "Pay $1,200; recover standing and quiet the crowd.",
+        "effects": {
+          "cash": -1200,
+          "reputation": 8,
+          "heat": -5,
+          "flags": [
+            "uw-deadline-measured"
+          ]
+        },
+        "result": "The shopkeepers count the payment before they count your words. Your crew waits for its own explanation.",
+        "followUp": "uw-deadline-cost"
+      },
+      {
+        "id": "limit",
+        "label": "Define where the dispute ends",
+        "description": "Use 12 energy; trade influence for crew confidence and lower heat.",
+        "effects": {
+          "energy": -12,
+          "influence": -3,
+          "loyalty": 4,
+          "heat": -4
+        },
+        "result": "You put a limit on the argument. The crew hears a decision it can understand, even without a victory.",
+        "followUp": "uw-deadline-cost"
+      },
+      {
+        "id": "disengage",
+        "label": "Disengage from the public claim",
+        "description": "Spend nothing; lose influence and standing while cooling the street.",
+        "effects": {
+          "influence": -5,
+          "reputation": -5,
+          "heat": -3
+        },
+        "result": "The crowd disperses without a settlement. Your name becomes smaller in this particular argument."
+      }
+    ]
+  },
+  {
+    "id": "uw-deadline-cost",
+    "title": "The lieutenant wants an account",
+    "category": "Rival pressure",
+    "text": "Your lieutenant asks what the crew should remember: the boundary you defended, or the price you refused to make the neighborhood pay.",
+    "image": "/assets/crew-7.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-deadline-committed",
+    "choices": [
+      {
+        "id": "crew",
+        "label": "Recognize the crew's restraint",
+        "description": "Pay $650; gain loyalty and a little influence without a public celebration.",
+        "effects": {
+          "cash": -650,
+          "loyalty": 5,
+          "influence": 2,
+          "heat": -2
+        },
+        "result": "The crew receives a quiet share. Your lieutenant sees that restraint can be recognized without a speech."
+      },
+      {
+        "id": "review",
+        "label": "Review the decision together",
+        "description": "Use 10 energy; build judgment and loyalty while accepting a smaller public name.",
+        "effects": {
+          "energy": -10,
+          "loyalty": 3,
+          "reputation": -2,
+          "skillXp": {
+            "combat": 18
+          }
+        },
+        "result": "You discuss the cost before discussing the next conflict. The lesson survives longer than the crowd did."
+      },
+      {
+        "id": "close",
+        "label": "Close this argument for now",
+        "description": "Spend nothing; preserve resources but lose some crew confidence.",
+        "effects": {
+          "loyalty": -3,
+          "heat": -2
+        },
+        "result": "You make no further claim. The crew accepts the pause without mistaking it for an answer."
+      }
+    ]
+  },
+  {
+    "id": "uw-two-landlords",
+    "title": "Two owners for the same door",
+    "category": "Business pressure",
+    "text": "Two landlords claim the lease behind one of your businesses. One offers a quick discount; the other insists your signature will settle the entire dispute.",
+    "image": "/assets/business-4.webp",
+    "weight": 5,
+    "requiresBusiness": true,
+    "minRep": 90,
+    "forbiddenFlag": "uw-lease-seen",
+    "choices": [
+      {
+        "id": "review",
+        "label": "Pay for a proper lease review",
+        "description": "Spend $700 and 6 energy; lower heat before deciding whose claim survives.",
+        "effects": {
+          "cash": -700,
+          "energy": -6,
+          "heat": -3,
+          "flags": [
+            "uw-lease-seen",
+            "uw-lease-committed"
+          ]
+        },
+        "result": "The review finds two conflicting promises. Neither landlord can call your signature a simple formality.",
+        "followUp": "uw-lease-review"
+      },
+      {
+        "id": "bargain",
+        "label": "Test the discounted offer",
+        "description": "Use 10 energy for a possible $900 saving. A bad offer costs $500 and trust.",
+        "chance": 59,
+        "skill": "business",
+        "effects": {
+          "energy": -10,
+          "cash": 900,
+          "heat": 4,
+          "flags": [
+            "uw-lease-seen",
+            "uw-lease-committed"
+          ]
+        },
+        "failure": {
+          "energy": -10,
+          "cash": -500,
+          "loyalty": -3,
+          "flags": [
+            "uw-lease-seen",
+            "uw-lease-committed"
+          ]
+        },
+        "result": "You obtain a limited concession. The conflicting claim still needs an answer.",
+        "failureResult": "The discount conceals a new obligation. Your staff hears about it before you can explain.",
+        "followUp": "uw-lease-review",
+        "failureFollowUp": "uw-lease-walkout"
+      },
+      {
+        "id": "pause",
+        "label": "Suspend the disputed offer",
+        "description": "Spend nothing; lose influence and accept a colder business relationship.",
+        "effects": {
+          "influence": -3,
+          "relationships": {
+            "lin": -2
+          },
+          "flags": [
+            "uw-lease-seen"
+          ]
+        },
+        "result": "You refuse to add a signature to the confusion. The landlords take their claims elsewhere for now."
+      }
+    ]
+  },
+  {
+    "id": "uw-lease-review",
+    "title": "The clause with no easy winner",
+    "category": "Business pressure",
+    "text": "Lin finds a clause that protects your staff but reduces the margin. The cheaper alternative leaves everyone depending on a landlord's goodwill.",
+    "image": "/assets/business-3.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-lease-committed",
+    "choices": [
+      {
+        "id": "protection",
+        "label": "Pay for the stronger agreement",
+        "description": "Spend $1,000; gain loyalty and Lin's trust with a smaller cash reserve.",
+        "effects": {
+          "cash": -1000,
+          "loyalty": 4,
+          "relationships": {
+            "lin": 3
+          },
+          "flags": [
+            "uw-lease-protected"
+          ]
+        },
+        "result": "The stronger clause is recorded. Lin asks whether your accounts can carry what your signature now promises.",
+        "followUp": "uw-lease-balance"
+      },
+      {
+        "id": "margin",
+        "label": "Keep the margin and accept the risk",
+        "description": "Use 6 energy for $700; lose loyalty and gain attention.",
+        "effects": {
+          "energy": -6,
+          "cash": 700,
+          "loyalty": -4,
+          "heat": 5
+        },
+        "result": "The concession improves today's balance. Your staff understands exactly which protection bought it.",
+        "followUp": "uw-lease-balance"
+      },
+      {
+        "id": "decline",
+        "label": "Decline both new agreements",
+        "description": "Spend nothing; surrender a little standing and keep the dispute unsigned.",
+        "effects": {
+          "reputation": -4,
+          "influence": -2
+        },
+        "result": "Neither claim gains your signature. The unsettled lease remains a reason to keep your ambitions modest."
+      }
+    ]
+  },
+  {
+    "id": "uw-lease-walkout",
+    "title": "The staff leaves a light on",
+    "category": "Business pressure",
+    "text": "The staff will return when someone explains the new obligation. Lin says a profitable door is worth little if nobody trusts the person holding the key.",
+    "image": "/assets/business-1.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-lease-committed",
+    "choices": [
+      {
+        "id": "settle",
+        "label": "Cover the staff's uncertainty",
+        "description": "Pay $850; recover loyalty and protect the staff's side of the agreement.",
+        "effects": {
+          "cash": -850,
+          "loyalty": 5,
+          "flags": [
+            "uw-lease-protected"
+          ]
+        },
+        "result": "The staff receives the backing you failed to promise earlier. Lin brings the remaining numbers to you.",
+        "followUp": "uw-lease-balance"
+      },
+      {
+        "id": "listen",
+        "label": "Make the account public to staff",
+        "description": "Use 12 energy; accept lost standing in exchange for some trust.",
+        "effects": {
+          "energy": -12,
+          "reputation": -5,
+          "loyalty": 4
+        },
+        "result": "You explain the obligation without calling it a bargain. The staff agrees to hear one final decision.",
+        "followUp": "uw-lease-balance"
+      },
+      {
+        "id": "smaller",
+        "label": "Scale back your business promises",
+        "description": "Spend nothing; lose influence and accept the staff's disappointment.",
+        "effects": {
+          "influence": -4,
+          "loyalty": -2,
+          "heat": -2
+        },
+        "result": "You stop making promises against the disputed lease. The light stays on for a quieter return."
+      }
+    ]
+  },
+  {
+    "id": "uw-lease-balance",
+    "title": "Profit after the promises",
+    "category": "Business pressure",
+    "text": "The dispute has a price now. Lin asks whether you want a comfortable balance today or a reputation for paying costs before they become someone else's problem.",
+    "image": "/assets/business-4.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-lease-committed",
+    "choices": [
+      {
+        "id": "reserve",
+        "label": "Keep a dedicated reserve",
+        "description": "Pay $750; gain influence and Lin's respect while reducing heat.",
+        "effects": {
+          "cash": -750,
+          "influence": 6,
+          "heat": -4,
+          "relationships": {
+            "lin": 5
+          }
+        },
+        "result": "Lin records the reserve beside the obligation. The numbers are less comfortable and more credible."
+      },
+      {
+        "id": "review",
+        "label": "Review every future commitment",
+        "description": "Use 12 energy; earn business experience and standing instead of a cash settlement.",
+        "effects": {
+          "energy": -12,
+          "skillXp": {
+            "business": 22
+          },
+          "reputation": 8,
+          "heat": -2
+        },
+        "result": "The lease becomes a lesson in what a signature costs. Lin expects you to remember it next time."
+      },
+      {
+        "id": "close",
+        "label": "Accept a smaller reputation",
+        "description": "Spend nothing; preserve cash and accept a loss of influence.",
+        "effects": {
+          "influence": -3,
+          "relationships": {
+            "lin": -2
+          }
+        },
+        "result": "You close the account without another promise. Lin accepts the limit and lowers her expectations."
+      },
+      {
+        "id": "endorsement",
+        "label": "Let staff speak for the agreement",
+        "description": "Requires protected terms. Use 8 energy for reputation and crew loyalty.",
+        "requiredFlag": "uw-lease-protected",
+        "effects": {
+          "energy": -8,
+          "reputation": 12,
+          "loyalty": 3,
+          "heat": 3
+        },
+        "result": "The staff describes what you paid to protect. Their support becomes public, along with your name."
+      }
+    ]
+  },
+  {
+    "id": "uw-narrow-truce",
+    "title": "A peace too small for a speech",
+    "category": "Truce",
+    "text": "A Salt Union delegate offers to keep one argument out of the port's public meetings. It is a narrow courtesy, and neither side wants to look grateful.",
+    "image": "/assets/underworld-conflict.webp",
+    "weight": 4,
+    "minRep": 140,
+    "districtId": "portside",
+    "forbiddenFlag": "uw-truce-seen",
+    "choices": [
+      {
+        "id": "host",
+        "label": "Pay a neutral host",
+        "description": "Spend $650 and 6 energy; lower heat before discussing the limited understanding.",
+        "effects": {
+          "cash": -650,
+          "energy": -6,
+          "heat": -4,
+          "flags": [
+            "uw-truce-seen",
+            "uw-truce-committed"
+          ]
+        },
+        "result": "The host calls it a conversation, not a victory. Both sides send someone willing to listen.",
+        "followUp": "uw-truce-guarantor"
+      },
+      {
+        "id": "word",
+        "label": "Trust the delegate's word",
+        "description": "Use 10 energy. It may earn influence; a mistaken trust costs standing and attention.",
+        "chance": 63,
+        "skill": "charisma",
+        "effects": {
+          "energy": -10,
+          "influence": 3,
+          "heat": -2,
+          "flags": [
+            "uw-truce-seen",
+            "uw-truce-committed"
+          ]
+        },
+        "failure": {
+          "energy": -10,
+          "heat": 6,
+          "reputation": -5,
+          "flags": [
+            "uw-truce-seen",
+            "uw-truce-committed"
+          ]
+        },
+        "result": "The delegate repeats your terms accurately. A neutral witness still wants to hear their limits.",
+        "failureResult": "A different account reaches the next meeting. Both sides accuse the other of asking for more.",
+        "followUp": "uw-truce-guarantor",
+        "failureFollowUp": "uw-truce-breach"
+      },
+      {
+        "id": "pass",
+        "label": "Decline the private courtesy",
+        "description": "Spend nothing; surrender a little influence and leave the argument open.",
+        "effects": {
+          "influence": -3,
+          "flags": [
+            "uw-truce-seen"
+          ]
+        },
+        "result": "The delegate leaves without your word. There is no private promise for either side to misquote."
+      }
+    ]
+  },
+  {
+    "id": "uw-truce-guarantor",
+    "title": "The witness wants a limit",
+    "category": "Truce",
+    "text": "The neutral witness refuses to endorse a promise without a limit. Your crew worries that naming the limit will look like admitting weakness.",
+    "image": "/assets/district-portside.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-truce-committed",
+    "choices": [
+      {
+        "id": "written",
+        "label": "State the narrow terms clearly",
+        "description": "Use 8 energy; lower heat and gain influence at a small loyalty cost.",
+        "effects": {
+          "energy": -8,
+          "heat": -5,
+          "influence": 4,
+          "loyalty": -2,
+          "flags": [
+            "uw-truce-limited"
+          ]
+        },
+        "result": "The witness accepts a promise with an edge. Both sides must now decide how to describe it at home.",
+        "followUp": "uw-truce-signature"
+      },
+      {
+        "id": "broader",
+        "label": "Ask for a broader understanding",
+        "description": "Use 12 energy. Success earns standing; refusal makes the original offer suspect.",
+        "chance": 55,
+        "skill": "charisma",
+        "effects": {
+          "energy": -12,
+          "reputation": 10,
+          "heat": 2
+        },
+        "failure": {
+          "energy": -12,
+          "heat": 6,
+          "influence": -3
+        },
+        "result": "The delegate hears the larger proposal. The witness asks you to keep its announcement modest.",
+        "failureResult": "The delegate thinks the courtesy was a trap for a larger concession. The room's trust breaks.",
+        "followUp": "uw-truce-signature",
+        "failureFollowUp": "uw-truce-breach"
+      },
+      {
+        "id": "withdraw",
+        "label": "Withdraw before signing",
+        "description": "Spend nothing; lose standing and leave without a disputed obligation.",
+        "effects": {
+          "reputation": -4,
+          "influence": -2
+        },
+        "result": "The witness closes the meeting. The port receives no claim of a peace that neither side could define."
+      }
+    ]
+  },
+  {
+    "id": "uw-truce-breach",
+    "title": "One promise, two versions",
+    "category": "Truce",
+    "text": "Your version and the delegate's version have reached different audiences. Rafe offers to correct the record, if you can stop insisting yours is the only one worth hearing.",
+    "image": "/assets/underworld-conflict.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-truce-committed",
+    "choices": [
+      {
+        "id": "correction",
+        "label": "Pay for a shared correction",
+        "description": "Spend $850; lower heat and recover Rafe's trust.",
+        "effects": {
+          "cash": -850,
+          "heat": -6,
+          "relationships": {
+            "rafe": 4
+          },
+          "flags": [
+            "uw-truce-limited"
+          ]
+        },
+        "result": "The correction names what neither side promised. Rafe asks you to leave the final announcement small.",
+        "followUp": "uw-truce-signature"
+      },
+      {
+        "id": "concede",
+        "label": "Concede the misunderstanding",
+        "description": "Use 10 energy; surrender reputation to recover influence and quiet the room.",
+        "effects": {
+          "energy": -10,
+          "reputation": -6,
+          "influence": 3,
+          "heat": -3
+        },
+        "result": "Your concession takes the sharpest edge out of the disagreement. Both audiences still need an honest ending.",
+        "followUp": "uw-truce-signature"
+      },
+      {
+        "id": "end",
+        "label": "End the private understanding",
+        "description": "Spend nothing; accept lost influence and stop defending either version.",
+        "effects": {
+          "influence": -4,
+          "reputation": -3
+        },
+        "result": "You declare the private understanding finished. Nobody receives a promise of peace from this meeting."
+      }
+    ]
+  },
+  {
+    "id": "uw-truce-signature",
+    "title": "How to describe an ordinary day",
+    "category": "Truce",
+    "text": "The meeting can end without a winner. Your crew wants a public success; the witness asks whether an ordinary day might be enough.",
+    "image": "/assets/district-portside.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-truce-committed",
+    "choices": [
+      {
+        "id": "quiet",
+        "label": "Keep the conclusion quiet",
+        "description": "Use 6 energy; lower heat and gain influence while disappointing the crew slightly.",
+        "effects": {
+          "energy": -6,
+          "heat": -7,
+          "influence": 5,
+          "loyalty": -1
+        },
+        "result": "There is no speech to defend tomorrow. The witness respects a conclusion that can survive an ordinary day."
+      },
+      {
+        "id": "crew",
+        "label": "Explain the limit to your crew",
+        "description": "Use 12 energy; gain loyalty and judgment rather than public standing.",
+        "effects": {
+          "energy": -12,
+          "loyalty": 4,
+          "skillXp": {
+            "charisma": 18
+          },
+          "heat": -3
+        },
+        "result": "You explain what the meeting changed and what it did not promise. The crew trusts the account's limits."
+      },
+      {
+        "id": "leave",
+        "label": "Leave without an announcement",
+        "description": "Spend nothing; lose a little standing and let the conversation end.",
+        "effects": {
+          "reputation": -3,
+          "heat": -2
+        },
+        "result": "The meeting ends without a headline. Both sides keep the responsibility for their next choice."
+      }
+    ]
+  },
+  {
+    "id": "uw-unfinished-plan",
+    "title": "A profitable plan with an empty page",
+    "category": "Operation planning",
+    "text": "A broker pitches a major operation with a convincing return and no account of the worst case. Your crew asks which page of the plan belongs to them.",
+    "image": "/assets/underworld-operation.webp",
+    "weight": 5,
+    "minRep": 180,
+    "requiresCrew": true,
+    "forbiddenFlag": "uw-plan-seen",
+    "choices": [
+      {
+        "id": "review",
+        "label": "Commission a full risk review",
+        "description": "Pay $1,100 and 8 energy; gain judgment before deciding whether the account is credible.",
+        "effects": {
+          "cash": -1100,
+          "energy": -8,
+          "skillXp": {
+            "streetSmarts": 14
+          },
+          "flags": [
+            "uw-plan-seen",
+            "uw-plan-committed"
+          ]
+        },
+        "result": "The reviewer fills the empty page with costs. The projected return is suddenly less persuasive.",
+        "followUp": "uw-plan-review"
+      },
+      {
+        "id": "broker",
+        "label": "Challenge the broker in person",
+        "description": "Use 12 energy. Good judgment saves heat; a mistaken accusation attracts attention.",
+        "chance": 60,
+        "skill": "streetSmarts",
+        "effects": {
+          "energy": -12,
+          "heat": -3,
+          "influence": 3,
+          "flags": [
+            "uw-plan-seen",
+            "uw-plan-committed"
+          ]
+        },
+        "failure": {
+          "energy": -12,
+          "heat": 7,
+          "relationships": {
+            "ivo": -3
+          },
+          "flags": [
+            "uw-plan-seen",
+            "uw-plan-committed"
+          ]
+        },
+        "result": "The broker admits the return depended on an optimistic account. Your crew can now judge the whole offer.",
+        "failureResult": "The broker repeats your accusation in the wrong room. Ivo hears your name attached to the proposal.",
+        "followUp": "uw-plan-review",
+        "failureFollowUp": "uw-plan-leak"
+      },
+      {
+        "id": "decline",
+        "label": "Decline the incomplete proposal",
+        "description": "Spend nothing; lose a small opportunity for standing and protect your crew's trust.",
+        "effects": {
+          "reputation": -3,
+          "loyalty": 2,
+          "flags": [
+            "uw-plan-seen"
+          ]
+        },
+        "result": "The broker keeps the empty page. Your crew hears that an impressive return is not enough to commit them."
+      }
+    ]
+  },
+  {
+    "id": "uw-plan-review",
+    "title": "A return that excludes the recovery",
+    "category": "Operation planning",
+    "text": "The offer counts a perfect finish as profit and everyone else's recovery as an expense. Your crew can see the difference even if the broker will not.",
+    "image": "/assets/underworld-operation.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-plan-committed",
+    "choices": [
+      {
+        "id": "reserve",
+        "label": "Fund a recovery reserve",
+        "description": "Spend $1,400; gain loyalty and insist the full cost belongs in the account.",
+        "effects": {
+          "cash": -1400,
+          "loyalty": 5,
+          "flags": [
+            "uw-plan-backed"
+          ]
+        },
+        "result": "The reserve reduces the attractive figure on the first page. The crew finally recognizes itself in the account.",
+        "followUp": "uw-plan-aftermath"
+      },
+      {
+        "id": "terms",
+        "label": "Negotiate a smaller commitment",
+        "description": "Use 12 energy. Better terms earn influence; refusal costs $400 and goodwill.",
+        "chance": 58,
+        "skill": "business",
+        "effects": {
+          "energy": -12,
+          "influence": 4,
+          "loyalty": 2
+        },
+        "failure": {
+          "energy": -12,
+          "cash": -400,
+          "loyalty": -3,
+          "heat": 4
+        },
+        "result": "The broker accepts a lower ceiling and a smaller obligation. You still need to explain the decision at home.",
+        "failureResult": "The broker withdraws the concession and charges for the review. Your crew wants to know why you stayed.",
+        "followUp": "uw-plan-aftermath",
+        "failureFollowUp": "uw-plan-leak"
+      },
+      {
+        "id": "reject",
+        "label": "Reject the revised offer",
+        "description": "Spend nothing; lose standing with the broker and gain a little loyalty.",
+        "effects": {
+          "reputation": -4,
+          "loyalty": 2
+        },
+        "result": "You decline after hearing the complete cost. The crew treats that answer as part of the review's value."
+      }
+    ]
+  },
+  {
+    "id": "uw-plan-leak",
+    "title": "The proposal reaches the wrong table",
+    "category": "Operation planning",
+    "text": "Ivo hears that you considered an offer before understanding it. He wants the record corrected; your crew wants proof that they will not pay for your pride.",
+    "image": "/assets/district-the-strip.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-plan-committed",
+    "choices": [
+      {
+        "id": "settle",
+        "label": "Pay to close the disputed review",
+        "description": "Spend $1,200; reduce heat and repair Ivo's trust.",
+        "effects": {
+          "cash": -1200,
+          "heat": -6,
+          "relationships": {
+            "ivo": 4
+          },
+          "flags": [
+            "uw-plan-backed"
+          ]
+        },
+        "result": "The account is closed with a real payment. Ivo leaves the crew's question for you to answer.",
+        "followUp": "uw-plan-aftermath"
+      },
+      {
+        "id": "own",
+        "label": "Admit the judgment was premature",
+        "description": "Use 12 energy; lose reputation and recover crew loyalty.",
+        "effects": {
+          "energy": -12,
+          "reputation": -7,
+          "loyalty": 5,
+          "heat": -3
+        },
+        "result": "You accept the mistake before it can become someone else's debt. The crew asks you to remember it.",
+        "followUp": "uw-plan-aftermath"
+      },
+      {
+        "id": "withdraw",
+        "label": "Withdraw every new commitment",
+        "description": "Spend nothing; accept lost influence and a colder introduction from Ivo.",
+        "effects": {
+          "influence": -4,
+          "relationships": {
+            "ivo": -3
+          },
+          "heat": -2
+        },
+        "result": "You stop defending the proposal. Ivo accepts the withdrawal without calling it good judgment."
+      }
+    ]
+  },
+  {
+    "id": "uw-plan-aftermath",
+    "title": "The page the crew keeps",
+    "category": "Operation planning",
+    "text": "The proposal is finished. The crew keeps the page that names their recovery, waiting to see whether you will use it when a better offer arrives.",
+    "image": "/assets/crew-10.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-plan-committed",
+    "choices": [
+      {
+        "id": "rule",
+        "label": "Make the full cost a standing rule",
+        "description": "Use 14 energy; gain loyalty and judgment while accepting slower public momentum.",
+        "effects": {
+          "energy": -14,
+          "loyalty": 5,
+          "skillXp": {
+            "business": 20
+          },
+          "reputation": -2,
+          "flags": [
+            "uw-plan-rule"
+          ]
+        },
+        "result": "The crew sees the recovery page attached to every new discussion. Its value is that it cannot be quietly omitted."
+      },
+      {
+        "id": "share",
+        "label": "Pay a share for the crew's patience",
+        "description": "Spend $1,000; gain loyalty and acknowledge the time the proposal consumed.",
+        "effects": {
+          "cash": -1000,
+          "loyalty": 6,
+          "relationships": {
+            "mara": 3
+          }
+        },
+        "result": "The crew receives a share without being asked to call the proposal a success. Mara approves the distinction."
+      },
+      {
+        "id": "rest",
+        "label": "Put the next proposal aside",
+        "description": "Spend nothing; recover some energy and accept lost influence.",
+        "effects": {
+          "energy": 8,
+          "influence": -3
+        },
+        "result": "You leave the next proposal unopened. The pause gives the crew a quieter evening and you a smaller horizon."
+      },
+      {
+        "id": "backed",
+        "label": "Show the account to a trusted patron",
+        "description": "Requires a settled reserve. Use 10 energy for influence and Ivo's respect.",
+        "requiredFlag": "uw-plan-backed",
+        "effects": {
+          "energy": -10,
+          "influence": 7,
+          "relationships": {
+            "ivo": 4
+          },
+          "heat": 3
+        },
+        "result": "Ivo recognizes an account with its unpleasant page intact. The introduction brings influence and new attention."
+      }
+    ]
+  },
+  {
+    "id": "uw-open-post",
+    "title": "An empty name beside the night",
+    "category": "Defense",
+    "text": "Your lieutenant finds a gap in the neighborhood roster. Nobody was asked to cover it because everyone assumed someone else had already agreed.",
+    "image": "/assets/underworld-conflict.webp",
+    "weight": 5,
+    "requiresCrew": true,
+    "minRep": 90,
+    "forbiddenFlag": "uw-post-seen",
+    "choices": [
+      {
+        "id": "relief",
+        "label": "Fund a fair temporary roster",
+        "description": "Spend $700 and 6 energy; gain loyalty before hearing how the gap appeared.",
+        "effects": {
+          "cash": -700,
+          "energy": -6,
+          "loyalty": 3,
+          "flags": [
+            "uw-post-seen",
+            "uw-post-committed"
+          ]
+        },
+        "result": "You cover the extra commitment without making it an unpaid favor. The lieutenant brings the original roster.",
+        "followUp": "uw-post-roster"
+      },
+      {
+        "id": "judgment",
+        "label": "Let the lieutenant settle it",
+        "description": "Use 8 energy and one healthy crew member. A bad call divides the crew and requires injury recovery.",
+        "requiredCrew": 1,
+        "chance": 61,
+        "skill": "combat",
+        "effects": {
+          "energy": -8,
+          "influence": 4,
+          "loyalty": 2,
+          "flags": [
+            "uw-post-seen",
+            "uw-post-committed"
+          ]
+        },
+        "failure": {
+          "energy": -8,
+          "loyalty": -5,
+          "heat": 5,
+          "injuredCrew": true,
+          "flags": [
+            "uw-post-seen",
+            "uw-post-committed"
+          ]
+        },
+        "result": "The lieutenant resolves the immediate confusion. You still need to decide who carries the next gap.",
+        "failureResult": "The confused roster meets a rival challenge. One member returns hurt, and the gap becomes an argument about authority.",
+        "followUp": "uw-post-roster",
+        "failureFollowUp": "uw-post-dispute"
+      },
+      {
+        "id": "reduce",
+        "label": "Reduce the neighborhood promise",
+        "description": "Spend nothing; lose influence and some standing rather than promise unsupported coverage.",
+        "effects": {
+          "influence": -4,
+          "reputation": -3,
+          "flags": [
+            "uw-post-seen"
+          ]
+        },
+        "result": "You tell the neighborhood your promise was too broad. The smaller account is uncomfortable and honest."
+      }
+    ]
+  },
+  {
+    "id": "uw-post-roster",
+    "title": "The volunteer who always says yes",
+    "category": "Defense",
+    "text": "The same crew member has volunteered again. Your lieutenant calls it initiative, but the rest of the roster looks suspiciously rested.",
+    "image": "/assets/crew-7.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-post-committed",
+    "choices": [
+      {
+        "id": "fair",
+        "label": "Pay to share the commitment",
+        "description": "Spend $550; gain loyalty and record a fairer roster.",
+        "effects": {
+          "cash": -550,
+          "loyalty": 4,
+          "flags": [
+            "uw-post-fair"
+          ]
+        },
+        "result": "The commitment stops depending on one person's loyalty. The lieutenant waits for your judgment on the rule.",
+        "followUp": "uw-post-morning"
+      },
+      {
+        "id": "personal",
+        "label": "Take the extra commitment yourself",
+        "description": "Use 20 energy; gain loyalty and influence while exhausting your own reserve.",
+        "effects": {
+          "energy": -20,
+          "loyalty": 3,
+          "influence": 3
+        },
+        "result": "Your name fills the empty space. By morning, you understand why the volunteer had stopped speaking.",
+        "followUp": "uw-post-morning"
+      },
+      {
+        "id": "smaller",
+        "label": "Keep the roster smaller",
+        "description": "Spend nothing; accept lost influence and end the review.",
+        "effects": {
+          "influence": -3,
+          "reputation": -2
+        },
+        "result": "You promise only the roster you can support. The empty space becomes a limit everyone can see."
+      }
+    ]
+  },
+  {
+    "id": "uw-post-dispute",
+    "title": "Authority without an account",
+    "category": "Defense",
+    "text": "Your lieutenant wants the refusal punished. Mara asks why the commitment had no wage, no end, and no agreed owner.",
+    "image": "/assets/crew-4.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-post-committed",
+    "choices": [
+      {
+        "id": "debt",
+        "label": "Pay what the promise omitted",
+        "description": "Spend $950; recover loyalty and admit the original roster was unfair.",
+        "effects": {
+          "cash": -950,
+          "loyalty": 6,
+          "flags": [
+            "uw-post-fair"
+          ]
+        },
+        "result": "The refused commitment receives a proper account. Mara asks whether this will matter beyond tonight.",
+        "followUp": "uw-post-morning"
+      },
+      {
+        "id": "limit",
+        "label": "Correct the lieutenant's authority",
+        "description": "Use 12 energy; trade influence for loyalty and Mara's trust.",
+        "effects": {
+          "energy": -12,
+          "influence": -3,
+          "loyalty": 4,
+          "relationships": {
+            "mara": 3
+          }
+        },
+        "result": "You remove the expectation of unpaid loyalty. The lieutenant accepts the limit without celebrating it.",
+        "followUp": "uw-post-morning"
+      },
+      {
+        "id": "end",
+        "label": "End the unsupported commitment",
+        "description": "Spend nothing; accept lost standing and crew disappointment.",
+        "effects": {
+          "reputation": -5,
+          "loyalty": -2,
+          "influence": -2
+        },
+        "result": "You cancel the commitment and the argument together. Nobody confuses the cancellation with a fair account."
+      }
+    ]
+  },
+  {
+    "id": "uw-post-morning",
+    "title": "What held through the night",
+    "category": "Defense",
+    "text": "By morning, the crew can explain the roster without looking at you. Your lieutenant asks whether that clarity deserves a place in the next plan.",
+    "image": "/assets/underworld-map.webp",
+    "weight": 1,
+    "followUpOnly": true,
+    "requiredFlag": "uw-post-committed",
+    "choices": [
+      {
+        "id": "rule",
+        "label": "Keep clear limits in every roster",
+        "description": "Use 10 energy; gain loyalty, influence, and practical judgment.",
+        "effects": {
+          "energy": -10,
+          "loyalty": 4,
+          "influence": 4,
+          "skillXp": {
+            "combat": 16
+          },
+          "flags": [
+            "uw-post-rule"
+          ]
+        },
+        "result": "The next roster names its cost and its owner. The crew can trust a commitment without reading your mood."
+      },
+      {
+        "id": "bonus",
+        "label": "Recognize the night's patience",
+        "description": "Pay $750; gain loyalty and reputation without enlarging the next promise.",
+        "effects": {
+          "cash": -750,
+          "loyalty": 5,
+          "reputation": 6
+        },
+        "result": "The crew receives a quiet bonus. Your lieutenant keeps the next promise the same size."
+      },
+      {
+        "id": "pause",
+        "label": "Leave the next commitment smaller",
+        "description": "Spend nothing; recover energy and accept a smaller influence.",
+        "effects": {
+          "energy": 6,
+          "influence": -3
+        },
+        "result": "You leave room in the next roster. The quiet morning is allowed to stay quiet."
+      }
+    ]
+  },
+  {
+    "id": "uw-border-memorial",
+    "title": "Flowers on an unsettled corner",
+    "category": "Rival pressure",
+    "text": "Neighbors leave flowers for a resident hurt during a rival dispute. Both organizations want their names on the community fund; the family wants neither speech.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 4,
+    "minRep": 100,
+    "forbiddenFlag": "uw-memorial-seen",
+    "choices": [
+      {
+        "id": "anonymous",
+        "label": "Give without attaching your name",
+        "description": "Pay $700; reduce heat and gain modest influence through quiet support.",
+        "effects": {
+          "cash": -700,
+          "heat": -5,
+          "influence": 3,
+          "flags": [
+            "uw-memorial-seen"
+          ]
+        },
+        "result": "The fund receives the payment without your name. The family can accept help without endorsing a rivalry."
+      },
+      {
+        "id": "visible",
+        "label": "Ask the community to judge the gift",
+        "description": "Use 10 energy. Respectful words may earn standing; a poor appeal raises heat.",
+        "chance": 57,
+        "skill": "charisma",
+        "effects": {
+          "energy": -10,
+          "reputation": 9,
+          "heat": 2,
+          "flags": [
+            "uw-memorial-seen"
+          ]
+        },
+        "failure": {
+          "energy": -10,
+          "reputation": -7,
+          "heat": 5,
+          "flags": [
+            "uw-memorial-seen"
+          ]
+        },
+        "result": "You let the family define the gesture. The neighborhood remembers that restraint alongside your name.",
+        "failureResult": "The appeal sounds like a claim on someone else's grief. The family ends the conversation."
+      },
+      {
+        "id": "private",
+        "label": "Respect the family's privacy",
+        "description": "Spend nothing; lose a small chance for influence and keep the corner quiet.",
+        "effects": {
+          "heat": -2,
+          "influence": -1,
+          "flags": [
+            "uw-memorial-seen"
+          ]
+        },
+        "result": "You leave no public promise at the corner. The flowers remain the family's statement."
+      }
+    ]
+  },
+  {
+    "id": "uw-waiting-ambulance",
+    "title": "The transport nobody budgeted for",
+    "category": "Crew command",
+    "text": "A crew member's recovery appointment is across the city. The commitment was approved; the trip home never appeared in the account.",
+    "image": "/assets/crew-5.webp",
+    "weight": 4,
+    "requiresCrew": true,
+    "forbiddenFlag": "uw-transport-seen",
+    "choices": [
+      {
+        "id": "pay",
+        "label": "Cover the whole appointment",
+        "description": "Spend $450; gain loyalty and improve your own wellbeing through a quieter day.",
+        "effects": {
+          "cash": -450,
+          "loyalty": 4,
+          "health": 5,
+          "flags": [
+            "uw-transport-seen"
+          ]
+        },
+        "result": "You cover the overlooked cost without asking the crew member to make it a favor. The account is finally complete."
+      },
+      {
+        "id": "join",
+        "label": "Make time to go with them",
+        "description": "Use 16 energy; gain loyalty and Mara's respect at the cost of your schedule.",
+        "effects": {
+          "energy": -16,
+          "loyalty": 5,
+          "relationships": {
+            "mara": 3
+          },
+          "flags": [
+            "uw-transport-seen"
+          ]
+        },
+        "result": "The trip takes most of your afternoon. The crew notices that your promises sometimes include your time."
+      },
+      {
+        "id": "reschedule",
+        "label": "Reduce today's commitments",
+        "description": "Spend nothing; gain a little loyalty and lose standing for the cancellations.",
+        "effects": {
+          "loyalty": 1,
+          "reputation": -4,
+          "flags": [
+            "uw-transport-seen"
+          ]
+        },
+        "result": "You cancel other meetings so nobody has to pretend the appointment fits. Your public timetable becomes smaller."
+      }
+    ]
+  },
+  {
+    "id": "uw-cold-generator",
+    "title": "A backup that was never tested",
+    "category": "Supply chain",
+    "text": "A depot loses power and discovers its backup was only a line in the invoice. Your suppliers want the promised reliability; your books already paid for it.",
+    "image": "/assets/warehouse.webp",
+    "weight": 4,
+    "requiresBusiness": true,
+    "forbiddenFlag": "uw-generator-seen",
+    "choices": [
+      {
+        "id": "replace",
+        "label": "Pay for reliable temporary service",
+        "description": "Spend $800; recover standing and lower heat while the invoice is reviewed.",
+        "effects": {
+          "cash": -800,
+          "reputation": 6,
+          "heat": -3,
+          "flags": [
+            "uw-generator-seen"
+          ]
+        },
+        "result": "The suppliers receive the service you promised. The invoice remains a separate, less urgent argument."
+      },
+      {
+        "id": "challenge",
+        "label": "Challenge the missing service charge",
+        "description": "Use 12 energy for a possible $1,000 refund. Failure costs standing and heat.",
+        "chance": 60,
+        "skill": "business",
+        "effects": {
+          "energy": -12,
+          "cash": 1000,
+          "heat": 2,
+          "flags": [
+            "uw-generator-seen"
+          ]
+        },
+        "failure": {
+          "energy": -12,
+          "reputation": -5,
+          "heat": 5,
+          "flags": [
+            "uw-generator-seen"
+          ]
+        },
+        "result": "The supplier refunds the unsupported charge. You still carry the lost day in your own reputation.",
+        "failureResult": "The invoice dispute stays open while other suppliers wait. Your insistence cannot make the backup real."
+      },
+      {
+        "id": "limit",
+        "label": "Suspend the affected promises",
+        "description": "Spend nothing; lose influence and standing instead of extending the unreliable service.",
+        "effects": {
+          "influence": -3,
+          "reputation": -3,
+          "flags": [
+            "uw-generator-seen"
+          ]
+        },
+        "result": "You tell the suppliers the limit plainly. The depot remains quiet until its account matches reality."
+      }
+    ]
+  },
+  {
+    "id": "uw-payroll-gap",
+    "title": "The share between two paydays",
+    "category": "Business pressure",
+    "text": "A delayed client payment leaves your staff watching the payroll account. Lin says reserves exist for exactly the evening when they stop looking convenient.",
+    "image": "/assets/business-2.webp",
+    "weight": 5,
+    "requiresBusiness": true,
+    "forbiddenFlag": "uw-payroll-seen",
+    "choices": [
+      {
+        "id": "reserve",
+        "label": "Use your personal reserve",
+        "description": "Pay $1,200; earn loyalty and Lin's trust rather than another promise of income.",
+        "effects": {
+          "cash": -1200,
+          "loyalty": 5,
+          "relationships": {
+            "lin": 4
+          },
+          "flags": [
+            "uw-payroll-seen"
+          ]
+        },
+        "result": "Payroll clears from your reserve. Lin records who carried the client's delay."
+      },
+      {
+        "id": "client",
+        "label": "Ask the client to settle today",
+        "description": "Use 10 energy for a possible $900 payment. Refusal damages standing with staff.",
+        "chance": 58,
+        "skill": "charisma",
+        "effects": {
+          "energy": -10,
+          "cash": 900,
+          "heat": 2,
+          "flags": [
+            "uw-payroll-seen"
+          ]
+        },
+        "failure": {
+          "energy": -10,
+          "loyalty": -5,
+          "reputation": -4,
+          "flags": [
+            "uw-payroll-seen"
+          ]
+        },
+        "result": "The client settles part of the account. Staff receives an answer with a number attached.",
+        "failureResult": "The client offers another date. Staff hears how much your assurance depended on someone else."
+      },
+      {
+        "id": "admit",
+        "label": "Explain the shortfall honestly",
+        "description": "Spend nothing; accept lost loyalty and influence rather than promise unavailable cash.",
+        "effects": {
+          "loyalty": -3,
+          "influence": -2,
+          "flags": [
+            "uw-payroll-seen"
+          ]
+        },
+        "result": "You show the empty space in the account. Nobody thanks you, but nobody receives a false guarantee."
+      }
+    ]
+  },
+  {
+    "id": "uw-double-counted-invoice",
+    "title": "A profit counted in two rooms",
+    "category": "Intelligence",
+    "text": "Mara notices that two brokers have each included the same future payment in their offers. One of your promising opportunities exists only on paper.",
+    "image": "/assets/item-20.webp",
+    "weight": 4,
+    "minRep": 100,
+    "forbiddenFlag": "uw-invoice-seen",
+    "choices": [
+      {
+        "id": "audit",
+        "label": "Pay to reconcile both accounts",
+        "description": "Spend $500 and 6 energy; gain judgment and reduce heat.",
+        "effects": {
+          "cash": -500,
+          "energy": -6,
+          "heat": -4,
+          "skillXp": {
+            "business": 18
+          },
+          "flags": [
+            "uw-invoice-seen"
+          ]
+        },
+        "result": "The duplicated payment disappears from both projections. Your smaller plan is the one that can survive a question."
+      },
+      {
+        "id": "broker",
+        "label": "Ask both brokers to explain together",
+        "description": "Use 12 energy. Their answer may earn influence; a poor meeting damages Mara's trust.",
+        "chance": 63,
+        "skill": "streetSmarts",
+        "effects": {
+          "energy": -12,
+          "influence": 5,
+          "relationships": {
+            "mara": 2
+          },
+          "flags": [
+            "uw-invoice-seen"
+          ]
+        },
+        "failure": {
+          "energy": -12,
+          "heat": 4,
+          "relationships": {
+            "mara": -3
+          },
+          "flags": [
+            "uw-invoice-seen"
+          ]
+        },
+        "result": "Neither broker can defend the same payment twice. Your questions earn a more careful audience next time.",
+        "failureResult": "The meeting becomes a dispute about your accusation. Mara wishes you had settled the numbers first."
+      },
+      {
+        "id": "drop",
+        "label": "Drop both projected payments",
+        "description": "Spend nothing; lose influence and accept a more conservative account.",
+        "effects": {
+          "influence": -2,
+          "reputation": -2,
+          "flags": [
+            "uw-invoice-seen"
+          ]
+        },
+        "result": "You stop spending tomorrow's duplicated money in today's plans. Both brokers lose their leverage over the projection."
+      }
+    ]
+  },
+  {
+    "id": "uw-distant-promise",
+    "title": "The far edge of your reputation",
+    "category": "Supply chain",
+    "text": "An introduction in another district could enlarge your name. Rafe asks how many ordinary promises you would neglect to keep that distant one impressive.",
+    "image": "/assets/underworld-map.webp",
+    "weight": 4,
+    "minRep": 220,
+    "forbiddenFlag": "uw-distant-seen",
+    "choices": [
+      {
+        "id": "back",
+        "label": "Back the introduction with a reserve",
+        "description": "Pay $1,400 and 10 energy; gain influence and public attention.",
+        "effects": {
+          "cash": -1400,
+          "energy": -10,
+          "influence": 7,
+          "heat": 4,
+          "flags": [
+            "uw-distant-seen"
+          ]
+        },
+        "result": "The distant introduction arrives with a reserve behind it. Rafe accepts the cost because you named it before the applause."
+      },
+      {
+        "id": "limited",
+        "label": "Offer a smaller first commitment",
+        "description": "Use 14 energy; gain standing and practical judgment without a cash stake.",
+        "effects": {
+          "energy": -14,
+          "reputation": 9,
+          "skillXp": {
+            "business": 14
+          },
+          "influence": 2,
+          "flags": [
+            "uw-distant-seen"
+          ]
+        },
+        "result": "You make the introduction smaller than the host expected. It survives because nobody has to invent what you can support."
+      },
+      {
+        "id": "home",
+        "label": "Keep your promises close to home",
+        "description": "Spend nothing; surrender some influence and lower heat.",
+        "effects": {
+          "influence": -3,
+          "heat": -3,
+          "flags": [
+            "uw-distant-seen"
+          ]
+        },
+        "result": "The distant host finds another guest. Rafe returns to the promises you can reach before morning."
+      }
+    ]
+  },
+  {
+    "id": "uw-district-veto",
+    "title": "The council will not repeat your name",
+    "category": "Rival pressure",
+    "text": "A neighborhood council refuses to endorse either organization in a rival dispute. Your lieutenant calls it disloyalty; Vale calls it the council's right to have its own account.",
+    "image": "/assets/district-old-quarter.webp",
+    "weight": 4,
+    "minRep": 150,
+    "forbiddenFlag": "uw-veto-seen",
+    "choices": [
+      {
+        "id": "listen",
+        "label": "Hear the council's conditions",
+        "description": "Use 14 energy; gain influence and Vale's trust at a small crew loyalty cost.",
+        "effects": {
+          "energy": -14,
+          "influence": 5,
+          "relationships": {
+            "vale": 4
+          },
+          "loyalty": -2,
+          "flags": [
+            "uw-veto-seen"
+          ]
+        },
+        "result": "The council asks for fewer claims made in its name. Vale respects your willingness to hear an independent answer."
+      },
+      {
+        "id": "case",
+        "label": "Make a restrained public case",
+        "description": "Use 10 energy. It may build standing; a rejected appeal raises heat and costs influence.",
+        "chance": 56,
+        "skill": "charisma",
+        "effects": {
+          "energy": -10,
+          "reputation": 11,
+          "heat": 3,
+          "flags": [
+            "uw-veto-seen"
+          ]
+        },
+        "failure": {
+          "energy": -10,
+          "influence": -4,
+          "heat": 6,
+          "flags": [
+            "uw-veto-seen"
+          ]
+        },
+        "result": "Some residents accept your account without endorsing the dispute. Your public name grows within that limit.",
+        "failureResult": "The council repeats its refusal. Your lieutenant hears a public answer you cannot call an endorsement."
+      },
+      {
+        "id": "accept",
+        "label": "Accept the independent answer",
+        "description": "Spend nothing; lower heat while accepting a smaller influence.",
+        "effects": {
+          "heat": -3,
+          "influence": -3,
+          "flags": [
+            "uw-veto-seen"
+          ]
+        },
+        "result": "You stop asking the council to carry your argument. Its silence belongs to the neighborhood again."
+      }
+    ]
+  },
+  {
+    "id": "uw-lieutenant-absence",
+    "title": "A lieutenant's empty place",
+    "category": "Defense",
+    "text": "A trusted lieutenant asks for a day to settle a family matter. The rest of the crew wants to know whether trust includes permission to be absent.",
+    "image": "/assets/crew-9.webp",
+    "weight": 4,
+    "requiresCrew": true,
+    "minRep": 110,
+    "forbiddenFlag": "uw-absence-seen",
+    "choices": [
+      {
+        "id": "fund",
+        "label": "Cover the absence properly",
+        "description": "Pay $600; gain loyalty and a little standing for keeping a human promise.",
+        "effects": {
+          "cash": -600,
+          "loyalty": 5,
+          "reputation": 4,
+          "flags": [
+            "uw-absence-seen"
+          ]
+        },
+        "result": "You cover the missing commitment without making the family matter a debt. The crew remembers the permission."
+      },
+      {
+        "id": "self",
+        "label": "Carry the extra work yourself",
+        "description": "Use 22 energy; gain loyalty and influence at a heavy personal cost.",
+        "effects": {
+          "energy": -22,
+          "loyalty": 4,
+          "influence": 3,
+          "flags": [
+            "uw-absence-seen"
+          ]
+        },
+        "result": "You take the empty place for a day. The lieutenant returns without being asked to praise the sacrifice."
+      },
+      {
+        "id": "reduce",
+        "label": "Reduce the day's commitments",
+        "description": "Spend nothing; gain a little loyalty and lose standing for the reduced promise.",
+        "effects": {
+          "loyalty": 2,
+          "reputation": -5,
+          "influence": -2,
+          "flags": [
+            "uw-absence-seen"
+          ]
+        },
+        "result": "The day's promise becomes smaller. Your lieutenant leaves knowing that permission was more than a word."
+      }
+    ]
+  },
+  {
+    "id": "uw-two-reports",
+    "title": "Two reports with the same confidence",
+    "category": "Intelligence",
+    "text": "One contact says a rival is ready to negotiate; another expects more pressure. Both reports are sincere, and each describes a different room.",
+    "image": "/assets/underworld-map.webp",
+    "weight": 5,
+    "minRep": 130,
+    "forbiddenFlag": "uw-reports-seen",
+    "choices": [
+      {
+        "id": "review",
+        "label": "Pay to compare the accounts",
+        "description": "Spend $650 and 8 energy; lower heat and improve judgment.",
+        "effects": {
+          "cash": -650,
+          "energy": -8,
+          "heat": -4,
+          "skillXp": {
+            "streetSmarts": 18
+          },
+          "flags": [
+            "uw-reports-seen"
+          ]
+        },
+        "result": "The reports disagree about intention, not facts. You stop treating either contact's confidence as a guarantee."
+      },
+      {
+        "id": "meeting",
+        "label": "Ask for a limited conversation",
+        "description": "Use 12 energy. A useful meeting earns influence; a misread invitation raises heat.",
+        "chance": 62,
+        "skill": "charisma",
+        "effects": {
+          "energy": -12,
+          "influence": 5,
+          "heat": -2,
+          "flags": [
+            "uw-reports-seen"
+          ]
+        },
+        "failure": {
+          "energy": -12,
+          "heat": 7,
+          "reputation": -4,
+          "flags": [
+            "uw-reports-seen"
+          ]
+        },
+        "result": "The conversation reveals an uncertain rival account. That is less dramatic and more useful than either prediction.",
+        "failureResult": "The invitation reaches an audience expecting a concession. You leave with a larger public misunderstanding."
+      },
+      {
+        "id": "wait",
+        "label": "Keep both reports provisional",
+        "description": "Spend nothing; lose some momentum for influence and avoid a new claim.",
+        "effects": {
+          "influence": -2,
+          "heat": -2,
+          "flags": [
+            "uw-reports-seen"
+          ]
+        },
+        "result": "You leave both reports marked uncertain. The next decision can still use either without defending it as truth."
+      }
+    ]
+  },
+  {
+    "id": "uw-victory-bonus",
+    "title": "A bonus before the next argument",
+    "category": "Crew command",
+    "text": "Your crew celebrates a rival victory while your accounts look ahead to the next bill. Mara asks whether you want gratitude now or a reserve they can trust later.",
+    "image": "/assets/crew-8.webp",
+    "weight": 4,
+    "requiresCrew": true,
+    "minRep": 170,
+    "requiredFlag": "battle-won",
+    "forbiddenFlag": "uw-bonus-seen",
+    "choices": [
+      {
+        "id": "share",
+        "label": "Pay the promised crew share",
+        "description": "Spend $1,250; gain loyalty and reputation while shrinking your reserve.",
+        "effects": {
+          "cash": -1250,
+          "loyalty": 6,
+          "reputation": 7,
+          "flags": [
+            "uw-bonus-seen"
+          ]
+        },
+        "result": "The crew receives the share it expected. The smaller balance is the cost of making the promise real."
+      },
+      {
+        "id": "explain",
+        "label": "Explain a smaller share in person",
+        "description": "Spend $450 and 14 energy. An honest account may hold trust; a poor explanation loses loyalty.",
+        "chance": 60,
+        "skill": "charisma",
+        "effects": {
+          "energy": -14,
+          "cash": -450,
+          "loyalty": 3,
+          "flags": [
+            "uw-bonus-seen"
+          ]
+        },
+        "failure": {
+          "energy": -14,
+          "cash": -450,
+          "loyalty": -5,
+          "reputation": -3,
+          "flags": [
+            "uw-bonus-seen"
+          ]
+        },
+        "result": "The crew accepts the smaller share after seeing the reserve's purpose. Nobody calls the remaining cash free profit.",
+        "failureResult": "The smaller share arrives with an explanation the room cannot trust. Mara records the disappointment."
+      },
+      {
+        "id": "reserve",
+        "label": "Keep the reserve and accept dissent",
+        "description": "Spend nothing; lose loyalty and influence rather than pretend the crew agreed.",
+        "effects": {
+          "loyalty": -4,
+          "influence": -2,
+          "flags": [
+            "uw-bonus-seen"
+          ]
+        },
+        "result": "You keep the reserve. The crew keeps the right to disagree about whose promise it protects."
+      }
+    ]
+  },
+  {
+    "id": "uw-burned-reserve",
+    "title": "The reserve after the return",
+    "category": "Operation planning",
+    "text": "Your completed operation paid, but a broker, a supplier, and your crew each expect the same reserve to cover what comes next. Their combined expectations do not fit beside the money.",
+    "image": "/assets/underworld-operation.webp",
+    "weight": 4,
+    "minRep": 230,
+    "requiresCrew": true,
+    "requiredFlag": "operation-completed",
+    "forbiddenFlag": "uw-reserve-seen",
+    "choices": [
+      {
+        "id": "staff",
+        "label": "Put the crew's recovery first",
+        "description": "Spend $1,300; gain loyalty and Mara's trust while surrendering influence.",
+        "effects": {
+          "cash": -1300,
+          "loyalty": 6,
+          "influence": -2,
+          "relationships": {
+            "mara": 3
+          },
+          "flags": [
+            "uw-reserve-seen"
+          ]
+        },
+        "result": "The crew's claim receives a real account. The broker and supplier hear that the same dollar cannot carry three promises."
+      },
+      {
+        "id": "resize",
+        "label": "Renegotiate all three expectations",
+        "description": "Use 18 energy. Agreement earns influence; refusal costs $600 and crew trust.",
+        "chance": 55,
+        "skill": "business",
+        "effects": {
+          "energy": -18,
+          "influence": 6,
+          "heat": 2,
+          "flags": [
+            "uw-reserve-seen"
+          ]
+        },
+        "failure": {
+          "energy": -18,
+          "cash": -600,
+          "loyalty": -4,
+          "heat": 4,
+          "flags": [
+            "uw-reserve-seen"
+          ]
+        },
+        "result": "Each account becomes smaller. Your reserve survives because the promises finally share a limit.",
+        "failureResult": "Nobody wants the smaller account. You pay to close one expectation while the crew questions the others."
+      },
+      {
+        "id": "cancel",
+        "label": "Cancel the new commitments",
+        "description": "Spend nothing; lose standing and influence, and gain a little crew trust.",
+        "effects": {
+          "reputation": -7,
+          "influence": -4,
+          "loyalty": 1,
+          "flags": [
+            "uw-reserve-seen"
+          ]
+        },
+        "result": "You remove the commitments before someone else has to discover the missing reserve. Your next introduction will be quieter."
+      }
+    ]
+  },
+  {
+    "id": "uw-private-proposal",
+    "title": "The patron who wants the only word",
+    "category": "Truce",
+    "text": "A private patron offers to settle a rival's social grievance if every public account credits their intervention. Selene asks who will own your reputation afterward.",
+    "image": "/assets/district-crown-heights.webp",
+    "weight": 3,
+    "minRep": 550,
+    "districtId": "crown-heights",
+    "forbiddenFlag": "uw-patron-seen",
+    "choices": [
+      {
+        "id": "independent",
+        "label": "Pay for independent mediation",
+        "description": "Spend $1,800 and 10 energy; gain influence and Selene's trust while lowering heat.",
+        "effects": {
+          "cash": -1800,
+          "energy": -10,
+          "influence": 6,
+          "heat": -4,
+          "relationships": {
+            "selene": 4
+          },
+          "flags": [
+            "uw-patron-seen"
+          ]
+        },
+        "result": "The mediator hears both accounts without a patron's script. Selene respects the price of keeping your own voice."
+      },
+      {
+        "id": "terms",
+        "label": "Negotiate a shared public account",
+        "description": "Use 14 energy. Strong terms earn standing; refusal costs influence and attention.",
+        "chance": 58,
+        "skill": "charisma",
+        "effects": {
+          "energy": -14,
+          "reputation": 12,
+          "heat": 2,
+          "flags": [
+            "uw-patron-seen"
+          ]
+        },
+        "failure": {
+          "energy": -14,
+          "influence": -5,
+          "heat": 6,
+          "flags": [
+            "uw-patron-seen"
+          ]
+        },
+        "result": "The patron accepts a statement that includes your own judgment. The audience remembers more than one name.",
+        "failureResult": "The patron wanted your silence with their generosity. Your request becomes a story about ingratitude."
+      },
+      {
+        "id": "decline",
+        "label": "Decline the patron's settlement",
+        "description": "Spend nothing; surrender a little influence and keep your account independent.",
+        "effects": {
+          "influence": -3,
+          "relationships": {
+            "selene": 2
+          },
+          "flags": [
+            "uw-patron-seen"
+          ]
+        },
+        "result": "The patron takes the offer away. Selene sees a reputation that still belongs to its owner."
+      }
+    ]
+  },
+  {
+    "id": "uw-port-curfew",
+    "title": "A shorter working tide",
+    "category": "Supply chain",
+    "text": "Portside's public schedule changes, cutting the hours your suppliers expected. Rafe asks whether your commitments can become smaller before your excuses become larger.",
+    "image": "/assets/district-portside.webp",
+    "weight": 4,
+    "minRep": 100,
+    "districtId": "portside",
+    "forbiddenFlag": "uw-curfew-seen",
+    "choices": [
+      {
+        "id": "cover",
+        "label": "Cover the revised service cost",
+        "description": "Spend $950; gain standing and Rafe's trust without enlarging the schedule.",
+        "effects": {
+          "cash": -950,
+          "reputation": 7,
+          "relationships": {
+            "rafe": 3
+          },
+          "flags": [
+            "uw-curfew-seen"
+          ]
+        },
+        "result": "The suppliers receive a smaller schedule with a paid account. Rafe can repeat it without inventing another hour."
+      },
+      {
+        "id": "rework",
+        "label": "Rework the commitments in person",
+        "description": "Use 18 energy; gain influence and business experience through a smaller plan.",
+        "effects": {
+          "energy": -18,
+          "influence": 4,
+          "skillXp": {
+            "business": 16
+          },
+          "heat": -2,
+          "flags": [
+            "uw-curfew-seen"
+          ]
+        },
+        "result": "You remove the promises the shorter day cannot carry. The account loses drama and gains a workable limit."
+      },
+      {
+        "id": "pause",
+        "label": "Pause the disputed appointments",
+        "description": "Spend nothing; lose reputation and lower heat for the quiet day.",
+        "effects": {
+          "reputation": -5,
+          "heat": -3,
+          "flags": [
+            "uw-curfew-seen"
+          ]
+        },
+        "result": "The tide changes without your extra promises attached. The missed appointments cost standing rather than another unpaid obligation."
+      }
+    ]
+  },
+  {
+    "id": "uw-foundry-overtime",
+    "title": "A favor that became a wage",
+    "category": "Business pressure",
+    "text": "The Red Foundry calls extra work a favor among neighbors. Lin's staff calls it a wage nobody has offered to pay. Your support could give either account more weight.",
+    "image": "/assets/district-ironworks.webp",
+    "weight": 4,
+    "minRep": 350,
+    "districtId": "ironworks",
+    "requiresBusiness": true,
+    "forbiddenFlag": "uw-overtime-seen",
+    "choices": [
+      {
+        "id": "pay",
+        "label": "Back the staff's paid account",
+        "description": "Spend $1,500; gain loyalty and Lin's trust at the cost of public attention.",
+        "effects": {
+          "cash": -1500,
+          "loyalty": 6,
+          "relationships": {
+            "lin": 5
+          },
+          "heat": 3,
+          "flags": [
+            "uw-overtime-seen"
+          ]
+        },
+        "result": "The extra work receives a wage in your account. Lin respects that your support carried a number rather than a slogan."
+      },
+      {
+        "id": "mediate",
+        "label": "Ask both sides to name the cost",
+        "description": "Use 16 energy. Agreement earns influence; refusal damages standing and loyalty.",
+        "chance": 54,
+        "skill": "charisma",
+        "effects": {
+          "energy": -16,
+          "influence": 6,
+          "heat": -2,
+          "flags": [
+            "uw-overtime-seen"
+          ]
+        },
+        "failure": {
+          "energy": -16,
+          "reputation": -6,
+          "loyalty": -3,
+          "heat": 4,
+          "flags": [
+            "uw-overtime-seen"
+          ]
+        },
+        "result": "The meeting ends with a cost both sides can name. Your influence grows because the favor has finally become an account.",
+        "failureResult": "Neither side accepts the other's account. Your staff hears how much confidence you placed in a difficult room."
+      },
+      {
+        "id": "limit",
+        "label": "Keep your business commitments smaller",
+        "description": "Spend nothing; lose influence and some standing while avoiding an unpaid promise.",
+        "effects": {
+          "influence": -4,
+          "reputation": -3,
+          "flags": [
+            "uw-overtime-seen"
+          ]
+        },
+        "result": "You give the district fewer commitments to argue over. Lin accepts the limit without calling it leadership."
+      }
+    ]
+  },
+  {
+    "id": "uw-skyline-quiet",
+    "title": "A celebration heard downstairs",
+    "category": "Operation planning",
+    "text": "A patron offers to celebrate your Meridian success in a private tower. Your crew asks whether the story will mention the people who carried its uncertainty.",
+    "image": "/assets/underworld-operation.webp",
+    "weight": 3,
+    "minRep": 550,
+    "requiredFlag": "heist-completed",
+    "forbiddenFlag": "uw-skyline-seen",
+    "choices": [
+      {
+        "id": "crew",
+        "label": "Fund a quiet crew celebration",
+        "description": "Spend $2,000; gain loyalty and Selene's trust without a large public claim.",
+        "effects": {
+          "cash": -2000,
+          "loyalty": 7,
+          "relationships": {
+            "selene": 4
+          },
+          "heat": -3,
+          "flags": [
+            "uw-skyline-seen"
+          ]
+        },
+        "result": "The crew celebrates the same success the tower wanted to describe. Selene notices who received the invitation first."
+      },
+      {
+        "id": "public",
+        "label": "Accept the tower's public recognition",
+        "description": "Use 14 energy; gain reputation and influence while raising heat and losing some loyalty.",
+        "effects": {
+          "energy": -14,
+          "reputation": 15,
+          "influence": 5,
+          "heat": 8,
+          "loyalty": -3,
+          "flags": [
+            "uw-skyline-seen"
+          ]
+        },
+        "result": "Your name fills the tower's account of the evening. The crew finds itself in the smaller print."
+      },
+      {
+        "id": "quiet",
+        "label": "Let the achievement stand quietly",
+        "description": "Spend nothing; lower heat and surrender a little influence.",
+        "effects": {
+          "heat": -4,
+          "influence": -2,
+          "flags": [
+            "uw-skyline-seen"
+          ]
+        },
+        "result": "You leave the tower without a new story to defend. The achievement remains real without another audience."
+      }
+    ]
+  },
+  {
+    "id": "uw-mara-last-chair",
+    "title": "The last chair at Mara's table",
+    "category": "Truce",
+    "text": "Mara has invited two rival intermediaries to discuss a small neighborhood debt. The last chair is yours, if you can arrive without making the entire meeting about your rise.",
+    "image": "/assets/business-1.webp",
+    "weight": 4,
+    "minRep": 120,
+    "maxHeat": 55,
+    "forbiddenFlag": "uw-chair-seen",
+    "choices": [
+      {
+        "id": "listen",
+        "label": "Take the chair and listen first",
+        "description": "Use 16 energy; gain influence and Mara's trust while keeping the meeting quiet.",
+        "effects": {
+          "energy": -16,
+          "influence": 4,
+          "relationships": {
+            "mara": 5
+          },
+          "heat": -3,
+          "flags": [
+            "uw-chair-seen"
+          ]
+        },
+        "result": "You hear a debt small enough to settle without a legend attached. Mara includes your judgment in the final account."
+      },
+      {
+        "id": "pay",
+        "label": "Offer to cover the neighborhood debt",
+        "description": "Spend $1,100; gain standing and influence along with a little attention.",
+        "effects": {
+          "cash": -1100,
+          "reputation": 9,
+          "influence": 3,
+          "heat": 3,
+          "flags": [
+            "uw-chair-seen"
+          ]
+        },
+        "result": "The debt closes with a payment, not a claim of victory. Your generosity still makes your name more visible."
+      },
+      {
+        "id": "decline",
+        "label": "Leave the chair for another voice",
+        "description": "Spend nothing; surrender influence and let Mara keep the meeting small.",
+        "effects": {
+          "influence": -2,
+          "relationships": {
+            "mara": 1
+          },
+          "flags": [
+            "uw-chair-seen"
+          ]
+        },
+        "result": "Mara finds another guest for the chair. The neighborhood debt does not need your entire organization to have an ending."
+      }
+    ]
   }
 ]

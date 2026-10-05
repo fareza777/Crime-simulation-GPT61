@@ -1,43 +1,51 @@
-# Verification record — BLACKLINE 1.0.0
+# Verification record — BLACKLINE 1.1.0
 
-Verified on 3–4 October 2026. The report describes the local MVP, without claiming a published store release or testing on every physical phone.
+Verified on 5 October 2026. This records the delivered local build, not a published Play release or a claim that every physical phone has been tested.
 
-## Automated game checks
+## Game rules and saves
 
-`npm test`: **220 passed**, across five suites. Coverage includes the real catalogue quantities/references, unique items/assets, events with usable resource-free exits, deterministic job/event outcomes, costs, skill progression, crew payroll/loyalty/injuries, passive income, Heat/police/custody, contacts, territory, safehouse, once-only quest rewards and the staged heist.
+`npm test`: **304 passed**, across **10 suites**. These cover the catalogue (5 districts, 15 zones, 5 rival organizations, 30 activities, 132 events, 11 crew, 15 businesses, 40 items and 38 quests), existing jobs/Heat/police/jail/progression, the four-stage Meridian heist, and three repeatable three-stage operations.
 
-Save validation tests cover finite/ranged values, unknown catalogue references, checksum corruption, backup recovery, bad settings, import size limits, serialized concurrent saves, raw v1 migration, incompatible pending flows, custody/heist consistency and no overwrite from rejected imports. Disabled ads never report completion or create rewards. Audio tests check noise based sources and ambient/background cleanup.
+Strategy cases exercise attack previews and resource costs, three tactical rounds, morale/exposure/injury/fatigue, retreat, committed crew locks, operation planning and setbacks, equipment and skill requirements, rival retaliation, supply connectivity, lieutenants, fortification, truces, agendas, difficulty, daily income/upkeep and capped supply claims. Validation rejects forged, malformed or conflicting pending states. Old v1 saves without strategy migrate without losing their story. New catalogue zone/rival IDs still require an explicit migration; see the expansion guide.
 
-## Browser gameplay
+The independent audit also explored 46,656 operation combinations and checked the UI against the real selectors. Demonstrated issues were repaired: restoring owned-zone control became accessible, map ownership rings stopped covering labels, and the Force approach now describes its actual momentum benefit. Encounter choices expose energy, momentum/progress, morale/exposure/suspicion and injury implications, with concise optional setback/withdrawal help.
 
-`npm run test:e2e`: **15 passed, 1 expected skip**. The skipped desktop copy of the phone-only width test is intentional. Projects use a 1440 × 1000 desktop and a Pixel 7 style 393 × 851 phone viewport.
+Native cache migration tests cover retiring a legacy worker, preserving unrelated storage, blocking cached application scripts during deferred cleanup, reloading despite a controller that disappears during cleanup, clean installs, and a recoverable retry screen even before an HTML element exists. Preferences, game saves, settings and purchase ownership are never cleared by that migration.
 
-Verified journeys: creation → prepared job → event → reload/continue; recovery from damaged settings; five navigation screens; persistent settings; recruitment and loyalty; business purchase/day income/payroll; skill training; main/side quest claims; a real downloaded-save deletion/import round trip; disclosed bail and custody exit; selected crew and all four Meridian stages with a reload midway and once-only payout.
+## Browser journeys and phone layout
 
-Additional menu regression checks cover widths 320, 360, 393 and 412 pixels. Every menu action and the actual title text stay inside the viewport. Dashboard text/button sizing, accessible journal shortcut and primary action placement are asserted. Screenshots show the dashboard uses exactly 851px document height at 393 × 851, with no horizontal overflow. Shorter displays may require a modest vertical scroll; lists use pagination rather than full catalogue stacks.
+`npm run test:e2e`: **27 passed, 1 intentional desktop skip**. Desktop uses 1440 × 1000; phone uses 393 × 851. The skip is the desktop duplicate of a phone-only width test.
+
+Journeys exercise creation/job/event/reload, damaged settings, all five screens, crew and business income/payroll, training, main/side quest claims, actual save download/delete/import, custody and bail, all four Meridian stages, zone selection/scouting, restoring owned control, attack crew commitment/retreat/reload, all three operation stages with a restart, difficulty/agendas, and the truthful unavailable browser purchase flow.
+
+Menu regression checks cover 320/360/393/412px widths. Additional screenshots inspect the map, creation, Command, tactical planning/rounds, operation planning/stages, rivals and store at 360 × 800, 393 × 851 and desktop. Maps have no document overflow at both phone sizes. Primary tactical controls fit at 360 × 800 with optional help collapsed; operation dialogs use a short internal scroll. Catalogue lists use pagination. Screenshots and measured bounds are in `output/screenshots/underworld-*`.
 
 ## Production offline browser
 
-`npm run build` succeeds. `npm run test:offline` against the production server on port 5188 passes: completed service-worker installation, disconnected network, page reload, resume story, all five screens and bundled images, then job resolution. The game precaches 83 resources, including its scripts, styles, fonts and images. Browser offline use requires one initial connected load; Android first launch uses bundled assets directly.
+`npm run build` and `node scripts/verify-offline.mjs` pass. The production build precaches **87 resources** including scripts, styles, fonts and original illustrations. Verification waits for installation/control, disconnects the browser, reloads, resumes the story, navigates all five screens with loaded artwork and resolves a job.
 
-An initial offline check exposed conflicting duplicate icon precache entries. The manifest icons are now excluded from the asset glob and included once with their revisions; offline reload was verified after the correction. A phone menu margin inherited from desktop also caused clipping and was removed, with width regression coverage.
+PWA registration is restricted to browsers. Android uses bundled APK assets directly; a native document-start bootstrap retires any v1.0 worker before its old application scripts can run. A real APK upgrade exposed stale cached v1.0 HTML despite an installed v1.1 package. The correction was exercised against the old APK and preserves save/setting data. Browser offline use requires one initial connected visit; Android first launch does not.
 
-## Android builds
+## Android build and runtime
 
-`assembleDebug` and `bundleRelease` succeed with Java 21 and Android SDK 36. Package metadata confirms `com.blackline.crimelife`, version 1.0.0/code 1, minimum SDK 24, target SDK 36 and portrait orientation. The APK is development signed. The AAB is unsigned. Both include the complete game, original icon/splash, local fonts and third-party license notices.
+Sequential web sync followed by `:app:assembleDebug :app:bundleRelease :app:lintDebug :app:testDebugUnitTest` produces the APK and AAB using Java 21/SDK 36. Package: `com.blackline.crimelife`, version **1.1.0/code 2**, minimum API **24**, target API **36**, portrait. The APK is development signed; the AAB is unsigned. Artifact sizes and SHA-256 hashes are in `output/android/build-report.json`.
 
-The build has no backend, LLM, account, tracking or active ad SDK. Internet permission exists for optional future integrations and platform sharing; core play and saves require no network.
+Native JVM policy tests pass **6/6**, covering consent retry bounds, interstitial grace/day/time limits, missed opportunities, reward completion once, and signed receipt verification/rejection. Android lint has no errors; remaining warnings include dependency/style/manifest suggestions. The compact anchored banner API compiles with an SDK deprecation note.
 
-## Android runtime
+Runtime uses only the isolated `blackline_underworld_qa` Android 16/API 36 emulator (1080 × 2400, 412px WebView). Offline testing explicitly checks airplane mode, disabled Wi-Fi/mobile data and no active Android default network. Scripts exercise native creation/navigation/art/job/event/Back, Preferences, and statistics/settings across force-stop/relaunch. Upgrade testing installs v1.0 then v1.1 without clearing the existing save and verifies automatic worker retirement, migrated strategy and the 15-zone map. Reports: `native-qa.json`, `upgrade-qa.json`.
 
-The installed APK was exercised on an isolated Android 16/API 36 emulator at 1080 × 2400 pixels (412 × 842 WebView viewport). Airplane mode was enabled, Wi-Fi/mobile data were disabled and Android reported no active default network before first launch. Creation, five screens and their images, prepared job/event decisions, Android Back navigation and native Preferences were exercised without a network. After force-stop/relaunch, the saved character, all six player statistics and the sound setting matched the prior session. The native dashboard document height equals its 842px viewport height. `output/android/native-qa.json` records the result and Android screenshots are in `output/screenshots`.
+## Ads and purchases
 
-## Visual and audio review
+Both build variants intentionally use the official Google **test** app ID and banner/interstitial/rewarded unit IDs requested by the user. Real Android services include Mobile Ads **25.5.0**, UMP **4.0.0** and Play Billing **9.1.0**. Consent gates requests; no-fill/network failures leave offline gameplay available. The sibling banner resizes the WebView rather than covering navigation. Ads are muted only after SDK initialization, and game ambience is suspended during full-screen services. A demonstrated pre-initialization mute crash was repaired and its online launch repeated.
 
-Final character art uses fully opaque masks, helmets, closed visors and covered heads. District/business artwork is unoccupied, without incidental exposed faces, figurative portraits, statues or musical instruments. Equipment uses 40 distinct inanimate object/vehicle illustrations. The event's distant figures are seen only from behind, without visible faces.
+Nineteen controller/facade tests cover genuine earned-plus-dismissed reward confirmation, duplicate/stale requests, unavailable browser, subscriptions, interstitial limits and ownership changes. Three further day-opportunity tests prevent delayed interstitials after obstructing events. Reward claims remain capped at two energy supplies and one cash supply per game day.
 
-The palette is charcoal/champagne with restrained copper risk accents. Body text is 15px on phones; decision descriptions are 15px, choice labels 15px, primary buttons 14–16px and primary touch targets at least 44px. Optional noise based rain/wind ambience and mechanical cues contain no oscillators, music or instruments. Their perceived loudness and tactile feel still need real-device listening, as emulator audio is disabled.
+Native test-format display and SDK callback results are recorded separately in `ad-qa.json`; an SDK protocol probe is distinguished from the browser's day-end flow. The actual banner reserves 64dp, and a completed rewarded sample increased energy from 68 to 88 and consumed exactly one daily claim. No fake ad completion or purchase receipt is used. The separate inspection file records SDK availability/loading snapshots.
 
-## Release boundaries
+The permanent `remove_ads` product removes all formats and permits the same capped supplies without videos. The US **$4.99** price must be configured in Play Console; available regional prices come from Google ProductDetails. A blank public licensing key or unconfigured product prevents payment launch. No charge or licensed store transaction was attempted. Store-backed purchase, cancellation, pending payment, acknowledgement, restore and refund tests require the owner's Console and license tester. See `docs/monetization.md`.
 
-The source, APK, unsigned bundle, original assets and release guide are delivered locally. The owner's signing identity, Google Play listing, store submission and live Rate URL are pending. Native share/export chooser behavior, cutouts, larger system font preferences and older Android/WebView versions should receive physical-phone QA before production publication.
+## Art, audio and release boundaries
+
+Three new original illustrations depict the city strategy board, masked confrontation and operation planning. Portraits keep opaque masks/helmets/closed visors; no exposed faces or eyes were added. Locations and objects remain free of figurative decorations and instruments. The palette stays charcoal/champagne with copper risk accents, readable phone text and large touch controls. Noise-based rain/wind/street ambience and mechanical SFX contain no music or instruments.
+
+Emulator audio is disabled, so perceived sound quality still needs physical-device listening. Physical phone cutouts/font scaling, native share/export chooser, older Android/WebView versions, production consent messages, publisher signing, Play listing/submission and live Rate URL remain owner/device release steps. Core gameplay, progression and saves require no backend, LLM or connection; optional Google advertising/payment services do use the network.

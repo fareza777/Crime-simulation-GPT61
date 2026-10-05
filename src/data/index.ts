@@ -8,6 +8,10 @@ import questData from './quests.json';
 import contactData from './contacts.json';
 import safehouseData from './safehouse-upgrades.json';
 import heistData from './heist.json';
+import zoneData from './zones.json';
+import rivalData from './rivals.json';
+import operationData from './operations.json';
+import type { ZoneDefinition, RivalDefinition, OperationDefinition } from '../game/strategy-types';
 import type { Activity, Business, Contact, CrewMember, District, GameEvent, HeistDefinition, Item, Quest, SafehouseUpgrade, SkillKey } from '../game/types';
 
 export const districts: District[] = districtData;
@@ -20,4 +24,7 @@ export const quests: Quest[] = questData as Quest[];
 export const contacts: Contact[] = contactData;
 export const safehouseUpgrades: SafehouseUpgrade[] = safehouseData;
 export const heist: HeistDefinition = heistData as HeistDefinition;
+export const zones: ZoneDefinition[] = zoneData;
+export const rivals: RivalDefinition[] = rivalData;
+export const operations: OperationDefinition[] = operationData as OperationDefinition[];
 export const skillKeys: SkillKey[] = ['charisma', 'streetSmarts', 'combat', 'driving', 'stealth', 'business'];

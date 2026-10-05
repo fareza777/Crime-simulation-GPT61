@@ -7,11 +7,16 @@ const pkg='com.blackline.crimelife';
 const serial=process.env.BLACKLINE_QA_DEVICE ?? 'emulator-5658';
 const adbPath=path.join(process.env.ANDROID_HOME ?? path.join(process.env.LOCALAPPDATA,'Android','Sdk'),'platform-tools','adb.exe');
 const adb=(...args)=>execFileSync(adbPath,['-s',serial,...args],{timeout:15000,encoding:'utf8'});
+assert.match(adb('emu','avd','name'), /blackline_underworld_qa|blackline_qa/, 'Only an isolated BLACKLINE QA emulator may be used');
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 adb('shell','am','force-stop',pkg);
 adb('shell','am','start','-n',`${pkg}/.MainActivity`);
-await delay(750);
-const pid=adb('shell','pidof',pkg).trim();
+let pid='';
+for(let attempt=0;attempt<60&&!pid;attempt++){
+  try{pid=adb('shell','pidof',pkg).trim();}catch{}
+  if(!pid)await delay(250);
+}
+if(!pid)throw Error('Android app did not start after force-stop');
 adb('forward','tcp:9658',`localabstract:webview_devtools_remote_${pid}`);
 let target;
 for(let i=0;i<30&&!target;i++){
@@ -38,8 +43,13 @@ assert.deepEqual(await evaluate(`[...document.querySelectorAll('.stat-card>stron
 assert.deepEqual(await evaluate(`[...document.querySelectorAll('.mobile-vitals strong')].map(node=>node.innerText)`),expected.vitals,'Health/energy changed after force-stop');
 await click('Settings');await delay(250);
 assert.equal(await evaluate(`document.querySelector('button[role="switch"][aria-label="Sound effects"]').getAttribute('aria-checked')`),'false','Native settings were not restored');
-await click('Close dialog');await delay(450);
+await click('Close dialog');
+for(let attempt=0;attempt<20;attempt++){
+  if(!await evaluate(`Boolean(document.querySelector('dialog[open]'))`))break;
+  await delay(150);
+}
+await delay(1500);
 adb('shell','screencap','-p','/sdcard/blackline-qa.png');adb('pull','/sdcard/blackline-qa.png','output/screenshots/android-offline-resumed.png');
-const report={status:'PASS',serial,androidOffline:true,checks:['bundled first launch','menu bounds','create character','five screens and images','resolve job and event','native Back','six player stats and settings survive force-stop/relaunch'],viewport:await evaluate(`({width:innerWidth,height:innerHeight,scrollHeight:document.documentElement.scrollHeight})`)};
+const report={status:'PASS',version:await evaluate(`window.Capacitor.Plugins.App.getInfo().then(info=>info.version)`),serial,androidOffline:true,checks:['bundled first launch','menu bounds','create character','five screens and images','resolve job and event','native Back','six player stats and settings survive force-stop/relaunch'],viewport:await evaluate(`({width:innerWidth,height:innerHeight,scrollHeight:document.documentElement.scrollHeight})`)};
 await fs.writeFile('output/android/native-qa.json',JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));socket.close();adb('forward','--remove','tcp:9658');

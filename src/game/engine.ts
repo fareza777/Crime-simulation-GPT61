@@ -1,10 +1,13 @@
 import { activities, businesses, contacts, crew, districts, events, heist, items, quests, safehouseUpgrades } from '../data';
 import type { Activity, CareerPath, Effects, EventChoice, GameAction, GameEvent, GameState, Outcome, Quest, SkillKey, StatKey } from './types';
+import { createStrategy, getStrategy, processStrategyDay, reduceStrategy, strategyAvailableCrew, strategyRiskPenalty, strategySummary } from './strategy';
+import type { StrategyState } from './strategy-types';
+export { getStrategy, zoneView, zoneActionInfo, battlePreview, battleChoiceInfo, operationRequirements, operationEntryInfo, operationChoiceInfo, strategySummary, rivalTruceInfo } from './strategy';
 
 export const skillLabels: Record<SkillKey, string> = { charisma: 'Charisma', streetSmarts: 'Street smarts', combat: 'Combat', driving: 'Driving', stealth: 'Stealth', business: 'Business' };
 const skillKeys = Object.keys(skillLabels) as SkillKey[];
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, Number.isFinite(value) ? value : min));
-const activeCrew = (state: GameState) => state.crew.filter(id => (state.crewInjured[id] ?? 0) === 0 && (state.crewLoyalty[id] ?? 0) >= 35);
+const activeCrew = strategyAvailableCrew;
 const itemBonus = (state: GameState, key: SkillKey | 'heatReduction') => state.inventory.reduce((sum, id) => sum + (items.find(item => item.id === id)?.bonuses[key] ?? 0), 0);
 
 function random(state: GameState): number {
@@ -117,7 +120,7 @@ function mergeEffects(first: Effects, second: Effects): Effects {
   return merged;
 }
 
-export function createGame(name: string, path: CareerPath, seed = 1): GameState {
+export function createGame(name: string, path: CareerPath, seed = 1): GameState & { strategy: StrategyState } {
   const skills = { charisma: 2, streetSmarts: 2, combat: 2, driving: 2, stealth: 2, business: 2 };
   const cashBonus: Record<CareerPath, number> = { thief: 0, smuggler: 400, leader: 0, fixer: 200, businessman: 1700, boss: 700 };
   const strengths: Record<CareerPath, Partial<Record<SkillKey, number>>> = {
@@ -136,9 +139,11 @@ export function createGame(name: string, path: CareerPath, seed = 1): GameState 
     pendingJob: null, pendingEvent: null, result: null, jail: null, heist: null,
     log: [{ day: 1, title: 'A new name in the city', text: `${name.trim() || 'Morgan'} arrived in Old Quarter. Every choice leaves a mark.`, good: true }],
     seed: Number.isFinite(seed) ? seed >>> 0 : 1,
+    strategy: createStrategy(),
   };
 }
 export function gameReducer(state: GameState, action: GameAction): GameState {
+  if (!state.strategy) state = { ...state, strategy: createStrategy(state.day) };
   if (action.type === 'DISMISS_RESULT') {
     if (!state.result) return state;
     const followUp = events.find(event => event.id === state.result?.nextEvent);
@@ -149,7 +154,13 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
   const next = structuredClone(state);
   if (state.jail && !['NEXT_DAY', 'BAIL', 'CONTACT', 'CHOOSE_EVENT'].includes(action.type)) return reject(next, 'Serve your sentence or post bail before returning to the city.');
   if (state.heist && !state.heist.completed && !['HEIST_CHOICE', 'ABORT_HEIST'].includes(action.type)) return state;
+  if (state.strategy!.battle && action.type !== 'BATTLE_CHOICE') return state;
+  if (state.strategy!.operation && !['OPERATION_CHOICE', 'ABORT_OPERATION'].includes(action.type)) return state;
   switch (action.type) {
+    case 'SET_DIFFICULTY': case 'SET_AGENDA': case 'ZONE_ACTION': case 'ASSIGN_LIEUTENANT':
+    case 'RIVAL_TRUCE': case 'START_BATTLE': case 'BATTLE_CHOICE': case 'START_OPERATION':
+    case 'OPERATION_CHOICE': case 'ABORT_OPERATION': case 'CLAIM_AD_REWARD':
+      return reduceStrategy(state, next, action, { random, applyEffects, record });
     case 'CHOOSE_EVENT': {
       if (!state.pendingEvent) return state;
       const event = events.find(entry => entry.id === state.pendingEvent!.id);
@@ -362,15 +373,16 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       next.day += 1;
       const income = dailyIncome(state);
       const salaries = crewSalary(state);
-      const paid = state.stats.cash + income >= salaries;
+      const strategyEffects = processStrategyDay(state, next, { random, applyEffects, record }, income);
+      const paid = state.stats.cash + income + (strategyEffects.cash ?? 0) >= salaries;
       const illegalHeat = state.businesses.reduce((total, owned) => total + (businesses.find(entry => entry.id === owned.id)?.heat ?? 0) * owned.level, 0);
-      let effects = applyEffects(next, { cash: income - salaries, health: 15 + (state.safehouse.infirmary ?? 0) * 5, energy: 100 - state.stats.energy, heat: illegalHeat - 6 - (state.safehouse.security ?? 0) * 2, loyalty: paid ? 1 : -8 });
+      let effects = applyEffects(next, { cash: income - salaries + (strategyEffects.cash ?? 0), health: 15 + (state.safehouse.infirmary ?? 0) * 5, energy: 100 - state.stats.energy, heat: illegalHeat - 6 - (state.safehouse.security ?? 0) * 2, loyalty: paid ? 1 : -8 });
       for (const id of state.crew) next.crewInjured[id] = Math.max(0, (next.crewInjured[id] ?? 0) - 1 - Math.floor((state.safehouse.infirmary ?? 0) / 2));
       if (state.jail) {
         next.jail = state.jail.days <= 1 ? null : { ...state.jail, days: state.jail.days - 1 };
         return afterTurn(next, { title: next.jail ? 'Another day inside' : 'Sentence served', text: next.jail ? `Your sentence has ${next.jail.days} day${next.jail.days === 1 ? '' : 's'} remaining. The crew handles daily accounts.` : 'The gates open. Your sentence is complete and the city is yours to face again.', success: !next.jail, effects, image: '/assets/city.webp' });
       }
-      const pressure: string[] = [];
+      const pressure: string[] = [...next.strategy!.lastDaily!.notices];
       const illegal = next.businesses.filter(owned => businesses.find(entry => entry.id === owned.id)?.type === 'illegal');
       const raidRisk = clamp((next.stats.heat - 40) * .012 + illegal.reduce((sum, owned) => sum + owned.level * .04, 0), 0, .55);
       if (illegal.length && next.stats.heat >= 40 && random(next) < raidRisk) {
@@ -390,7 +402,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       }
       const arrest = checkPolice(next, 'High police attention brought investigators to your door.');
       if (arrest) return afterTurn(next, { title: 'Taken into custody', text: `${pressure.join(' ')} ${arrest.text}`.trim(), success: false, effects: mergeEffects(effects, arrest.effects), image: '/assets/city.webp' }, 'jail-arrival');
-      return afterTurn(next, { title: `Day ${next.day}`, text: `The city wakes. Businesses earned $${income.toLocaleString('en-US')}; crew salaries were $${salaries.toLocaleString('en-US')}.${paid ? '' : ' You could not cover every salary. Loyalty suffered.'}${pressure.length ? ` ${pressure.join(' ')}` : ''}`, success: paid && !pressure.length, effects, image: '/assets/city.webp' });
+      return afterTurn(next, { title: `Day ${next.day}`, text: `The city wakes. Businesses earned $${income.toLocaleString('en-US')}; crew salaries were $${salaries.toLocaleString('en-US')}. Zones earned $${next.strategy!.lastDaily!.zoneIncome.toLocaleString('en-US')}; zone upkeep was $${next.strategy!.lastDaily!.zoneUpkeep.toLocaleString('en-US')}; rival business pressure cost $${next.strategy!.lastDaily!.businessPressure.toLocaleString('en-US')}.${paid ? '' : ' You could not cover every salary. Loyalty suffered.'}${pressure.length ? ` ${pressure.join(' ')}` : ''}`, success: paid && !pressure.length, effects, image: '/assets/city.webp' });
     }
     default: return state;
   }
@@ -403,7 +415,7 @@ export function jobChance(state: GameState, activity: Activity, approach: 'rush'
     return bonus + (member ? (member.skill === activity.skill ? member.rating : member.rating * .35) * (state.crewLoyalty[id] ?? 50) / 100 : 0);
   }, 0);
   const districtRisk = districts.find(entry => entry.id === activity.districtId)?.risk ?? 0;
-  return Math.round(clamp(activity.baseChance + (state.skills[activity.skill] - 1) * 3 + itemBonus(state, activity.skill) * 3 - activity.difficulty * 2 - state.stats.heat * .3 - districtRisk * .4 + Math.min(14, crewBonus) + (state.safehouse.workshop ?? 0) * 2 + prep, 5, 95));
+  return Math.round(clamp(activity.baseChance + (state.skills[activity.skill] - 1) * 3 + itemBonus(state, activity.skill) * 3 - activity.difficulty * 2 - state.stats.heat * .3 - districtRisk * .4 + Math.min(14, crewBonus) + (state.safehouse.workshop ?? 0) * 2 + prep - strategyRiskPenalty(state), 5, 95));
 }
 export function jobFailureEffects(state: GameState, activity: Activity, approach: 'rush' | 'informant' | 'scout' | 'leave' = 'rush'): Effects {
   if (approach === 'leave') return {};
@@ -440,6 +452,8 @@ export function questProgress(state: GameState, quest: Quest): number {
     items: state.inventory.length, heist: state.heist?.completed ? 1 : 0, days: state.day,
     districts: state.counters.districts.length, training: state.counters.training,
     lowHeat: state.stats.heat <= quest.target ? quest.target : 0,
+    zones: strategySummary(state).ownedZones, battles: getStrategy(state).counters.battlesWon,
+    operations: getStrategy(state).counters.operationsCompleted,
   };
   return clamp(metrics[quest.metric], 0, quest.target);
 }
@@ -498,7 +512,7 @@ export function heistChance(state: GameState, choiceId: string): number {
     const member = crew.find(entry => entry.id === id);
     return sum + (member && activeCrew(state).includes(id) ? member.rating * (member.skill === stage.skill ? 1.5 : .6) * (state.crewLoyalty[id] ?? 0) / 100 : 0);
   }, 0);
-  return Math.round(clamp(48 + (state.skills[stage.skill] - 1) * 3 + itemBonus(state, stage.skill) * 3 + Math.min(15, crewBonus) + choice.chanceBonus - state.stats.heat * .25 + state.heist.successes * 2 - (state.heist.stage - state.heist.successes) * 6, 10, 95));
+  return Math.round(clamp(48 + (state.skills[stage.skill] - 1) * 3 + itemBonus(state, stage.skill) * 3 + Math.min(15, crewBonus) + choice.chanceBonus - state.stats.heat * .25 + state.heist.successes * 2 - (state.heist.stage - state.heist.successes) * 6 - strategyRiskPenalty(state), 10, 95));
 }
 export function eventChance(state: GameState, choice: EventChoice): number {
   if (choice.chance === undefined) return 100;

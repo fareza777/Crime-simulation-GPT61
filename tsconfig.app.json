@@ -5,7 +5,7 @@
     "skipLibCheck": true, "moduleResolution": "Bundler", "allowImportingTsExtensions": true,
     "resolveJsonModule": true, "isolatedModules": true, "verbatimModuleSyntax": true,
     "moduleDetection": "force", "noEmit": true, "jsx": "react-jsx", "strict": true,
-    "types": ["vite/client", "node"],
+    "types": ["vite/client", "vite-plugin-pwa/client", "node"],
     "noUnusedLocals": true, "noUnusedParameters": true
   },
   "include": ["src"]

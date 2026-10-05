@@ -5,6 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
   plugins: [react(), VitePWA({
     registerType: 'autoUpdate',
+    injectRegister: false,
     manifest: {
       name: 'BLACKLINE — Crime Life Simulator', short_name: 'BLACKLINE',
       description: 'Every choice leaves a mark. An offline crime life RPG.',
@@ -16,6 +17,8 @@ export default defineConfig({
       ]
     },
     workbox: {
+      skipWaiting: true,
+      clientsClaim: true,
       globPatterns: ['**/*.{js,css,html,webp,png,woff2}'],
       // Manifest icons are added with revisions by the PWA plugin. Exclude them
       // from this glob so Workbox cannot receive conflicting duplicate entries.

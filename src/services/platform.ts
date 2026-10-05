@@ -5,7 +5,7 @@ import { Share } from '@capacitor/share';
 import { SplashScreen } from '@capacitor/splash-screen';
 
 export const appInfo = Object.freeze({
-  name: 'BLACKLINE', version: '1.0.0', appId: 'com.blackline.crimelife',
+  name: 'BLACKLINE', version: '1.1.0', appId: 'com.blackline.crimelife',
   // Set only after the matching public store listing exists.
   playUrl: null as string | null,
 });

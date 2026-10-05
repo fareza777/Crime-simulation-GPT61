@@ -1,0 +1,17 @@
+[
+  {
+    "name": "underworld-map",
+    "tool": "built-in image_gen",
+    "prompt": "Create original premium game illustration for BLACKLINE, an offline portrait text-based crime management RPG. Asset: an atmospheric overhead city planning map background, landscape 4:3 framing, very dark charcoal and desaturated slate with subtle champagne gold lights. A dense fictional coastal city, five coherent neighborhoods running from weathered old streets at the bottom to industrial rail yards, docks at right, quiet commercial streets and affluent geometric towers near the top. Sharp architectural detail, ink-painted editorial concept art, rain-dark asphalt, thin warm street lights, empty roads and no human beings. Readable restrained shapes, low contrast center, suitable beneath interactive zone boundaries that the app will add. Not an interactive game screenshot: NO interface, NO labels, NO symbols, NO typography, NO letters, NO watermark. NO people, NO animals, NO faces, NO human statues. No green neon, no saturated colors, no orange explosion. Premium noir boardroom strategy map mood, beautiful disciplined composition."
+  },
+  {
+    "name": "underworld-conflict",
+    "tool": "built-in image_gen",
+    "prompt": "Create original cinematic painted illustration for premium mobile crime management RPG BLACKLINE. Asset: a tense rival confrontation, landscape 3:2 framing. Rainy dark loading court beside an abandoned factory. Two small opposing groups, at most four people total, keeping distance behind armored vehicles. Every character wears fully opaque sealed helmets with solid faceplates and dark deep hoods, heavy charcoal protective coats, gloves; ABSOLUTELY NO visible skin, eyes, mouth, nose, facial contours or human face. Heads are unreadable dark shapes. No exposed faces anywhere in reflections or distant figures. Quiet dramatic stand-off, no graphic violence, no blood, no muzzle flashes, no actual fighting shown. Focus on environment, wet concrete, shadowy industrial architecture, restrained champagne-gold lamps and dusty burgundy accents. Elegant noir editorial game concept art, charcoal palette, premium and atmospheric, crisp architectural depth. NO UI, NO text, NO logo, NO watermark, NO green neon. Character silhouettes occupy small lower portion with space above for card overlays."
+  },
+  {
+    "name": "underworld-operation",
+    "tool": "built-in image_gen",
+    "prompt": "Create original premium noir game illustration for BLACKLINE text-based management RPG. Landscape 3:2 mission card art of a remote underground rail freight terminal at night: a secured matte-black cargo case on a steel platform in foreground, sealed electric locomotive at middle, long concrete vaulted ceiling and tracks vanishing into mist. Restrained warm champagne work lights, wet slate floors, charcoal steel, faint bronze details, quiet rain seen through skylights. Very cinematic elegant painterly game concept art with detailed architecture and objects, clear powerful composition and negative space upper left. No people, no animals, no faces, no statues, no instruments, no weapons, no practical security schematic. NO letters, NO UI, NO labels, NO watermark, NO logo, no green lighting. Original high quality atmospheric major-operation artwork."
+  }
+]

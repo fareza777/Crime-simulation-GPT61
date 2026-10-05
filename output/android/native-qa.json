@@ -1,5 +1,6 @@
 {
   "status": "PASS",
+  "version": "1.1.0",
   "serial": "emulator-5658",
   "androidOffline": true,
   "checks": [
@@ -13,7 +14,7 @@
   ],
   "viewport": {
     "width": 412,
-    "height": 842,
-    "scrollHeight": 842
+    "height": 839,
+    "scrollHeight": 839
   }
 }

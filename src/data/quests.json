@@ -1,22 +1,649 @@
 [
-  {"id":"main-first-steps","name":"A name on the street","description":"Complete three successful jobs. Mara needs to know your word carries weight.","kind":"main","chapter":"I · The beginning","target":3,"metric":"jobsSucceeded","reward":{"cash":900,"reputation":25,"relationships":{"mara":8}},"contact":"mara","image":"/assets/district-old-quarter.webp"},
-  {"id":"main-build-crew","name":"People you can trust","description":"Recruit two crew members. A future this ambitious needs people beside you.","kind":"main","chapter":"II · The crew","prerequisite":"main-first-steps","target":2,"metric":"crew","reward":{"cash":1500,"reputation":30,"loyalty":5},"contact":"mara","image":"/assets/crew-1.webp"},
-  {"id":"main-harbor","name":"Beyond the Quarter","description":"Reach 100 reputation and earn an introduction to Portside.","kind":"main","chapter":"III · The harbor","prerequisite":"main-build-crew","target":100,"metric":"reputation","reward":{"cash":2000,"relationships":{"rafe":10}},"contact":"rafe","image":"/assets/district-portside.webp"},
-  {"id":"main-own-a-piece","name":"A piece of the city","description":"Own your first business. Lasting power needs a daily foundation.","kind":"main","chapter":"IV · The foundation","prerequisite":"main-harbor","target":1,"metric":"businesses","reward":{"cash":2500,"reputation":45,"skillXp":{"business":30}},"contact":"rafe","image":"/assets/business-1.webp"},
-  {"id":"main-bright-rooms","name":"An invitation upstairs","description":"Reach 200 reputation. Ivo has reserved a place among the Strip's decision makers.","kind":"main","chapter":"V · The invitation","prerequisite":"main-own-a-piece","target":200,"metric":"reputation","reward":{"cash":4000,"item":"velvet-invitation","relationships":{"ivo":10}},"contact":"ivo","image":"/assets/district-the-strip.webp"},
-  {"id":"main-iron-promise","name":"Weight behind your word","description":"Build 50 influence. Lin wants proof that your promises can shape the city.","kind":"main","chapter":"VI · The influence","prerequisite":"main-bright-rooms","target":50,"metric":"influence","reward":{"cash":6500,"reputation":60,"relationships":{"lin":12}},"contact":"lin","image":"/assets/district-ironworks.webp"},
-  {"id":"main-crown","name":"The skyline listens","description":"Reach 550 reputation. Selene is ready to discuss the Meridian reserve.","kind":"main","chapter":"VII · The skyline","prerequisite":"main-iron-promise","target":550,"metric":"reputation","reward":{"cash":10000,"item":"executive-pass","relationships":{"selene":15}},"contact":"selene","image":"/assets/district-crown-heights.webp"},
-  {"id":"main-meridian","name":"A seat at the top","description":"Complete the Meridian heist. Decide what the city will remember about your rise.","kind":"main","chapter":"VIII · The empire","prerequisite":"main-crown","target":1,"metric":"heist","reward":{"cash":20000,"reputation":100,"influence":25,"relationships":{"mara":10,"selene":10}},"contact":"selene","image":"/assets/heist.webp"},
-  {"id":"side-three-days","name":"Still standing","description":"Reach your third day in the city. Patience is a skill worth learning.","kind":"side","target":3,"metric":"days","reward":{"cash":500,"energy":15},"contact":"mara","image":"/assets/city.webp"},
-  {"id":"side-training","name":"Sharpen your judgment","description":"Complete three training sessions. Preparation earns its own reward.","kind":"side","target":3,"metric":"training","reward":{"cash":800,"reputation":12},"contact":"mara","image":"/assets/item-2.webp"},
-  {"id":"side-equipped","name":"Tools of the trade","description":"Own three permanent items. Build a kit that suits the life you chose.","kind":"side","target":3,"metric":"items","reward":{"cash":1000,"skillXp":{"streetSmarts":20}},"contact":"rafe","image":"/assets/item-5.webp"},
-  {"id":"side-clean-week","name":"A quieter name","description":"Keep heat at 20 or below. Vale appreciates a city that can breathe.","kind":"side","target":20,"metric":"lowHeat","reward":{"cash":700,"reputation":10,"relationships":{"vale":8}},"contact":"vale","image":"/assets/district-old-quarter.webp"},
-  {"id":"side-ten-jobs","name":"Reliable company","description":"Complete ten successful jobs. Reliability travels farther than a rumor.","kind":"side","target":10,"metric":"jobsSucceeded","reward":{"cash":2400,"reputation":30},"contact":"rafe","image":"/assets/district-portside.webp"},
-  {"id":"side-reserve","name":"A rainy-day account","description":"Hold $15,000 in cash. Ambition works better with a reserve.","kind":"side","target":15000,"metric":"cash","reward":{"cash":1800,"skillXp":{"business":25}},"contact":"ivo","image":"/assets/item-3.webp"},
-  {"id":"side-team","name":"A proper crew","description":"Recruit four crew members. Different talents make room for bigger plans.","kind":"side","target":4,"metric":"crew","reward":{"cash":3200,"loyalty":8},"contact":"lin","image":"/assets/crew-8.webp"},
-  {"id":"side-portfolio","name":"Three steady doors","description":"Own three businesses. Give the city reasons to keep you here.","kind":"side","target":3,"metric":"businesses","reward":{"cash":5000,"influence":10},"contact":"lin","image":"/assets/business-4.webp"},
-  {"id":"side-districts","name":"A wider map","description":"Visit three districts. Every neighborhood teaches a different lesson.","kind":"side","target":3,"metric":"districts","reward":{"cash":2200,"reputation":20},"contact":"ivo","image":"/assets/city.webp"},
-  {"id":"side-influence","name":"A voice that matters","description":"Reach 75 influence. The city should hear more than a demand from you.","kind":"side","target":75,"metric":"influence","reward":{"cash":6500,"relationships":{"selene":10}},"contact":"selene","image":"/assets/district-crown-heights.webp"},
-  {"id":"side-season","name":"Thirty nights","description":"Reach day 30. An empire is measured by what survives.","kind":"side","target":30,"metric":"days","reward":{"cash":8000,"reputation":40,"health":20},"contact":"mara","image":"/assets/city.webp"},
-  {"id":"side-legend","name":"A citywide reputation","description":"Reach 800 reputation. Let every district know the person behind the name.","kind":"side","target":800,"metric":"reputation","reward":{"cash":15000,"influence":15},"contact":"selene","image":"/assets/district-crown-heights.webp"}
+  {
+    "id": "main-first-steps",
+    "name": "A name on the street",
+    "description": "Complete three successful jobs. Mara needs to know your word carries weight.",
+    "kind": "main",
+    "chapter": "I · The beginning",
+    "target": 3,
+    "metric": "jobsSucceeded",
+    "reward": {
+      "cash": 900,
+      "reputation": 25,
+      "relationships": {
+        "mara": 8
+      }
+    },
+    "contact": "mara",
+    "image": "/assets/district-old-quarter.webp"
+  },
+  {
+    "id": "main-build-crew",
+    "name": "People you can trust",
+    "description": "Recruit two crew members. A future this ambitious needs people beside you.",
+    "kind": "main",
+    "chapter": "II · The crew",
+    "prerequisite": "main-first-steps",
+    "target": 2,
+    "metric": "crew",
+    "reward": {
+      "cash": 1500,
+      "reputation": 30,
+      "loyalty": 5
+    },
+    "contact": "mara",
+    "image": "/assets/crew-1.webp"
+  },
+  {
+    "id": "main-harbor",
+    "name": "Beyond the Quarter",
+    "description": "Reach 100 reputation and earn an introduction to Portside.",
+    "kind": "main",
+    "chapter": "III · The harbor",
+    "prerequisite": "main-build-crew",
+    "target": 100,
+    "metric": "reputation",
+    "reward": {
+      "cash": 2000,
+      "relationships": {
+        "rafe": 10
+      }
+    },
+    "contact": "rafe",
+    "image": "/assets/district-portside.webp"
+  },
+  {
+    "id": "main-own-a-piece",
+    "name": "A piece of the city",
+    "description": "Own your first business. Lasting power needs a daily foundation.",
+    "kind": "main",
+    "chapter": "IV · The foundation",
+    "prerequisite": "main-harbor",
+    "target": 1,
+    "metric": "businesses",
+    "reward": {
+      "cash": 2500,
+      "reputation": 45,
+      "skillXp": {
+        "business": 30
+      }
+    },
+    "contact": "rafe",
+    "image": "/assets/business-1.webp"
+  },
+  {
+    "id": "main-bright-rooms",
+    "name": "An invitation upstairs",
+    "description": "Reach 200 reputation. Ivo has reserved a place among the Strip's decision makers.",
+    "kind": "main",
+    "chapter": "V · The invitation",
+    "prerequisite": "main-own-a-piece",
+    "target": 200,
+    "metric": "reputation",
+    "reward": {
+      "cash": 4000,
+      "item": "velvet-invitation",
+      "relationships": {
+        "ivo": 10
+      }
+    },
+    "contact": "ivo",
+    "image": "/assets/district-the-strip.webp"
+  },
+  {
+    "id": "main-iron-promise",
+    "name": "Weight behind your word",
+    "description": "Build 50 influence. Lin wants proof that your promises can shape the city.",
+    "kind": "main",
+    "chapter": "VI · The influence",
+    "prerequisite": "main-bright-rooms",
+    "target": 50,
+    "metric": "influence",
+    "reward": {
+      "cash": 6500,
+      "reputation": 60,
+      "relationships": {
+        "lin": 12
+      }
+    },
+    "contact": "lin",
+    "image": "/assets/district-ironworks.webp"
+  },
+  {
+    "id": "main-crown",
+    "name": "The skyline listens",
+    "description": "Reach 550 reputation. Selene is ready to discuss the Meridian reserve.",
+    "kind": "main",
+    "chapter": "VII · The skyline",
+    "prerequisite": "main-iron-promise",
+    "target": 550,
+    "metric": "reputation",
+    "reward": {
+      "cash": 10000,
+      "item": "executive-pass",
+      "relationships": {
+        "selene": 15
+      }
+    },
+    "contact": "selene",
+    "image": "/assets/district-crown-heights.webp"
+  },
+  {
+    "id": "main-meridian",
+    "name": "A seat at the top",
+    "description": "Complete the Meridian heist. Decide what the city will remember about your rise.",
+    "kind": "main",
+    "chapter": "VIII · The empire",
+    "prerequisite": "main-crown",
+    "target": 1,
+    "metric": "heist",
+    "reward": {
+      "cash": 20000,
+      "reputation": 100,
+      "influence": 25,
+      "relationships": {
+        "mara": 10,
+        "selene": 10
+      }
+    },
+    "contact": "selene",
+    "image": "/assets/heist.webp"
+  },
+  {
+    "id": "side-three-days",
+    "name": "Still standing",
+    "description": "Reach your third day in the city. Patience is a skill worth learning.",
+    "kind": "side",
+    "target": 3,
+    "metric": "days",
+    "reward": {
+      "cash": 500,
+      "energy": 15
+    },
+    "contact": "mara",
+    "image": "/assets/city.webp"
+  },
+  {
+    "id": "side-training",
+    "name": "Sharpen your judgment",
+    "description": "Complete three training sessions. Preparation earns its own reward.",
+    "kind": "side",
+    "target": 3,
+    "metric": "training",
+    "reward": {
+      "cash": 800,
+      "reputation": 12
+    },
+    "contact": "mara",
+    "image": "/assets/item-2.webp"
+  },
+  {
+    "id": "side-equipped",
+    "name": "Tools of the trade",
+    "description": "Own three permanent items. Build a kit that suits the life you chose.",
+    "kind": "side",
+    "target": 3,
+    "metric": "items",
+    "reward": {
+      "cash": 1000,
+      "skillXp": {
+        "streetSmarts": 20
+      }
+    },
+    "contact": "rafe",
+    "image": "/assets/item-5.webp"
+  },
+  {
+    "id": "side-clean-week",
+    "name": "A quieter name",
+    "description": "Keep heat at 20 or below. Vale appreciates a city that can breathe.",
+    "kind": "side",
+    "target": 20,
+    "metric": "lowHeat",
+    "reward": {
+      "cash": 700,
+      "reputation": 10,
+      "relationships": {
+        "vale": 8
+      }
+    },
+    "contact": "vale",
+    "image": "/assets/district-old-quarter.webp"
+  },
+  {
+    "id": "side-ten-jobs",
+    "name": "Reliable company",
+    "description": "Complete ten successful jobs. Reliability travels farther than a rumor.",
+    "kind": "side",
+    "target": 10,
+    "metric": "jobsSucceeded",
+    "reward": {
+      "cash": 2400,
+      "reputation": 30
+    },
+    "contact": "rafe",
+    "image": "/assets/district-portside.webp"
+  },
+  {
+    "id": "side-reserve",
+    "name": "A rainy-day account",
+    "description": "Hold $15,000 in cash. Ambition works better with a reserve.",
+    "kind": "side",
+    "target": 15000,
+    "metric": "cash",
+    "reward": {
+      "cash": 1800,
+      "skillXp": {
+        "business": 25
+      }
+    },
+    "contact": "ivo",
+    "image": "/assets/item-3.webp"
+  },
+  {
+    "id": "side-team",
+    "name": "A proper crew",
+    "description": "Recruit four crew members. Different talents make room for bigger plans.",
+    "kind": "side",
+    "target": 4,
+    "metric": "crew",
+    "reward": {
+      "cash": 3200,
+      "loyalty": 8
+    },
+    "contact": "lin",
+    "image": "/assets/crew-8.webp"
+  },
+  {
+    "id": "side-portfolio",
+    "name": "Three steady doors",
+    "description": "Own three businesses. Give the city reasons to keep you here.",
+    "kind": "side",
+    "target": 3,
+    "metric": "businesses",
+    "reward": {
+      "cash": 5000,
+      "influence": 10
+    },
+    "contact": "lin",
+    "image": "/assets/business-4.webp"
+  },
+  {
+    "id": "side-districts",
+    "name": "A wider map",
+    "description": "Visit three districts. Every neighborhood teaches a different lesson.",
+    "kind": "side",
+    "target": 3,
+    "metric": "districts",
+    "reward": {
+      "cash": 2200,
+      "reputation": 20
+    },
+    "contact": "ivo",
+    "image": "/assets/city.webp"
+  },
+  {
+    "id": "side-influence",
+    "name": "A voice that matters",
+    "description": "Reach 75 influence. The city should hear more than a demand from you.",
+    "kind": "side",
+    "target": 75,
+    "metric": "influence",
+    "reward": {
+      "cash": 6500,
+      "relationships": {
+        "selene": 10
+      }
+    },
+    "contact": "selene",
+    "image": "/assets/district-crown-heights.webp"
+  },
+  {
+    "id": "side-season",
+    "name": "Thirty nights",
+    "description": "Reach day 30. An empire is measured by what survives.",
+    "kind": "side",
+    "target": 30,
+    "metric": "days",
+    "reward": {
+      "cash": 8000,
+      "reputation": 40,
+      "health": 20
+    },
+    "contact": "mara",
+    "image": "/assets/city.webp"
+  },
+  {
+    "id": "side-legend",
+    "name": "A citywide reputation",
+    "description": "Reach 800 reputation. Let every district know the person behind the name.",
+    "kind": "side",
+    "target": 800,
+    "metric": "reputation",
+    "reward": {
+      "cash": 15000,
+      "influence": 15
+    },
+    "contact": "selene",
+    "image": "/assets/district-crown-heights.webp"
+  },
+  {
+    "id": "main-underworld-footholds",
+    "name": "Promises across the map",
+    "description": "Hold three zones at once. Rafe wants a reach you can support after the Meridian celebration ends.",
+    "kind": "main",
+    "chapter": "IX · The footholds",
+    "prerequisite": "main-meridian",
+    "target": 3,
+    "metric": "zones",
+    "reward": {
+      "cash": 5000,
+      "influence": 5,
+      "relationships": {
+        "rafe": 5
+      }
+    },
+    "contact": "rafe",
+    "image": "/assets/underworld-map.webp"
+  },
+  {
+    "id": "main-underworld-held-line",
+    "name": "A line that holds",
+    "description": "Win three rival battles. Mara needs evidence that your crew can carry the pressure attached to your name.",
+    "kind": "main",
+    "chapter": "X · The conflict",
+    "prerequisite": "main-underworld-footholds",
+    "target": 3,
+    "metric": "battles",
+    "reward": {
+      "cash": 6000,
+      "loyalty": 4,
+      "skillXp": {
+        "combat": 30
+      }
+    },
+    "contact": "mara",
+    "image": "/assets/underworld-conflict.webp"
+  },
+  {
+    "id": "main-underworld-full-cost",
+    "name": "The whole operation",
+    "description": "Complete two major operations successfully. Ivo wants results that include a finish, not an impressive opening.",
+    "kind": "main",
+    "chapter": "XI · The operations",
+    "prerequisite": "main-underworld-held-line",
+    "target": 2,
+    "metric": "operations",
+    "reward": {
+      "cash": 8500,
+      "reputation": 35,
+      "skillXp": {
+        "business": 20
+      }
+    },
+    "contact": "ivo",
+    "image": "/assets/underworld-operation.webp"
+  },
+  {
+    "id": "main-underworld-city-links",
+    "name": "More than distant corners",
+    "description": "Hold six zones at once. Lin wants enough territory to test whether your growing commitments can survive together.",
+    "kind": "main",
+    "chapter": "XII · The network",
+    "prerequisite": "main-underworld-full-cost",
+    "target": 6,
+    "metric": "zones",
+    "reward": {
+      "cash": 10000,
+      "influence": 8,
+      "energy": 15,
+      "relationships": {
+        "lin": 6
+      }
+    },
+    "contact": "lin",
+    "image": "/assets/underworld-map.webp"
+  },
+  {
+    "id": "main-underworld-endurance",
+    "name": "After the first victory",
+    "description": "Win eight rival battles. Mara measures command by the crew that can still trust you after repeated conflict.",
+    "kind": "main",
+    "chapter": "XIII · The pressure",
+    "prerequisite": "main-underworld-city-links",
+    "target": 8,
+    "metric": "battles",
+    "reward": {
+      "cash": 12500,
+      "loyalty": 6,
+      "reputation": 40
+    },
+    "contact": "mara",
+    "image": "/assets/underworld-conflict.webp"
+  },
+  {
+    "id": "main-underworld-lasting-power",
+    "name": "Power that pays its own costs",
+    "description": "Complete six major operations successfully. Selene wants lasting results behind the city's stories about your organization.",
+    "kind": "main",
+    "chapter": "XIV · The underworld",
+    "prerequisite": "main-underworld-endurance",
+    "target": 6,
+    "metric": "operations",
+    "reward": {
+      "cash": 18000,
+      "influence": 10,
+      "relationships": {
+        "mara": 8,
+        "selene": 8
+      }
+    },
+    "contact": "selene",
+    "image": "/assets/underworld-operation.webp"
+  },
+  {
+    "id": "side-underworld-second-zone",
+    "name": "Beyond the first boundary",
+    "description": "Hold two zones at once. Begin learning what a second promise adds to the daily account.",
+    "kind": "side",
+    "target": 2,
+    "metric": "zones",
+    "reward": {
+      "cash": 1200,
+      "energy": 10,
+      "relationships": {
+        "rafe": 2
+      }
+    },
+    "contact": "rafe",
+    "image": "/assets/underworld-map.webp"
+  },
+  {
+    "id": "side-underworld-connected-roots",
+    "name": "Four corners to answer for",
+    "description": "Hold four zones at once. Give your organization a larger map and a reason to watch its reserves.",
+    "kind": "side",
+    "prerequisite": "side-underworld-second-zone",
+    "target": 4,
+    "metric": "zones",
+    "reward": {
+      "cash": 3500,
+      "influence": 4
+    },
+    "contact": "lin",
+    "image": "/assets/underworld-map.webp"
+  },
+  {
+    "id": "side-underworld-wide-reach",
+    "name": "The cost of a wider reach",
+    "description": "Hold eight zones at once. A large claim matters only while you can keep it.",
+    "kind": "side",
+    "prerequisite": "side-underworld-connected-roots",
+    "target": 8,
+    "metric": "zones",
+    "reward": {
+      "cash": 8000,
+      "influence": 7,
+      "skillXp": {
+        "business": 20
+      }
+    },
+    "contact": "selene",
+    "image": "/assets/underworld-map.webp"
+  },
+  {
+    "id": "side-underworld-first-stand",
+    "name": "The first held line",
+    "description": "Win one rival battle. Let your first victory begin a lesson in command rather than end it.",
+    "kind": "side",
+    "target": 1,
+    "metric": "battles",
+    "reward": {
+      "cash": 1800,
+      "loyalty": 3
+    },
+    "contact": "mara",
+    "image": "/assets/underworld-conflict.webp"
+  },
+  {
+    "id": "side-underworld-tested-line",
+    "name": "A decision tested again",
+    "description": "Win four rival battles. Build judgment that survives more than the first favorable outcome.",
+    "kind": "side",
+    "prerequisite": "side-underworld-first-stand",
+    "target": 4,
+    "metric": "battles",
+    "reward": {
+      "cash": 4500,
+      "skillXp": {
+        "combat": 20
+      },
+      "reputation": 15
+    },
+    "contact": "lin",
+    "image": "/assets/underworld-conflict.webp"
+  },
+  {
+    "id": "side-underworld-many-rounds",
+    "name": "The crew after ten conflicts",
+    "description": "Win ten rival battles. Mara recognizes the discipline required to keep making consequential choices.",
+    "kind": "side",
+    "prerequisite": "side-underworld-tested-line",
+    "target": 10,
+    "metric": "battles",
+    "reward": {
+      "cash": 9500,
+      "loyalty": 5,
+      "relationships": {
+        "mara": 5
+      }
+    },
+    "contact": "mara",
+    "image": "/assets/underworld-conflict.webp"
+  },
+  {
+    "id": "side-underworld-full-plan",
+    "name": "A plan with a finish",
+    "description": "Complete one major operation successfully. Prove that the final stage matters as much as the proposal.",
+    "kind": "side",
+    "target": 1,
+    "metric": "operations",
+    "reward": {
+      "cash": 2200,
+      "skillXp": {
+        "streetSmarts": 15
+      }
+    },
+    "contact": "ivo",
+    "image": "/assets/underworld-operation.webp"
+  },
+  {
+    "id": "side-underworld-repeated-work",
+    "name": "Preparation that travels",
+    "description": "Complete three major operations successfully. Turn one strong result into a repeatable standard of judgment.",
+    "kind": "side",
+    "prerequisite": "side-underworld-full-plan",
+    "target": 3,
+    "metric": "operations",
+    "reward": {
+      "cash": 5500,
+      "skillXp": {
+        "business": 20
+      },
+      "relationships": {
+        "ivo": 3
+      }
+    },
+    "contact": "ivo",
+    "image": "/assets/underworld-operation.webp"
+  },
+  {
+    "id": "side-underworld-proven-method",
+    "name": "Eight complete accounts",
+    "description": "Complete eight major operations successfully. Let the record show that your organization can finish what it begins.",
+    "kind": "side",
+    "prerequisite": "side-underworld-repeated-work",
+    "target": 8,
+    "metric": "operations",
+    "reward": {
+      "cash": 11000,
+      "influence": 6,
+      "loyalty": 4
+    },
+    "contact": "selene",
+    "image": "/assets/underworld-operation.webp"
+  },
+  {
+    "id": "side-underworld-war-reserve",
+    "name": "A reserve after the pressure",
+    "description": "After four battle victories, hold $35,000 in cash. Lin wants room for tomorrow's costs in today's ambition.",
+    "kind": "side",
+    "prerequisite": "side-underworld-tested-line",
+    "target": 35000,
+    "metric": "cash",
+    "reward": {
+      "cash": 3500,
+      "skillXp": {
+        "business": 18
+      }
+    },
+    "contact": "lin",
+    "image": "/assets/business-4.webp"
+  },
+  {
+    "id": "side-underworld-deep-roster",
+    "name": "More than the same three names",
+    "description": "After your first operation, recruit six crew members. Give repeated commitments a wider base of talent.",
+    "kind": "side",
+    "prerequisite": "side-underworld-full-plan",
+    "target": 6,
+    "metric": "crew",
+    "reward": {
+      "cash": 4000,
+      "loyalty": 5,
+      "relationships": {
+        "mara": 3
+      }
+    },
+    "contact": "mara",
+    "image": "/assets/crew-8.webp"
+  },
+  {
+    "id": "side-underworld-quiet-return",
+    "name": "A quieter return to the city",
+    "description": "After three operation successes, bring heat to 15 or below. Vale wants the ordinary city to have room again.",
+    "kind": "side",
+    "prerequisite": "side-underworld-repeated-work",
+    "target": 15,
+    "metric": "lowHeat",
+    "reward": {
+      "cash": 3000,
+      "reputation": 12,
+      "relationships": {
+        "vale": 5
+      }
+    },
+    "contact": "vale",
+    "image": "/assets/district-old-quarter.webp"
+  }
 ]

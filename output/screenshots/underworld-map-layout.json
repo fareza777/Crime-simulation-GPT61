@@ -1,0 +1,65 @@
+[
+  {
+    "label": "underworld-mobile",
+    "screen": "command",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 851,
+    "overflow": false,
+    "dialog": {
+      "content": 677,
+      "viewport": 677
+    }
+  },
+  {
+    "label": "underworld-mobile",
+    "screen": "map",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 851,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "command",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 830,
+    "overflow": false,
+    "dialog": {
+      "content": 697,
+      "viewport": 697
+    }
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "map",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 800,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "command",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1054,
+    "overflow": false,
+    "dialog": {
+      "content": 690,
+      "viewport": 690
+    }
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "map",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1124,
+    "overflow": false,
+    "dialog": null
+  }
+]

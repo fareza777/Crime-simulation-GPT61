@@ -1,28 +1,58 @@
 {
   "name": "BLACKLINE",
-  "version": "1.0.0",
-  "versionCode": 1,
+  "version": "1.1.0",
+  "versionCode": 2,
   "appId": "com.blackline.crimelife",
   "minSdk": 24,
   "targetSdk": 36,
   "orientation": "portrait",
+  "verifiedAt": "2026-10-05T02:22:10.573Z",
   "files": [
     {
-      "name": "BLACKLINE-1.0.0-debug.apk",
-      "bytes": 11581300,
-      "sha256": "09c7b5ca47452126e05ac055b760755986e017ae9225ec03ad9cae9865c14f8a",
+      "name": "BLACKLINE-1.1.0-debug.apk",
+      "bytes": 18110341,
+      "sha256": "763c70b8014d90700cd3e631091084a2274f4e9b4cc76a3838020b5b9fd3ec0c",
       "signing": "development key"
     },
     {
-      "name": "BLACKLINE-1.0.0-release-unsigned.aab",
-      "bytes": 9841033,
-      "sha256": "bdb76cd9571825bcfe3db0932ef41f4fd3cd2ab1d6c2a50941411486c5be8230",
+      "name": "BLACKLINE-1.1.0-release-unsigned.aab",
+      "bytes": 14799596,
+      "sha256": "a561fa04e8ff28f0674a77e6755c491efd6e87cff88ab63aa531b9df4990261b",
       "signing": "unsigned"
     }
   ],
+  "content": {
+    "districts": 5,
+    "zones": 15,
+    "rivals": 5,
+    "activities": 30,
+    "events": 132,
+    "crew": 11,
+    "businesses": 15,
+    "items": 40,
+    "mainQuests": 14,
+    "sideQuests": 24,
+    "repeatableOperations": 3,
+    "meridianHeistStages": 4
+  },
+  "monetization": {
+    "officialTestIds": true,
+    "banner": true,
+    "interstitial": true,
+    "rewarded": true,
+    "removeAdsProduct": "remove_ads",
+    "plannedUSPrice": 4.99,
+    "currency": "USD",
+    "licensedPurchaseTest": "not attempted; owner Play Console product/public key required"
+  },
   "verification": {
-    "unitTests": 220,
-    "browserJourneys": 15,
+    "unitTests": 304,
+    "unitSuites": 10,
+    "nativeJvmTests": 6,
+    "browserJourneys": 27,
+    "intentionalDesktopSkips": 1,
+    "androidLintErrors": 0,
+    "androidLintWarnings": 30,
     "phoneWidths": [
       320,
       360,
@@ -30,8 +60,17 @@
       412
     ],
     "offlineBrowser": "passed",
-    "offlineAndroid": "passed on Android 16 emulator",
+    "offlineAndroid": "passed on Android 16 emulator; 1.1.0",
     "nativeSaveAndSettingsRecovery": "passed",
-    "physicalDeviceQa": "pending"
+    "upgradeFrom100": [
+      "original character, six stats and settings preserved",
+      "strategy migrated and persisted",
+      "15-zone map available",
+      "legacy service worker retired automatically without clearing game data"
+    ],
+    "nativeAds": "PASS",
+    "rewardedEnergy": "68 → 88",
+    "physicalDeviceQa": "pending",
+    "playStorePublication": "not published"
   }
 }

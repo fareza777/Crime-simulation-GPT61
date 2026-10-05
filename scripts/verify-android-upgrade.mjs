@@ -1,0 +1,43 @@
+import { _android as android } from 'playwright';
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
+
+const serial = process.env.BLACKLINE_QA_DEVICE ?? 'emulator-5658';
+const adbPath = path.join(process.env.LOCALAPPDATA, 'Android', 'Sdk', 'platform-tools', 'adb.exe');
+const adb = (...args) => execFileSync(adbPath, ['-s', serial, ...args], { encoding: 'utf8', timeout: 15000 });
+assert.match(adb('emu', 'avd', 'name'), /blackline_underworld_qa/, 'Only the isolated BLACKLINE emulator may be used');
+adb('shell', 'am', 'force-stop', 'com.blackline.crimelife');
+adb('shell', 'am', 'start', '-n', 'com.blackline.crimelife/.MainActivity');
+const device = (await android.devices()).find(device => device.serial() === serial);
+const page = await (await device.webView({ pkg: 'com.blackline.crimelife' })).page();
+page.setDefaultTimeout(20000);
+await page.getByRole('button', { name: 'Continue story', exact: true }).click();
+await page.getByRole('button', { name: 'Character profile: Android Vale', exact: true }).waitFor();
+await page.waitForTimeout(700);
+const expected = JSON.parse(await fs.readFile('output/android/native-expect.json', 'utf8'));
+assert.deepEqual(await page.locator('.stat-card>strong').allTextContents(), expected.stats);
+assert.deepEqual(await page.locator('.mobile-vitals strong').allTextContents(), expected.vitals);
+await page.getByRole('button', { name: 'Settings', exact: true }).first().click();
+assert.equal(await page.getByRole('switch', { name: 'Sound effects' }).getAttribute('aria-checked'), 'false');
+await page.getByRole('button', { name: 'Close dialog', exact: true }).click();
+await page.getByRole('button', { name: 'City', exact: true }).last().click();
+await page.getByTestId('zone-map').waitFor();
+assert.equal(await page.getByTestId('zone-map').locator('[data-zone-id]').count(), 15);
+const saved = await page.evaluate(async () => {
+  const raw = (await window.Capacitor.Plugins.Preferences.get({ key: 'blackline.save.v1' })).value;
+  return JSON.parse(raw).state;
+});
+assert.equal(saved.player.name, 'Android Vale');
+assert.equal(saved.strategy.zones['market-street'].owner, 'player');
+assert.equal(saved.strategy.difficulty, 'standard');
+assert.equal(saved.strategy.battle, null);
+assert.equal(saved.strategy.operation, null);
+assert.equal(await page.evaluate(async () => (await navigator.serviceWorker.getRegistrations()).length), 0);
+assert.equal(await page.evaluate(async () => (await window.Capacitor.Plugins.App.getInfo()).version), '1.1.0');
+const report = { status: 'PASS', from: '1.0.0', to: '1.1.0', serial,
+  checks: ['original character, six stats and settings preserved', 'strategy migrated and persisted', '15-zone map available', 'legacy service worker retired automatically without clearing game data'] };
+await fs.writeFile('output/android/upgrade-qa.json', JSON.stringify(report, null, 2));
+console.log(JSON.stringify(report));
+await device.close();

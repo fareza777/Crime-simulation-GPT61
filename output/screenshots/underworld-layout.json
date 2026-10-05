@@ -1,0 +1,263 @@
+[
+  {
+    "label": "underworld-mobile",
+    "screen": "command",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 851,
+    "overflow": false,
+    "dialog": {
+      "content": 677,
+      "viewport": 677
+    }
+  },
+  {
+    "label": "underworld-mobile",
+    "screen": "map",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 851,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-mobile",
+    "screen": "battle-plan",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 851,
+    "overflow": false,
+    "dialog": {
+      "content": 697,
+      "viewport": 697
+    }
+  },
+  {
+    "label": "underworld-mobile",
+    "screen": "battle",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 851,
+    "overflow": false,
+    "dialog": {
+      "content": 733,
+      "viewport": 733
+    }
+  },
+  {
+    "label": "underworld-mobile",
+    "screen": "operations",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 860,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-mobile",
+    "screen": "operation-stage",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 860,
+    "overflow": false,
+    "dialog": {
+      "content": 859,
+      "viewport": 859
+    }
+  },
+  {
+    "label": "underworld-mobile",
+    "screen": "rivals",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 855,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-mobile",
+    "screen": "store",
+    "width": 393,
+    "height": 851,
+    "scrollHeight": 855,
+    "overflow": false,
+    "dialog": {
+      "content": 674,
+      "viewport": 674
+    }
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "command",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 830,
+    "overflow": false,
+    "dialog": {
+      "content": 697,
+      "viewport": 697
+    }
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "map",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 800,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "battle-plan",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 800,
+    "overflow": false,
+    "dialog": {
+      "content": 729,
+      "viewport": 729
+    }
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "battle",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 800,
+    "overflow": false,
+    "dialog": {
+      "content": 753,
+      "viewport": 753
+    }
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "operations",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 858,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "operation-stage",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 858,
+    "overflow": false,
+    "dialog": {
+      "content": 878,
+      "viewport": 878
+    }
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "rivals",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 855,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-compact",
+    "screen": "store",
+    "width": 360,
+    "height": 800,
+    "scrollHeight": 855,
+    "overflow": false,
+    "dialog": {
+      "content": 674,
+      "viewport": 674
+    }
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "command",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1054,
+    "overflow": false,
+    "dialog": {
+      "content": 690,
+      "viewport": 690
+    }
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "map",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1124,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "battle-plan",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1124,
+    "overflow": false,
+    "dialog": {
+      "content": 845,
+      "viewport": 845
+    }
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "battle",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1124,
+    "overflow": false,
+    "dialog": {
+      "content": 844,
+      "viewport": 844
+    }
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "operations",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1000,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "operation-stage",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1000,
+    "overflow": false,
+    "dialog": {
+      "content": 919,
+      "viewport": 919
+    }
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "rivals",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1011,
+    "overflow": false,
+    "dialog": null
+  },
+  {
+    "label": "underworld-desktop",
+    "screen": "store",
+    "width": 1440,
+    "height": 1000,
+    "scrollHeight": 1011,
+    "overflow": false,
+    "dialog": {
+      "content": 723,
+      "viewport": 723
+    }
+  }
+]

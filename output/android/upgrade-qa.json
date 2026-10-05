@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "from": "1.0.0",
+  "to": "1.1.0",
+  "serial": "emulator-5658",
+  "checks": [
+    "original character, six stats and settings preserved",
+    "strategy migrated and persisted",
+    "15-zone map available",
+    "legacy service worker retired automatically without clearing game data"
+  ]
+}
