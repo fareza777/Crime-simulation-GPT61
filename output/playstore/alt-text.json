@@ -1,0 +1,47 @@
+{
+  "language": "en-US",
+  "icon": "Champagne gold BLACKLINE vault monogram with a keyhole on textured charcoal. No person or face.",
+  "featureGraphic": "BLACKLINE crime life RPG title and Every choice leaves a mark over an illustrated rainy port city.",
+  "screenshots": [
+    {
+      "file": "01-rise.png",
+      "title": "Your rise. Your rules.",
+      "alt": "BLACKLINE dashboard showing cash, reputation, Heat, influence, health, energy and a warehouse opportunity."
+    },
+    {
+      "file": "02-decisions.png",
+      "title": "Every choice leaves a mark.",
+      "alt": "Warehouse decision with reward range, energy, Heat, preparation costs and three different success chances."
+    },
+    {
+      "file": "03-territory.png",
+      "title": "Take the city. Zone by zone.",
+      "alt": "Blackwater map with 15 territory zones, ownership, connected supply routes and actions against rivals."
+    },
+    {
+      "file": "04-crew.png",
+      "title": "Loyalty is never guaranteed.",
+      "alt": "Fully masked crew specialists Ghost and Mace with loyalty, fatigue, salaries and profile actions."
+    },
+    {
+      "file": "05-businesses.png",
+      "title": "Build income. Balance power.",
+      "alt": "Business management showing daily income, crew payroll, net profit and the illustrated Corner Cafe venture."
+    },
+    {
+      "file": "06-rivals.png",
+      "title": "Outthink your rivals.",
+      "alt": "Turn-based territory battle with momentum, morale, exposure and choices to advance, find an opening or protect crew."
+    },
+    {
+      "file": "07-heist.png",
+      "title": "Plan the score. Own the escape.",
+      "alt": "Harbor Ledger operation planning with preparation cost, reward range, masked crew selection and required equipment."
+    },
+    {
+      "file": "08-story.png",
+      "title": "Your story. Your legacy.",
+      "alt": "Main story journal showing the Meridian heist objective, quest rewards and later territory progression."
+    }
+  ]
+}

@@ -1,0 +1,441 @@
+{
+  "createdAt": "2026-10-06T16:10:04.267Z",
+  "language": "en-US",
+  "assets": [
+    {
+      "file": "app-icon-512.png",
+      "width": 512,
+      "height": 512,
+      "channels": 4,
+      "hasAlpha": true,
+      "colorSpace": "srgb",
+      "bytes": 549982,
+      "sha256": "41bd5bdadd65b4c2e7ab57aa4fbdca23c4c8348c57341fb46f958c2d9aafd48d"
+    },
+    {
+      "file": "app-icon-1024.png",
+      "width": 1024,
+      "height": 1024,
+      "channels": 4,
+      "hasAlpha": true,
+      "colorSpace": "srgb",
+      "bytes": 2293505,
+      "sha256": "a9c0c781b6749d0580014b47a149ea601ad1df038067ff0b9cac37bd3898dee1"
+    },
+    {
+      "file": "feature-graphic-1024x500.png",
+      "width": 1024,
+      "height": 500,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 806598,
+      "sha256": "2974d3f91825752c09e44a85849408c904ed8fe38fc1001a75816103ff53c41d"
+    },
+    {
+      "file": "trailer-thumbnail-1920x1080.png",
+      "width": 1920,
+      "height": 1080,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 2757610,
+      "sha256": "0abfddf4d00b29003d1cf329a34216b71d618b3671b0e8a0a6022bf2847e29d6"
+    },
+    {
+      "file": "screenshots/01-rise.png",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 811200,
+      "sha256": "07cc1f4654e803bc6cebd26ade1c0314e2256cd8d64d884572b093d54789fcbc"
+    },
+    {
+      "file": "screenshots/02-decisions.png",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 705411,
+      "sha256": "50e02a81c00a1da2c2345a278e8e8d1ba803b6ad6ccb1d277ce555f0a2d09f4c"
+    },
+    {
+      "file": "screenshots/03-territory.png",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 870802,
+      "sha256": "6776f1b05fb90b5e55bcd0cc75bff76135d21112001d2a5ec1db0b2cdbdc91fd"
+    },
+    {
+      "file": "screenshots/04-crew.png",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 686929,
+      "sha256": "b899438c3628134bad62b12baa9771f17a29457043499b0b701f76a8f64df044"
+    },
+    {
+      "file": "screenshots/05-businesses.png",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 817417,
+      "sha256": "96657a5e4a2ae7a76686c4b53cde70f9bc436f1c9f4d75cdf5d4363586d1725e"
+    },
+    {
+      "file": "screenshots/06-rivals.png",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 422734,
+      "sha256": "655e45b8e405b0961dd86539518688136075ed45237f0ecb262b77fca83e3d85"
+    },
+    {
+      "file": "screenshots/07-heist.png",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 670361,
+      "sha256": "ce8eb94b66404ea038f04c40682a845b14513c874065f3afa0c7957c5c4b1133"
+    },
+    {
+      "file": "screenshots/08-story.png",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "hasAlpha": false,
+      "colorSpace": "srgb",
+      "bytes": 360136,
+      "sha256": "4375e820773b9d37ef1cfa80824dc063a21dd073e6ecee423c85c2e94199d9c1"
+    }
+  ],
+  "videos": [
+    {
+      "file": "BLACKLINE-PlayStore-Portrait-1080x1920.mp4",
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 36,
+      "fps": 30,
+      "frames": 1080,
+      "codec": "h264",
+      "pixelFormat": "yuvj420p",
+      "audioCodec": "aac",
+      "sampleRate": 48000,
+      "channels": 2,
+      "peakDbFS": -7.026702279507539,
+      "meanDbFS": -31.700712419047548,
+      "clippedSamples": 0,
+      "bytes": 10433311,
+      "sha256": "489647f5df7aeb62827e0afda133b0b439da7b9a6595e79c779ba3048fa8cce1"
+    },
+    {
+      "file": "BLACKLINE-Cinematic-Landscape-1920x1080.mp4",
+      "width": 1920,
+      "height": 1080,
+      "durationSeconds": 36,
+      "fps": 30,
+      "frames": 1080,
+      "codec": "h264",
+      "pixelFormat": "yuvj420p",
+      "audioCodec": "aac",
+      "sampleRate": 48000,
+      "channels": 2,
+      "peakDbFS": -7.026702279507539,
+      "meanDbFS": -31.700712419047548,
+      "clippedSamples": 0,
+      "bytes": 14198556,
+      "sha256": "ae477df4ceaee939de2b8209a616ed5a26fe6d611471300efa8df7e701eb533d"
+    }
+  ],
+  "screenshots": 8,
+  "iconHasHumans": false,
+  "fullFacesAllowed": false,
+  "music": false,
+  "instruments": false,
+  "vocals": false,
+  "gameplayCaptureReview": {
+    "game": "BLACKLINE 1.1.0",
+    "createdAt": "2026-10-06T15:36:16.832Z",
+    "viewport": {
+      "width": 432,
+      "height": 768,
+      "deviceScaleFactor": 2.5
+    },
+    "captures": [
+      {
+        "name": "overview",
+        "description": "Overview with six player statistics and the warehouse opportunity.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "decision",
+        "description": "Warehouse operation with real approaches, preparation costs and risk.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "outcome",
+        "description": "The actual seeded warehouse outcome after paying for information.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 209822,
+          "reputation": 1095,
+          "heat": 45,
+          "health": 92,
+          "energy": 80,
+          "influence": 68
+        },
+        "resultTitle": "Opportunity secured",
+        "resultEffects": {
+          "cash": 7422,
+          "reputation": 35,
+          "heat": 11,
+          "energy": -20,
+          "skillXp": {
+            "streetSmarts": 30
+          },
+          "loyalty": 1
+        },
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "map",
+        "description": "All fifteen connected city zones and the selected rival territory.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "battle",
+        "description": "A real three-round territory battle with momentum, morale and exposure.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 201054,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 80,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "crew",
+        "description": "Masked crew specialists with loyalty, salary and condition.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "business",
+        "description": "Owned businesses and income after payroll.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "operations",
+        "description": "The repeatable major operations available for planning.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "heist-plan",
+        "description": "Major-operation planning with selected crew and equipment requirements.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "heist",
+        "description": "The first Harbor Ledger stage with three meaningful choices.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 200445,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 80,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "journal",
+        "description": "Main story quests, progress and rewards.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "side-quests",
+        "description": "The separate side-quest progression path.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      },
+      {
+        "name": "character",
+        "description": "The fully masked player and six skill progression systems.",
+        "width": 432,
+        "height": 768,
+        "scrollWidth": 432,
+        "imagesLoaded": true,
+        "stats": {
+          "cash": 202400,
+          "reputation": 1060,
+          "heat": 34,
+          "health": 92,
+          "energy": 100,
+          "influence": 68
+        },
+        "resultTitle": null,
+        "resultEffects": null,
+        "source": "actual BLACKLINE UI; isolated fictional progressed save"
+      }
+    ],
+    "javascriptErrors": []
+  },
+  "artPrompts": "docs/playstore-art-prompts.json",
+  "renderSource": "../../promotional-video/src",
+  "visualReview": "Source artwork, all eight screenshot layouts and ten key frames per video inspected. Encoded video frames also extracted for final inspection."
+}

@@ -1,0 +1,268 @@
+{
+  "game": "BLACKLINE 1.1.0",
+  "createdAt": "2026-10-06T15:36:16.832Z",
+  "viewport": {
+    "width": 432,
+    "height": 768,
+    "deviceScaleFactor": 2.5
+  },
+  "captures": [
+    {
+      "name": "overview",
+      "description": "Overview with six player statistics and the warehouse opportunity.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "decision",
+      "description": "Warehouse operation with real approaches, preparation costs and risk.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "outcome",
+      "description": "The actual seeded warehouse outcome after paying for information.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 209822,
+        "reputation": 1095,
+        "heat": 45,
+        "health": 92,
+        "energy": 80,
+        "influence": 68
+      },
+      "resultTitle": "Opportunity secured",
+      "resultEffects": {
+        "cash": 7422,
+        "reputation": 35,
+        "heat": 11,
+        "energy": -20,
+        "skillXp": {
+          "streetSmarts": 30
+        },
+        "loyalty": 1
+      },
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "map",
+      "description": "All fifteen connected city zones and the selected rival territory.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "battle",
+      "description": "A real three-round territory battle with momentum, morale and exposure.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 201054,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 80,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "crew",
+      "description": "Masked crew specialists with loyalty, salary and condition.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "business",
+      "description": "Owned businesses and income after payroll.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "operations",
+      "description": "The repeatable major operations available for planning.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "heist-plan",
+      "description": "Major-operation planning with selected crew and equipment requirements.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "heist",
+      "description": "The first Harbor Ledger stage with three meaningful choices.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 200445,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 80,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "journal",
+      "description": "Main story quests, progress and rewards.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "side-quests",
+      "description": "The separate side-quest progression path.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    },
+    {
+      "name": "character",
+      "description": "The fully masked player and six skill progression systems.",
+      "width": 432,
+      "height": 768,
+      "scrollWidth": 432,
+      "imagesLoaded": true,
+      "stats": {
+        "cash": 202400,
+        "reputation": 1060,
+        "heat": 34,
+        "health": 92,
+        "energy": 100,
+        "influence": 68
+      },
+      "resultTitle": null,
+      "resultEffects": null,
+      "source": "actual BLACKLINE UI; isolated fictional progressed save"
+    }
+  ],
+  "javascriptErrors": []
+}

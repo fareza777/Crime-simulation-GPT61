@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-06",
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "key": "icon",
+      "prompt": "Use case: logo-brand. Create a brand new premium square Android game app icon for BLACKLINE, a noir crime strategy/management RPG. The provided image is a reference only for the black and champagne-gold brand and distinctive angular B monogram. Reimagine the B as a single unmistakable geometric vault-lock emblem: bold beveled brushed champagne-gold metal, one razor-sharp black diagonal cut through the gold monogram, a restrained geometric lock/keyway in the negative space, elegant broad shapes, excellent readability at 48 pixels. One centered sculptural emblem occupies about 64 percent of the full square. Smooth deep charcoal matte background reaches all four square edges, with very restrained fine material texture and soft studio lighting from upper left. High-end game publishing art, rich realistic metal edges, crisp disciplined silhouette. No crown, no humans, no faces, no masks, no skulls, no animals, no weapons, no eyeballs, no letters besides the B-shaped emblem, no captions, no watermark, no round outer frame, no pre-rounded square corners, no outer drop shadow. Square 1:1 high resolution.",
+      "reference": [
+        "E:\\Crime Sim GPT 61\\public\\assets\\icon.png"
+      ],
+      "source": "C:\\Users\\FAJAR\\.codex\\generated_images\\01a101f2-7e83-70e2-b593-c66c7f68ac7a\\exec-1dc5320a-4585-4b6f-b4ad-1a3a0367fc97.png"
+    },
+    {
+      "key": "city",
+      "prompt": "Use case: ads-marketing. Original cinematic key art for BLACKLINE, a premium noir text-based crime RPG. A fictional port metropolis called Blackwater after rain at night, photographed cinematically from a mid-height rooftop across a broad wet street to a distant illuminated Art Deco financial tower. Deep charcoal and warm champagne gold, slate blue in shadows, amber streetlights reflected in rain-soaked pavement; extremely restrained muted burgundy at a distant traffic light. Rich atmospheric layers, docks and cranes distant right, industrial warehouses midground, ornate old-quarter stone architecture left, luxury financial skyline center. Sophisticated painterly photorealism consistent with a premium illustrated mobile crime strategy game, detailed tangible buildings, subtle steam, volumetric light, refined film texture. Wide panoramic 16:9 composition, important skyline in the right two thirds, the left third darker and less busy as safe space for later typography. No people, no faces, no animals, no human silhouettes, no statues, no posters with living faces, no text, no logos, no music imagery, no neon green, no oversized explosions, no weapons. A beautiful intriguing night city suitable for a Google Play feature graphic and cinematic trailer background.",
+      "reference": null,
+      "source": "C:\\Users\\FAJAR\\.codex\\generated_images\\01a101f2-7e83-70e2-b593-c66c7f68ac7a\\exec-c9c56d29-5d80-422a-abdc-73ef296db955.png"
+    },
+    {
+      "key": "vault",
+      "prompt": "Use case: ads-marketing. A cinematic close-up original premium crime RPG key-art scene for BLACKLINE: the immense circular security vault door of an Art Deco private reserve, partially open, viewed in dramatic three-quarter perspective from a dark high-end bank corridor. Massive brushed graphite steel door, elegant narrow champagne-gold inlays and gold latch mechanisms, deep warm light leaking from the opening, dark polished stone floor reflecting a small strip of light, fine suspended dust, rich tactile metal machining. Faint shadow of safety deposit shelves within, the promise of a major heist. Polished atmospheric illustrated realism, luxurious controlled contrast, minimalist focused composition. Wide 16:9 image, door in right half and clean dark space in the left half for later large typography. No people, no faces, no human body parts, no animals, no statues, no skulls, no guns, no gore, no written text, no logos, no numbers, no musical instruments, no green colors. High detail and premium lighting, original fictional environment.",
+      "reference": null,
+      "source": "C:\\Users\\FAJAR\\.codex\\generated_images\\01a101f2-7e83-70e2-b593-c66c7f68ac7a\\exec-838ea9d5-57fd-4e3a-b9c8-d595d2fb526e.png"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "portrait": {
+    "width": 1080,
+    "height": 1920,
+    "seconds": 36.011
+  },
+  "landscape": {
+    "width": 1920,
+    "height": 1080,
+    "seconds": 36.011
+  },
+  "mobile": {
+    "width": 393,
+    "scrollWidth": 393,
+    "language": "en",
+    "imagesLoaded": true
+  },
+  "localFileOffline": true,
+  "screenshotLinks": 8,
+  "javascriptErrors": []
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "BLACKLINE-PlayStore-Portrait",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 1080,
+    "defaultProps": {}
+  },
+  {
+    "id": "BLACKLINE-Cinematic-Landscape",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 1080,
+    "defaultProps": {}
+  },
+  {
+    "id": "Scene-01-Hook",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 132,
+    "defaultProps": {}
+  },
+  {
+    "id": "Scene-02-Choices",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 147,
+    "defaultProps": {}
+  },
+  {
+    "id": "Scene-03-Crew",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 147,
+    "defaultProps": {}
+  },
+  {
+    "id": "Scene-04-Territory",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 147,
+    "defaultProps": {}
+  },
+  {
+    "id": "Scene-05-Businesses",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 147,
+    "defaultProps": {}
+  },
+  {
+    "id": "Scene-06-Rivals",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 147,
+    "defaultProps": {}
+  },
+  {
+    "id": "Scene-07-Heist",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 210,
+    "defaultProps": {}
+  },
+  {
+    "id": "Scene-08-Closing",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 87,
+    "defaultProps": {}
+  },
+  {
+    "id": "Screenshot-01-Rise",
+    "width": 1080,
+    "height": 1920,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {
+      "headline": "Your rise.\nYour rules.",
+      "screen": "overview",
+      "number": "01",
+      "background": "city"
+    }
+  },
+  {
+    "id": "Screenshot-02-Decisions",
+    "width": 1080,
+    "height": 1920,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {
+      "headline": "Every choice\nleaves a mark.",
+      "screen": "decision",
+      "number": "02",
+      "background": "vault"
+    }
+  },
+  {
+    "id": "Screenshot-03-Territory",
+    "width": 1080,
+    "height": 1920,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {
+      "headline": "Take the city.\nZone by zone.",
+      "screen": "map",
+      "number": "03",
+      "background": "city"
+    }
+  },
+  {
+    "id": "Screenshot-04-Crew",
+    "width": 1080,
+    "height": 1920,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {
+      "headline": "Loyalty is never\nguaranteed.",
+      "screen": "crew",
+      "number": "04",
+      "background": "city"
+    }
+  },
+  {
+    "id": "Screenshot-05-Businesses",
+    "width": 1080,
+    "height": 1920,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {
+      "headline": "Build income.\nBalance power.",
+      "screen": "business",
+      "number": "05",
+      "background": "city"
+    }
+  },
+  {
+    "id": "Screenshot-06-Rivals",
+    "width": 1080,
+    "height": 1920,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {
+      "headline": "Outthink\nyour rivals.",
+      "screen": "battle",
+      "number": "06",
+      "background": "city"
+    }
+  },
+  {
+    "id": "Screenshot-07-Heist",
+    "width": 1080,
+    "height": 1920,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {
+      "headline": "Plan the score.\nOwn the escape.",
+      "screen": "heist-plan",
+      "number": "07",
+      "background": "vault"
+    }
+  },
+  {
+    "id": "Screenshot-08-Story",
+    "width": 1080,
+    "height": 1920,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {
+      "headline": "Your story.\nYour legacy.",
+      "screen": "journal",
+      "number": "08",
+      "background": "city"
+    }
+  },
+  {
+    "id": "Feature-Graphic",
+    "width": 1024,
+    "height": 500,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {}
+  },
+  {
+    "id": "Trailer-Thumbnail",
+    "width": 1920,
+    "height": 1080,
+    "fps": 1,
+    "durationInFrames": 1,
+    "defaultProps": {}
+  }
+]

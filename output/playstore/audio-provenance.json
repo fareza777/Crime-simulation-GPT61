@@ -1,0 +1,61 @@
+{
+  "music": false,
+  "vocals": false,
+  "instruments": false,
+  "files": [
+    {
+      "name": "rain-city",
+      "seconds": 36,
+      "sampleRate": 48000,
+      "channels": 2,
+      "peak": 0.12344542223880102,
+      "rms": 0.029149643919065098,
+      "source": "original deterministic broadband noise and physical-style filtering; no notes, instruments, melody or musical rhythm"
+    },
+    {
+      "name": "paper",
+      "seconds": 0.48,
+      "sampleRate": 48000,
+      "channels": 2,
+      "peak": 0.31387852465132826,
+      "rms": 0.06238604674196283,
+      "source": "original deterministic broadband noise and physical-style filtering; no notes, instruments, melody or musical rhythm"
+    },
+    {
+      "name": "latch",
+      "seconds": 0.32,
+      "sampleRate": 48000,
+      "channels": 2,
+      "peak": 0.6315934040295742,
+      "rms": 0.07202878409306136,
+      "source": "original deterministic broadband noise and physical-style filtering; no notes, instruments, melody or musical rhythm"
+    },
+    {
+      "name": "air",
+      "seconds": 0.8,
+      "sampleRate": 48000,
+      "channels": 2,
+      "peak": 0.34174265531303005,
+      "rms": 0.059762577133736734,
+      "source": "original deterministic broadband noise and physical-style filtering; no notes, instruments, melody or musical rhythm"
+    },
+    {
+      "name": "vault-door",
+      "seconds": 2.4,
+      "sampleRate": 48000,
+      "channels": 2,
+      "peak": 0.4575039571240373,
+      "rms": 0.05931313501893396,
+      "source": "original deterministic broadband noise and physical-style filtering; no notes, instruments, melody or musical rhythm"
+    },
+    {
+      "name": "keys",
+      "seconds": 0.7,
+      "sampleRate": 48000,
+      "channels": 2,
+      "peak": 0.3619972572754906,
+      "rms": 0.03346582980057677,
+      "source": "original deterministic broadband noise and physical-style filtering; no notes, instruments, melody or musical rhythm"
+    }
+  ]
+}
