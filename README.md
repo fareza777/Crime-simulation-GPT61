@@ -40,6 +40,8 @@ Android now includes native adaptive banner, guarded day-end interstitial and op
 
 A complete English store campaign is available in [output/playstore](output/playstore): a new non-human vault icon, 1024 × 500 feature graphic, eight genuine gameplay screenshots and 36-second portrait/landscape trailers with original non-musical ambience and SFX. The editable Remotion project is in [promotional-video](promotional-video); see [the campaign handoff](docs/playstore-campaign.md) for previews, provenance and upload instructions.
 
+The listing privacy policy is [docs/privacy-policy.html](docs/privacy-policy.html). Once GitHub Pages is enabled, use `https://fareza777.github.io/Crime-simulation-GPT61/privacy-policy.html` in Google Play and AdMob.
+
 Charcoal and champagne gold, illustrated city backgrounds, completely masked portraits, custom item art, animated statistics and gentle transitions. Characters have no visible eyes, skin or facial features. Environments contain no exposed faces. Audio uses quiet noise based rain/wind ambience and short mechanical SFX, with no music, melodies or instruments. Effects, ambience, haptics and reduced motion have independent controls.
 
 Phone screens use readable text, large touch targets, fixed bottom navigation and small pages of cards. The principal dashboard fits a 393 × 851 viewport without vertical scrolling. Narrower/shorter phones retain readable text and may use a short scroll; catalogues use pagination. Portrait orientation is enforced on Android.
