@@ -24,7 +24,7 @@ The stable Legacy Mobile Ads SDK remains supported; Google's Next-Gen SDK is the
 
 These are Google's [demo units](https://developers.google.com/admob/android/test-ads); they are unrelated to the owner's AdMob account. The app ID is the [official Android sample application ID](https://developers.google.com/admob/android/quick-start). There is no automatic production-ID switch for release builds.
 
-The owner AdMob account now also contains the Android app **Blackline: Crime Simulation** (`com.blackline.crimelife`). Its registered production App ID is `ca-app-pub-6279186647593327~6204605758`, but the closed-test build intentionally continues using the demo IDs above. The matching publisher declaration is live at [`app-ads.txt`](https://fareza777.github.io/Crime-simulation-GPT61/app-ads.txt).
+The owner AdMob account now also contains the Android app **Blackline: Crime Simulation** (`com.blackline.crimelife`). Its registered production App ID is `ca-app-pub-6279186647593327~6204605758`, with prepared production units for Banner (`ca-app-pub-6279186647593327/1679037380`), Interstitial (`ca-app-pub-6279186647593327/2800547369`), and Rewarded (`ca-app-pub-6279186647593327/2608975670`). The closed-test build intentionally continues using the demo IDs above. The matching publisher declaration is live at [`app-ads.txt`](https://fareza777.github.io/Crime-simulation-GPT61/app-ads.txt).
 
 ## UI contract
 
