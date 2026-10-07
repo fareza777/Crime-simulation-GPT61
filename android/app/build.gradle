@@ -16,8 +16,8 @@ android {
         applicationId "com.blackline.crimelife"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.1.0"
+        versionCode 3
+        versionName "1.1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [admobAppId: monetizationProperties.getProperty('admobAppId', 'ca-app-pub-3940256099942544~3347511713')]
         buildConfigField 'String', 'ADMOB_BANNER_ID', quotedMonetization('admobBannerId', 'ca-app-pub-3940256099942544/9214589741')

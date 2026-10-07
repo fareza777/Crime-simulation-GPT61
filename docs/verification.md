@@ -44,7 +44,7 @@ Native test-format display and SDK callback results are recorded separately in `
 
 The subsequent one-claim adjustment changes the shared TypeScript game/UI policy. Its updated web and Android bundles use the same native SDK integration. The native display/callback and offline-upgrade reports above precede this policy adjustment; the cap and restart behavior have fresh unit and desktop/phone browser coverage.
 
-The permanent `remove_ads` product removes all formats and permits the same capped supplies without videos. The US **$4.99** price must be configured in Play Console; available regional prices come from Google ProductDetails. A blank public licensing key or unconfigured product prevents payment launch. No charge or licensed store transaction was attempted. Store-backed purchase, cancellation, pending payment, acknowledgement, restore and refund tests require the owner's Console and license tester. See `docs/monetization.md`.
+The permanent `remove_ads` product removes all formats and permits the same capped supplies without videos. The US **$4.99** product is active in Play Console; available regional prices come from Google ProductDetails. The public licensing key is configured in the closed-test build. No charge or licensed store transaction was attempted. Store-backed purchase, cancellation, pending payment, acknowledgement, restore and refund tests require the owner's Console and license tester. See `docs/monetization.md`.
 
 ## Art, audio and release boundaries
 
