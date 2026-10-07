@@ -24,6 +24,8 @@ The stable Legacy Mobile Ads SDK remains supported; Google's Next-Gen SDK is the
 
 These are Google's [demo units](https://developers.google.com/admob/android/test-ads); they are unrelated to the owner's AdMob account. The app ID is the [official Android sample application ID](https://developers.google.com/admob/android/quick-start). There is no automatic production-ID switch for release builds.
 
+The owner AdMob account now also contains the Android app **Blackline: Crime Simulation** (`com.blackline.crimelife`). Its registered production App ID is `ca-app-pub-6279186647593327~6204605758`, but the closed-test build intentionally continues using the demo IDs above. The matching publisher declaration is live at [`app-ads.txt`](https://fareza777.github.io/Crime-simulation-GPT61/app-ads.txt).
+
 ## UI contract
 
 `src/services/monetization.ts` exports `monetization`:
@@ -66,7 +68,7 @@ The plugin first initializes Mobile Ads asynchronously, then applies `MobileAds.
 
 ## Remove Ads product and payment handling
 
-The product is **`remove_ads`**, an **INAPP non-consumable one-time permanent purchase**. The requested **US base price is US$4.99**. This price must be created in the owner's Play Console; the client cannot configure store pricing. The UI displays the eligible permanent buy offer's localized `ProductDetails` formatted price when available. Price is null when Play cannot return the product. Product details and ownership are fetched afresh before launching a purchase.
+The product is **`remove_ads`**, an **INAPP non-consumable one-time permanent purchase**. The requested **US base price is US$4.99** is configured and active in the owner's Play Console, with regional prices supplied by Google Play. The UI displays the eligible permanent buy offer's localized `ProductDetails` formatted price when available. Price is null when Play cannot return the product. Product details and ownership are fetched afresh before launching a purchase.
 
 Set `playBillingPublicKey` in `android/app/monetization.properties` to this app's Base64-encoded public RSA licensing key from Play Console. This public verification key is intentionally blank in the delivery: **the test build refuses to start payment until verification is configured**. Do not put a service account/private key in the app. Google's [client integration guide](https://developer.android.com/google/play/billing/integrate) defines the purchase and acknowledgement flow.
 
@@ -79,7 +81,7 @@ This is a **client-only verification architecture**. It cannot offer server-stre
 ## Play Console and license testing
 
 1. Create the Play app with package `com.blackline.crimelife`, configure its signing/upload keys, and upload an appropriately signed internal-testing build. The local release artifact is not a published store app.
-2. Create and activate the one-time product `remove_ads` with a permanent **buy** purchase option, not a rental/preorder. Set the United States base price to **US$4.99**, review regional prices/tax treatment, and make the product available to the intended test countries.
+2. Verify the active one-time product `remove_ads` with its permanent **buy** purchase option, US base price **US$4.99**, regional prices/tax treatment, and intended test countries.
 3. Copy the app's public licensing RSA key into `playBillingPublicKey`, rebuild, and keep Google's demo ad IDs during testing.
 4. Add tester Google accounts to Play Console **License testing** and the internal test track, accept the opt-in link, and install through the test distribution using the licensed account. License testers can also sideload a matching-package debug build once this Play app and product exist. Confirm the payment sheet identifies a test purchase; test-track membership alone does not prevent real charges. See [Google's Billing test guide](https://developer.android.com/google/play/billing/test).
 5. Test approved and declined test cards, cancellation/back, pending-payment success and cancellation, acknowledgement, repeat/owned purchase, reinstall/restore, network loss before/after payment, and resume after payment completion. Verify no entitlement while pending, all formats disappear once purchased, and daily supply stays capped.
